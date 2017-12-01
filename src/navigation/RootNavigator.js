@@ -1,22 +1,24 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { TabNavigator } from "react-navigation";
 import { Icon } from "react-native-elements";
 import Login from "../containers/Login";
+import TabBarComponent from "../components/TabBarComponent";
+import UserHome from "../containers/Home";
 
 class Home extends React.Component {
   static navigationOptions = {
     tabBarLabel: "Home",
-    tabBarIcon: ({ tintColor }) => (
+    tabBarIcon: () => (
       <Image
         source={require("../assets/activity.png")}
-        style={[styles.icon, { tintColor: tintColor }]}
+        //style={[styles.icon, { tintColor: tintColor }]}
       />
     )
   };
 
   render() {
-    return <Login />;
+    return <UserHome />;
   }
 }
 
@@ -66,12 +68,14 @@ const RootTabs = TabNavigator(
   {
     tabBarPosition: "bottom",
     animationEnabled: true,
-    //showIcon: true,
+    tabBarComponent: TabBarComponent,
+    showIcon: true,
+    lazy: true,
     tabBarOptions: {
       activeTintColor: "#006600",
       inactiveTintColor: "black",
-      style: { backgroundColor: "#f2f2f2" },
-      indicatorStyle: { backgroundColor: "gray", height: 5 }
+      style: { backgroundColor: "#f2f2f2" }
+      //indicatorStyle: { backgroundColor: "gray", height: 5 }
     }
   }
 );
