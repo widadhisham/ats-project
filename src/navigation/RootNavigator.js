@@ -11,7 +11,12 @@ import UserPlant from "../containers/Plant";
 class Home extends React.Component {
   static navigationOptions = {
     tabBarLabel: "Home",
-    tabBarIcon: () => <Image source={require("../assets/activity.png")} />
+    tabBarIcon: ({ focused }) =>
+      focused ? (
+        <Image source={require("../assets/Home.png")} />
+      ) : (
+        <Image source={require("../assets/HomeB.png")} />
+      )
   };
 
   render() {
@@ -22,9 +27,12 @@ class Home extends React.Component {
 class Ground extends React.Component {
   static navigationOptions = {
     tabBarLabel: "Ground",
-    tabBarIcon: ({ tintColor }) => (
-      <Image source={require("../assets/ground.png")} width="10" height="10" />
-    )
+    tabBarIcon: ({ focused }) =>
+      focused ? (
+        <Image source={require("../assets/Ground.png")} />
+      ) : (
+        <Image source={require("../assets/Ground2.png")} />
+      )
   };
 
   render() {
@@ -34,9 +42,12 @@ class Ground extends React.Component {
 class Plant extends React.Component {
   static navigationOptions = {
     tabBarLabel: "Plant",
-    tabBarIcon: ({ tintColor }) => (
-      <Image source="" style={[styles.icon, { tintColor: tintColor }]} />
-    )
+    tabBarIcon: ({ focused }) =>
+      focused ? (
+        <Image source={require("../assets/Plant.png")} />
+      ) : (
+        <Image source={require("../assets/Plant2.png")} />
+      )
   };
 
   render() {
@@ -70,7 +81,7 @@ const RootTabs = TabNavigator(
     lazy: true,
     tabBarOptions: {
       activeTintColor: "#006600",
-      inactiveTintColor: "black",
+      inactiveTintColor: "#664d00",
       style: { backgroundColor: "#f2f2f2" }
     }
   }
