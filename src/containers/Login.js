@@ -1,8 +1,18 @@
 import React from "react";
-import { StyleSheet, View, Text, Keyboard, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Keyboard,
+  Image,
+  TouchableOpacity
+} from "react-native";
 import { Formik } from "formik";
 import Input from "../components/Input";
-import validation from "../utils/validator";
+import Button from "../components/Button";
+import GeneralModal from "../components/GeneralModal";
+import Signup from "../components/SignupModal";
+import * as validation from "../utils/validator";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,15 +26,35 @@ const styles = StyleSheet.create({
   content: {
     flex: 2,
     flexDirection: "column",
+    alignItems: "center",
     marginHorizontal: "10%",
     marginTop: "15%"
+  },
+  button: {
+    marginTop: "15%"
+  },
+  signup: {
+    flexDirection: "row",
+    marginTop: "10%"
+  },
+  textGray: {
+    fontSize: 15,
+    color: "gray"
+  },
+  textGreen: {
+    fontSize: 15,
+    color: "#006600"
   }
 });
 
 class Login extends React.Component {
   state = {
-    secureTextEntry: true
+    secureTextEntry: true,
+    showModal: false
   };
+  showModal = () => this.setState({ showModal: true });
+  closeModal = () => this.setState({ showModal: false });
+
   render() {
     return (
       <View style={styles.container}>
@@ -40,7 +70,7 @@ class Login extends React.Component {
               if (!validation.isValidEmail(values.email)) {
                 errors.email = "Enter Valied Email";
               }
-              if (!validation.isValidPassword(values.password)) {
+              if (values.password !== "l") {
                 errors.password = "Enter Valied Password";
               }
               return errors;
@@ -88,10 +118,30 @@ class Login extends React.Component {
                   }}
                   password
                 />
+                <View style={styles.button}>
+                  <Button
+                    title="LOGIN"
+                    onPress={props.handleSubmit}
+                    loading={false}
+                  />
+                </View>
               </View>
             )}
           />
+          <View style={styles.signup}>
+            <Text style={styles.textGray}>Don't have an account? </Text>
+            <TouchableOpacity onPress={() => this.showModal()}>
+              <Text style={styles.textGreen}>Register Now!</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+        <GeneralModal
+          isVisible={this.state.showModal}
+          onBackdropPress={() => this.closeModal()}
+          onBackButtonPress={() => this.closeModal()}
+        >
+          <Signup closeModal={() => this.closeModal()} />
+        </GeneralModal>
       </View>
     );
   }

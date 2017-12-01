@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Login from "./src/containers/Login";
+import A from "./src/navigation/RootNavigator";
 
 export default class App extends React.Component {
   render() {
-    return <Login />;
+    return <A />;
   }
 }
 

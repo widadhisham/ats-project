@@ -11,11 +11,11 @@ import { Icon } from "react-native-elements";
 
 const styles = StyleSheet.create({
   textInput: {
-    width: "70%",
+    width: "75%",
     borderColor: "#9B9B9B",
     height: 30,
-    marginTop: 10,
-    marginLeft: 10,
+    marginTop: 5,
+    marginLeft: 5,
     paddingHorizontal: 10,
     paddingTop: 0,
     paddingBottom: 8
