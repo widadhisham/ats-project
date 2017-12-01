@@ -14,21 +14,22 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginTop: "5%"
   },
-  avatar: {},
   name: {
     marginLeft: 20
   },
   text: {
     color: "white",
-    fontSize: 20
+    fontSize: 20,
+    backgroundColor: "transparent"
   }
 });
 
 const HomeHeader = ({ firstName = "Widad", lastName = "Hisham" }) => (
   <View style={styles.homeHeaderContainer}>
-    <View style={styles.avatar}>
+    <View>
       <Avatar
         large
         rounded

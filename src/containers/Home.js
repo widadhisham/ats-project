@@ -19,11 +19,14 @@ const styles = StyleSheet.create({
     flex: 1
   },
   schedual: {
-    flex: 2.5
+    flex: 4
   }
 });
 
 class Home extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: Header({})
+  });
   render() {
     return (
       <View style={styles.container}>

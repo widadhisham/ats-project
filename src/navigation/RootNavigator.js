@@ -5,16 +5,13 @@ import { Icon } from "react-native-elements";
 import Login from "../containers/Login";
 import TabBarComponent from "../components/TabBarComponent";
 import UserHome from "../containers/Home";
+import UserGround from "../containers/Ground";
+import UserPlant from "../containers/Plant";
 
 class Home extends React.Component {
   static navigationOptions = {
     tabBarLabel: "Home",
-    tabBarIcon: () => (
-      <Image
-        source={require("../assets/activity.png")}
-        //style={[styles.icon, { tintColor: tintColor }]}
-      />
-    )
+    tabBarIcon: () => <Image source={require("../assets/activity.png")} />
   };
 
   render() {
@@ -26,12 +23,12 @@ class Ground extends React.Component {
   static navigationOptions = {
     tabBarLabel: "Ground",
     tabBarIcon: ({ tintColor }) => (
-      <Icon name="home" style={[styles.icon, { tintColor: tintColor }]} />
+      <Image source={require("../assets/ground.png")} width="10" height="10" />
     )
   };
 
   render() {
-    return <Login />;
+    return <UserGround />;
   }
 }
 class Plant extends React.Component {
@@ -43,7 +40,7 @@ class Plant extends React.Component {
   };
 
   render() {
-    return <Login />;
+    return <UserPlant />;
   }
 }
 const styles = StyleSheet.create({
@@ -75,7 +72,6 @@ const RootTabs = TabNavigator(
       activeTintColor: "#006600",
       inactiveTintColor: "black",
       style: { backgroundColor: "#f2f2f2" }
-      //indicatorStyle: { backgroundColor: "gray", height: 5 }
     }
   }
 );
