@@ -65,8 +65,7 @@ class Input extends React.PureComponent {
             { borderColor: border(errorMessage, touched) }
           ]}
         >
-          <Icon name={name} color="#006600" />
-
+          {name && <Icon name={name} color="#006600" />}
           <TextInput
             {...otherProps}
             underlineColorAndroid="transparent"

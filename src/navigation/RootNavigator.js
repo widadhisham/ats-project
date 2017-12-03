@@ -75,10 +75,11 @@ const RootTabs = TabNavigator(
   },
   {
     tabBarPosition: "bottom",
-    animationEnabled: true,
+    animationEnabled: false,
     tabBarComponent: TabBarComponent,
     showIcon: true,
     lazy: true,
+    swipeEnabled: false,
     tabBarOptions: {
       activeTintColor: "#006600",
       inactiveTintColor: "#664d00",

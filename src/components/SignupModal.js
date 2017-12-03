@@ -116,6 +116,7 @@ class Signup extends React.Component {
                     name="email"
                     autoCorrect={false}
                     placeholder="Email"
+                    keyboardType="email-address"
                     returnKeyType="next"
                     ChangeText={text => {
                       props.setFieldValue("email", text);
@@ -140,7 +141,6 @@ class Signup extends React.Component {
                       if (props.values.password !== "")
                         props.setFieldTouched("password", true);
                     }}
-                    onSubmitEditing={props.handleSubmit}
                     autoCapitalize="none"
                     showHidePress={() => {
                       this.setState({

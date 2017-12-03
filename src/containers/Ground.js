@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
+import ActionSheet from "react-native-actionsheet";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
 
@@ -34,6 +35,10 @@ const styles = StyleSheet.create({
     width: "15%",
     alignItems: "center",
     justifyContent: "center"
+  },
+  actionsheetText: {
+    color: "#006600",
+    fontSize: 18
   }
 });
 
@@ -41,6 +46,13 @@ class Ground extends React.Component {
   state = {
     searchText: ""
   };
+  options = [
+    <Text style={styles.actionsheetText}>Cancel</Text>,
+    <Text style={styles.actionsheetText}>Add Ground</Text>,
+    <Text style={styles.actionsheetText}>Sort By Name</Text>
+  ];
+  handleOpenActionSheet = () => this.ActionSheet.show();
+
   render() {
     return (
       <View style={styles.container}>
@@ -61,11 +73,22 @@ class Ground extends React.Component {
                 />
               </View>
               <View style={styles.menu}>
-                <Icon name="menu" size={40} color="#d9d9d9" />
+                <Icon
+                  name="menu"
+                  size={40}
+                  color="#d9d9d9"
+                  onPress={this.handleOpenActionSheet}
+                />
               </View>
             </View>
           </LinearGradient>
         </View>
+        <ActionSheet
+          ref={o => (this.ActionSheet = o)}
+          options={this.options}
+          cancelButtonIndex={0}
+          //onPress={this.handleSortPress}
+        />
         <View style={styles.ground}>
           <View />
         </View>

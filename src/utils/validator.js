@@ -13,6 +13,10 @@ export const isNum = number => {
   return reg.test(number) && number.length > 0;
 };
 
+export const isFloat = number => {
+  const reg = /^[+-]?([0-9]*[.])?[0-9]+$/;
+  return reg.test(number) && number.length > 0;
+};
 export const isPhone = phone => {
   const reg = /^\+?[0-9]{3}-?([0-9]{7}|[0-9]-[0-9]{2}-[0-9]{2}-[0-9]{2}|[0-9]{3}-[0-9]{2}-[0-9]-[0-9])$/;
   return reg.test(phone) && phone.length > 0;

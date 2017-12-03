@@ -85,6 +85,7 @@ class Login extends React.Component {
                   name="email"
                   autoCorrect={false}
                   placeholder="Email"
+                  keyboardType="email-address"
                   returnKeyType="next"
                   ChangeText={text => {
                     props.setFieldValue("email", text);
