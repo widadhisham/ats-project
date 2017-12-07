@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   actionsheetText: {
-    color: "#006600",
+    color: "#77990d",
     fontSize: 18
   },
   plantItems: {

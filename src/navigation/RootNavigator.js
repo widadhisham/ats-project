@@ -15,7 +15,7 @@ class Home extends React.Component {
       focused ? (
         <Image source={require("../assets/Home.png")} />
       ) : (
-        <Image source={require("../assets/HomeB.png")} />
+        <Image source={require("../assets/Home2.png")} />
       )
   };
 
@@ -81,7 +81,7 @@ const RootTabs = TabNavigator(
     lazy: true,
     swipeEnabled: false,
     tabBarOptions: {
-      activeTintColor: "#006600",
+      activeTintColor: "#77990d",
       inactiveTintColor: "#664d00",
       style: { backgroundColor: "#f2f2f2" }
     }

@@ -8,7 +8,7 @@ const GeneralLinearGradient = ({ children }) => (
     }}
     start={{ x: 0.0, y: 0.5 }}
     end={{ x: 1.0, y: 0.5 }}
-    colors={["#006600", "#664d00"]}
+    colors={["#77990d", "#611b00"]}
   >
     {children}
   </LinearGradient>

@@ -19,7 +19,7 @@ const PlantItem = ({ close, onScroll, onOpen, plantName = "aa bb", photo }) => {
       ),
       type: "secondary",
       onPress: () => onPressDeleteBulletin(id),
-      backgroundColor: "#664d00"
+      backgroundColor: "#611b00"
     },
     {
       component: (
@@ -29,7 +29,7 @@ const PlantItem = ({ close, onScroll, onOpen, plantName = "aa bb", photo }) => {
       ),
       type: "primary",
       onPress: () => onPressEditBulletin(id),
-      backgroundColor: "#006600"
+      backgroundColor: "#77990d"
     }
   ];
 

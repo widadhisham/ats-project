@@ -5,7 +5,7 @@ import { Button } from "react-native-elements";
 const styles = StyleSheet.create({
   buttonContainer: {},
   button: {
-    backgroundColor: "#006600",
+    backgroundColor: "#77990d",
     borderRadius: 15,
     position: "relative"
   },
@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
 const loadingProps = {
   iconRight: { werid: "s" },
   disabled: true,
-  color: "#006600",
-  iconComponent: () => <ActivityIndicator size="small" color="#006600" />
+  color: "#77990d",
+  iconComponent: () => <ActivityIndicator size="small" color="#77990d" />
 };
 const ButtonWithLoadingIncator = ({ title, loading, onPress }) => (
   <Button
