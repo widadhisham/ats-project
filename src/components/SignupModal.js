@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     marginBottom: "5%"
   },
   button: {
-    marginTop: "10%"
+    marginTop: "5%"
   },
   errorText: {
     color: "#FF0000",

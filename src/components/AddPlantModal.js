@@ -31,18 +31,28 @@ class AddPlant extends React.Component {
   state = {};
 
   render() {
-    const { error = "", closeModal } = this.props;
+    const {
+      error = "",
+      closeModal,
+      id,
+      name,
+      waterQuantity,
+      temperature,
+      distanceX,
+      distanceY,
+      add
+    } = this.props;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
           <View style={styles.content}>
             <Formik
               initialValues={{
-                name: "",
-                waterQuantity: "",
-                temperature: "",
-                distanceX: "",
-                distanceY: ""
+                name: name,
+                waterQuantity: waterQuantity,
+                temperature: temperature,
+                distanceX: distanceX,
+                distanceY: distanceY
               }}
               validate={values => {
                 const errors = {};
@@ -65,7 +75,9 @@ class AddPlant extends React.Component {
               }}
               onSubmit={values => {
                 Keyboard.dismiss();
-                console.log(values.email + values.password);
+                add
+                  ? console.log(values.email + values.password)
+                  : console.log(values.email + values.password);
               }}
               render={props => (
                 <View>
@@ -74,11 +86,12 @@ class AddPlant extends React.Component {
                   </View>
                   <Input
                     autoCorrect={false}
-                    placeholder="Plant Name"
+                    placeholder={add ? "Plant Name" : ""}
                     returnKeyType="next"
                     ChangeText={text => {
                       props.setFieldValue("name", text);
                     }}
+                    value={props.values.name}
                     errorMessage={props.errors.name}
                     touched={props.touched.name}
                     onBlur={() => {
@@ -86,15 +99,18 @@ class AddPlant extends React.Component {
                         props.setFieldTouched("name", true);
                     }}
                     autoCapitalize="none"
+                    add={add}
+                    text={"Plant Name"}
                   />
                   <Input
                     autoCorrect={false}
                     keyboardType="numeric"
-                    placeholder="Water Quantity"
+                    placeholder={add ? "Water Quantity (Cup)" : ""}
                     returnKeyType="next"
                     ChangeText={text => {
                       props.setFieldValue("waterQuantity", text);
                     }}
+                    value={props.values.waterQuantity}
                     errorMessage={props.errors.waterQuantity}
                     touched={props.touched.waterQuantity}
                     onBlur={() => {
@@ -102,15 +118,18 @@ class AddPlant extends React.Component {
                         props.setFieldTouched("waterQuantity", true);
                     }}
                     autoCapitalize="none"
+                    add={add}
+                    text={"Water Quantity (Cup)"}
                   />
                   <Input
                     autoCorrect={false}
-                    placeholder="Temperature °C"
+                    placeholder={add ? "Temperature °C" : ""}
                     keyboardType="numeric"
                     returnKeyType="next"
                     ChangeText={text => {
                       props.setFieldValue("temperature", text);
                     }}
+                    value={props.values.temperature}
                     errorMessage={props.errors.temperature}
                     touched={props.touched.temperature}
                     onBlur={() => {
@@ -118,9 +137,11 @@ class AddPlant extends React.Component {
                         props.setFieldTouched("temperature", true);
                     }}
                     autoCapitalize="none"
+                    add={add}
+                    text={"Temperature °C"}
                   />
                   <Input
-                    placeholder="Width Distance (M)"
+                    placeholder={add ? "Width Distance (M)" : ""}
                     keyboardType="numeric"
                     returnKeyType="next"
                     ChangeText={text => props.setFieldValue("distanceX", text)}
@@ -130,10 +151,13 @@ class AddPlant extends React.Component {
                       if (props.values.distanceX !== "")
                         props.setFieldTouched("distanceX", true);
                     }}
+                    value={props.values.distanceX}
                     autoCapitalize="none"
+                    add={add}
+                    text={"Width Distance (M)"}
                   />
                   <Input
-                    placeholder="Length Distance (M)"
+                    placeholder={add ? "Length Distance (M)" : ""}
                     keyboardType="numeric"
                     returnKeyType="go"
                     ChangeText={text =>
@@ -145,8 +169,11 @@ class AddPlant extends React.Component {
                       if (props.values.distanceY !== "")
                         props.setFieldTouched("distanceY", true);
                     }}
+                    value={props.values.distanceY}
                     onSubmitEditing={props.handleSubmit}
                     autoCapitalize="none"
+                    add={add}
+                    text={"Length Distance (M)"}
                   />
                   <View style={styles.button}>
                     <Button

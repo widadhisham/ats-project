@@ -21,10 +21,13 @@ const styles = StyleSheet.create({
   },
   logo: {
     flex: 1,
-    backgroundColor: "gray"
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: "20%"
   },
   content: {
-    flex: 2,
+    flex: 3,
     flexDirection: "column",
     alignItems: "center",
     marginHorizontal: "10%",
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
   },
   textGreen: {
     fontSize: 15,
-    color: "#006600"
+    color: "#77990d"
   }
 });
 
@@ -58,7 +61,13 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.logo} />
+        <View style={styles.logo}>
+          <Image
+            source={require("../assets/ATS2.png")}
+            width="100%"
+            height="100%"
+          />
+        </View>
         <View style={styles.content}>
           <Formik
             initialValues={{

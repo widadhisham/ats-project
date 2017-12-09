@@ -31,6 +31,10 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 75
+  },
+  text: {
+    fontSize: 10,
+    color: "#737373"
   }
 });
 
@@ -54,11 +58,14 @@ class Input extends React.PureComponent {
       secureTextEntry,
       showHidePress,
       password,
+      add,
+      text,
       ...otherProps
     } = this.props;
 
     return (
       <View style={styles.input}>
+        {!add && <Text style={styles.text}>{text}</Text>}
         <View
           style={[
             styles.inputWrap,
