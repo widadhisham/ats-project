@@ -1,9 +1,18 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  FlatList
+} from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
 import ActionSheet from "react-native-actionsheet";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
+import AddGround from "../components/AddGroundModal";
+import GeneralModal from "../components/GeneralModal";
 
 const styles = StyleSheet.create({
   container: {
@@ -39,12 +48,34 @@ const styles = StyleSheet.create({
   actionsheetText: {
     color: "#77990d",
     fontSize: 18
+  },
+  groundItems: {
+    flex: 1,
+    position: "relative",
+    paddingTop: "2%"
+  },
+  AddButton: {
+    alignItems: "flex-end",
+    justifyContent: "flex-start",
+    backgroundColor: "transparent",
+    marginBottom: 10,
+    marginRight: 10,
+    marginTop: "110%",
+    marginLeft: "70%",
+    position: "absolute"
+  },
+  add: {
+    shadowColor: "rgba(0, 0, 0, 0.2)"
   }
 });
 
 class Ground extends React.Component {
   state = {
-    searchText: ""
+    searchText: "",
+    showModal: false,
+    sortBy: "",
+    scrollEnabled: true,
+    open: -1
   };
   options = [
     <Text style={styles.actionsheetText}>Cancel</Text>,
@@ -52,7 +83,14 @@ class Ground extends React.Component {
     <Text style={styles.actionsheetText}>Sort By Name</Text>
   ];
   handleOpenActionSheet = () => this.ActionSheet.show();
-
+  showModal = () => this.setState({ showModal: true });
+  closeModal = () => this.setState({ showModal: false });
+  onOpen = value => {
+    this.setState({ open: value });
+  };
+  scroll = value => {
+    this.setState({ scrollEnabled: value });
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -90,7 +128,40 @@ class Ground extends React.Component {
           //onPress={this.handleSortPress}
         />
         <View style={styles.ground}>
-          <View />
+          <View style={styles.groundItems}>
+            <ScrollView
+              scrollEventThrottle={50}
+              scrollEnabled={this.state.scrollEnabled}
+            >
+              <FlatList
+              /* data={data}
+                keyExtractor={keyExtractor}
+                renderItem={({ item }) => (
+                  <PlantItem
+                    onOpen={() => this.onOpen(1)}
+                    onScroll={this.scroll}
+                    close={this.state.open !== 1}
+                    id={item.id}
+                    name={item.name}
+                    waterQuantity={item.waterQuantity}
+                    temperature={item.temperature}
+                    distanceX={item.distanceX}
+                    distanceY={item.distanceY}*/
+              />
+            </ScrollView>
+          </View>
+          <View style={styles.AddButton}>
+            <TouchableOpacity onPress={() => this.showModal()}>
+              <Icon reverse name="add" color="#611b00" style={styles.add} />
+            </TouchableOpacity>
+          </View>
+          <GeneralModal
+            isVisible={this.state.showModal}
+            onBackdropPress={() => this.closeModal()}
+            onBackButtonPress={() => this.closeModal()}
+          >
+            <AddGround closeModal={() => this.closeModal()} add={true} />
+          </GeneralModal>
         </View>
       </View>
     );

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
 import ActionSheet from "react-native-actionsheet";
+import _ from "lodash";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
 import AddPlant from "../components/AddPlantModal";
@@ -55,7 +56,8 @@ const styles = StyleSheet.create({
   },
   plantItems: {
     flex: 1,
-    position: "relative"
+    position: "relative",
+    paddingTop: "2%"
   },
   AddButton: {
     alignItems: "flex-end",
@@ -73,35 +75,22 @@ const styles = StyleSheet.create({
 });
 
 const data = [
-  { id: 1 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 },
-  { id: 2 }
+  {
+    id: 1,
+    name: "Tomato",
+    waterQuantity: "2",
+    temperature: "25",
+    distanceX: "0.1",
+    distanceY: "0.1"
+  },
+  {
+    id: 2,
+    name: "Cucumber",
+    waterQuantity: "3",
+    temperature: "23",
+    distanceX: "0.2",
+    distanceY: "0.2"
+  }
 ];
 class Plant extends React.Component {
   state = {
@@ -109,7 +98,8 @@ class Plant extends React.Component {
     showModal: false,
     sortBy: "",
     scrollEnabled: true,
-    open: -1
+    open: -1,
+    showEditModal: false
   };
   options = [
     <Text style={styles.actionsheetText}>Cancel</Text>,
@@ -134,6 +124,43 @@ class Plant extends React.Component {
   };
 
   render() {
+    const {
+      plants = [
+        {
+          id: 1,
+          name: "Tomato",
+          waterQuantity: "2",
+          temperature: "25",
+          distanceX: "0.1",
+          distanceY: "0.1"
+        },
+        {
+          id: 2,
+          name: "Cucumber",
+          waterQuantity: "3",
+          temperature: "23",
+          distanceX: "0.2",
+          distanceY: "0.2"
+        }
+      ]
+    } = this.props;
+    let plantItems;
+    if (plants) {
+      plantItems = plants.filter(
+        item =>
+          item.name
+            .toLowerCase()
+            .search(this.state.searchText.toLowerCase()) !== -1
+      );
+    }
+    switch (this.state.sortBy) {
+      case "name":
+        plantItems = _.sortBy(plantItems, "name");
+        break;
+      default:
+        break;
+    }
+
     return (
       <View style={styles.container}>
         <View style={styles.plantHeader}>
@@ -184,6 +211,11 @@ class Plant extends React.Component {
                     onScroll={this.scroll}
                     close={this.state.open !== 1}
                     id={item.id}
+                    name={item.name}
+                    waterQuantity={item.waterQuantity}
+                    temperature={item.temperature}
+                    distanceX={item.distanceX}
+                    distanceY={item.distanceY}
                   />
                 )}
               />
@@ -191,7 +223,7 @@ class Plant extends React.Component {
           </View>
           <View style={styles.AddButton}>
             <TouchableOpacity onPress={() => this.showModal()}>
-              <Icon reverse name="add" color="#006600" style={styles.add} />
+              <Icon reverse name="add" color="#77990d" style={styles.add} />
             </TouchableOpacity>
           </View>
         </View>
@@ -200,7 +232,7 @@ class Plant extends React.Component {
           onBackdropPress={() => this.closeModal()}
           onBackButtonPress={() => this.closeModal()}
         >
-          <AddPlant closeModal={() => this.closeModal()} />
+          <AddPlant closeModal={() => this.closeModal()} add={true} />
         </GeneralModal>
       </View>
     );

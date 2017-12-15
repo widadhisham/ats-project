@@ -54,11 +54,11 @@ class PlantItem extends React.Component {
       onOpen,
       photo,
       id,
-      name = "kk",
-      waterQuantity = 1,
-      temperature = 1,
-      distanceX = 1,
-      distanceY = 1
+      name,
+      waterQuantity,
+      temperature,
+      distanceX,
+      distanceY
     } = this.props;
     const { photoA } = this.state;
     const swipeout = [
@@ -69,7 +69,7 @@ class PlantItem extends React.Component {
           </View>
         ),
         type: "secondary",
-        onPress: () => onPressDeleteBulletin(id),
+        onPress: () => this.showAlertModal(),
         backgroundColor: "#611b00"
       },
       {
@@ -79,7 +79,7 @@ class PlantItem extends React.Component {
           </View>
         ),
         type: "primary",
-        onPress: () => onPressEditBulletin(id),
+        onPress: () => this.showModal(),
         backgroundColor: "#77990d"
       }
     ];
