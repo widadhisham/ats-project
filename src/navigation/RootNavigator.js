@@ -7,6 +7,7 @@ import TabBarComponent from "../components/TabBarComponent";
 import UserHome from "../containers/Home";
 import UserGround from "../containers/Ground";
 import UserPlant from "../containers/Plant";
+import UserDevice from "../containers/Device";
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -54,6 +55,21 @@ class Plant extends React.Component {
     return <UserPlant />;
   }
 }
+class Device extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: "Device",
+    tabBarIcon: ({ focused }) =>
+      focused ? (
+        <Image source={require("../assets/Device.png")} />
+      ) : (
+        <Image source={require("../assets/Device2.png")} />
+      )
+  };
+
+  render() {
+    return <UserDevice />;
+  }
+}
 const styles = StyleSheet.create({
   icon: {
     width: 26,
@@ -71,6 +87,9 @@ const RootTabs = TabNavigator(
     },
     Plant: {
       screen: Plant
+    },
+    Device: {
+      screen: Device
     }
   },
   {

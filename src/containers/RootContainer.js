@@ -15,7 +15,7 @@ class RootContainer extends Component {
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" />
-        {isAuthenticated ? <RootNavigation /> : <Login />}
+        {isAuthenticated ? <RootNavigation /> : <RootNavigation />}
       </View>
     );
   }
