@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
 import { Icon, Avatar } from "react-native-elements";
 import Swipeout from "react-native-swipeout";
+import ActionSheet from "react-native-actionsheet";
 import ImagePicker from "./ImagePicker";
 import AddDevice from "./AddDeviceModal";
 import GeneralModal from "./GeneralModal";
@@ -34,6 +35,10 @@ const styles = StyleSheet.create({
   text: {
     paddingRight: "5%",
     color: "#737373"
+  },
+  actionsheetText: {
+    color: "#77990d",
+    fontSize: 18
   }
 });
 
@@ -46,7 +51,24 @@ class DeviceItem extends React.Component {
   closeModal = () => this.setState({ showEditModal: false });
   showAlertModal = () => this.setState({ showAlertModal: true });
   closeAlertModal = () => this.setState({ showAlertModal: false });
+  handleOpenActionSheet = () => this.ActionSheet.show();
 
+  options = [
+    <Text style={styles.actionsheetText}>Cancel</Text>,
+    this.props.asignGround ? (
+      <Text style={styles.actionsheetText}>Delete Asign To Ground</Text>
+    ) : (
+      <Text style={styles.actionsheetText}>Asign To Ground</Text>
+    )
+  ];
+  handleActionSheetPress = index => {
+    if (index === 1 && this.props.asignGround) {
+      this.showModal();
+    }
+    if (index === 1 && !this.props.asignGround) {
+      this.showModal();
+    }
+  };
   render() {
     const {
       close,
@@ -57,7 +79,6 @@ class DeviceItem extends React.Component {
       deviceNumber,
       asignGround
     } = this.props;
-    const { photoA } = this.state;
     const swipeout = [
       {
         component: (
@@ -97,49 +118,57 @@ class DeviceItem extends React.Component {
         }}
       >
         <View style={styles.plantContainer}>
-          <View style={styles.plantBody}>
-            <View style={styles.data}>
-              <View style={styles.row}>
-                <Text style={styles.text}>Name:</Text>
-                <Text>{name}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={styles.text}>MAC</Text>
-                <Text>{deviceNumber}</Text>
-              </View>
-              {asignGround && (
+          <TouchableOpacity onPress={this.handleOpenActionSheet}>
+            <View style={styles.plantBody}>
+              <View style={styles.data}>
                 <View style={styles.row}>
-                  <Text style={styles.text}>Asign To Ground</Text>
-                  <Text>{asignGround}</Text>
+                  <Text style={styles.text}>Name:</Text>
+                  <Text>{name}</Text>
                 </View>
-              )}
+                <View style={styles.row}>
+                  <Text style={styles.text}>MAC</Text>
+                  <Text>{deviceNumber}</Text>
+                </View>
+                {asignGround && (
+                  <View style={styles.row}>
+                    <Text style={styles.text}>Asign To Ground</Text>
+                    <Text>{asignGround}</Text>
+                  </View>
+                )}
+              </View>
+              <ActionSheet
+                ref={o => (this.ActionSheet = o)}
+                options={this.options}
+                cancelButtonIndex={0}
+                onPress={this.handleActionSheetPress}
+              />
+              <GeneralModal
+                isVisible={this.state.showEditModal}
+                onBackdropPress={() => this.closeModal()}
+                onBackButtonPress={() => this.closeModal()}
+              >
+                <AddDevice
+                  closeModal={() => this.closeModal()}
+                  id={id}
+                  name={name}
+                  deviceNumber={deviceNumber}
+                  add={false}
+                />
+              </GeneralModal>
+              <GeneralModal
+                isVisible={this.state.showAlertModal}
+                onBackdropPress={() => this.closeAlertModal()}
+                onBackButtonPress={() => this.closeAlertModal()}
+              >
+                <AlertModal
+                  closeModal={() => this.closeAlertModal()}
+                  id={id}
+                  name={name}
+                  onPressD={() => {}}
+                />
+              </GeneralModal>
             </View>
-            <GeneralModal
-              isVisible={this.state.showEditModal}
-              onBackdropPress={() => this.closeModal()}
-              onBackButtonPress={() => this.closeModal()}
-            >
-              <AddDevice
-                closeModal={() => this.closeModal()}
-                id={id}
-                name={name}
-                deviceNumber={deviceNumber}
-                add={false}
-              />
-            </GeneralModal>
-            <GeneralModal
-              isVisible={this.state.showAlertModal}
-              onBackdropPress={() => this.closeAlertModal()}
-              onBackButtonPress={() => this.closeAlertModal()}
-            >
-              <AlertModal
-                closeModal={() => this.closeAlertModal()}
-                id={id}
-                name={name}
-                onPressD={() => {}}
-              />
-            </GeneralModal>
-          </View>
+          </TouchableOpacity>
         </View>
       </Swipeout>
     );

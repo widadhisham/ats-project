@@ -77,12 +77,14 @@ const data = [
   {
     id: 1,
     name: "Arduino 1",
-    deviceNumber: ""
+    deviceNumber: "",
+    asignGround: null
   },
   {
     id: 2,
     name: "Arduino 2",
-    deviceNumber: ""
+    deviceNumber: "",
+    asignGround: "Ground 1"
   }
 ];
 
@@ -122,12 +124,14 @@ class Device extends React.Component {
         {
           id: 1,
           name: "Arduino 1",
-          deviceNumber: ""
+          deviceNumber: "",
+          asignGround: undefined
         },
         {
           id: 2,
           name: "Arduino 2",
-          deviceNumber: ""
+          deviceNumber: "",
+          asignGround: "Ground 1"
         }
       ]
     } = this.props;
@@ -183,6 +187,7 @@ class Device extends React.Component {
                     id={item.id}
                     name={item.name}
                     deviceNumber={item.deviceNumber}
+                    asignGround={item.asignGround}
                   />
                 )}
               />

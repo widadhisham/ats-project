@@ -46,9 +46,7 @@ class AddDevice extends React.Component {
                 if (!validation.isEmpty(values.name)) {
                   errors.name = "Requierd";
                 }
-                if (!validation.isFloat(values.deviceNumber)) {
-                  errors.deviceNumber = "Enter Valied Width";
-                }
+
                 return errors;
               }}
               onSubmit={values => {
