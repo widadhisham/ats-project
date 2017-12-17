@@ -8,11 +8,13 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Formik } from "formik";
+import { connect } from "react-redux";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import GeneralModal from "../components/GeneralModal";
 import Signup from "../components/SignupModal";
 import * as validation from "../utils/validator";
+import * as userActions from "../redux/actions/user";
 
 const styles = StyleSheet.create({
   container: {
@@ -59,6 +61,7 @@ class Login extends React.Component {
   closeModal = () => this.setState({ showModal: false });
 
   render() {
+    const { login } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.logo}>
@@ -79,14 +82,14 @@ class Login extends React.Component {
               if (!validation.isValidEmail(values.email)) {
                 errors.email = "Enter Valied Email";
               }
-              if (values.password !== "l") {
+              if (!validation.isValidPassword(values.password)) {
                 errors.password = "Enter Valied Password";
               }
               return errors;
             }}
             onSubmit={values => {
               Keyboard.dismiss();
-              console.log(values.email + values.password);
+              login({ email: values.email, password: values.password });
             }}
             render={props => (
               <View>
@@ -156,5 +159,5 @@ class Login extends React.Component {
     );
   }
 }
-
-export default Login;
+const mapStateToProps = state => ({});
+export default connect(mapStateToProps, { login: userActions.login })(Login);

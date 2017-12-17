@@ -1,15 +1,12 @@
-import * as UserActions from "../actions/user";
+import * as PlantActions from "../actions/plant";
 
 const initialState = {
-  userData: {},
-  id: undefined,
-  isAuthenticating: true,
-  isAuthenticated: false,
-  isLogging: false,
-  loginError: undefined
+  plants: [],
+  isAdding: false,
+  error: undefined
 };
 
-const user = (state = initialState, action) => {
+const plant = (state = initialState, action) => {
   switch (action.type) {
     /* case Types.AUTH_REQUEST:
       return { ...state, isLoadingAuth: true };
