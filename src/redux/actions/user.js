@@ -18,7 +18,7 @@ export const loginFailed = error => ({
   error
 });
 
-const API = "https://192.168.1.6/ats/api/action.php";
+const API = "http://192.168.1.6:80/ats/api/action.php";
 
 export const login = userObject => {
   const apiData = {

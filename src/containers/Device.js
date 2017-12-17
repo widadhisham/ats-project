@@ -13,15 +13,19 @@ import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
 import AddDevice from "../components/AddDeviceModal";
 import GeneralModal from "../components/GeneralModal";
+import DeviceItems from "../components/DeviceItems";
+
+const uuidv4 = require("uuid/v4");
+const keyExtractor = () => uuidv4();
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  groundHeader: {
+  deviceHeader: {
     flex: 1
   },
-  ground: {
+  device: {
     flex: 4
   },
   searchBar: {
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     color: "#77990d",
     fontSize: 18
   },
-  groundItems: {
+  deviceItems: {
     flex: 1,
     position: "relative",
     paddingTop: "2%"
@@ -69,13 +73,27 @@ const styles = StyleSheet.create({
   }
 });
 
+const data = [
+  {
+    id: 1,
+    name: "Arduino 1",
+    deviceNumber: ""
+  },
+  {
+    id: 2,
+    name: "Arduino 2",
+    deviceNumber: ""
+  }
+];
+
 class Device extends React.Component {
   state = {
     searchText: "",
     showModal: false,
     sortBy: "",
     scrollEnabled: true,
-    open: -1
+    open: -1,
+    showEditModal: false
   };
   options = [
     <Text style={styles.actionsheetText}>Cancel</Text>,
@@ -91,10 +109,31 @@ class Device extends React.Component {
   scroll = value => {
     this.setState({ scrollEnabled: value });
   };
+  handleActionSheetPress = index => {
+    if (index === 1) {
+      this.showModal();
+    }
+    if (index === 2) this.setState({ sortBy: "name" });
+  };
+
   render() {
+    const {
+      devices = [
+        {
+          id: 1,
+          name: "Arduino 1",
+          deviceNumber: ""
+        },
+        {
+          id: 2,
+          name: "Arduino 2",
+          deviceNumber: ""
+        }
+      ]
+    } = this.props;
     return (
       <View style={styles.container}>
-        <View style={styles.groundHeader}>
+        <View style={styles.deviceHeader}>
           <LinearGradient>
             <View style={styles.searchContainer}>
               <View style={styles.search}>
@@ -125,28 +164,27 @@ class Device extends React.Component {
           ref={o => (this.ActionSheet = o)}
           options={this.options}
           cancelButtonIndex={0}
-          //onPress={this.handleSortPress}
+          onPress={this.handleActionSheetPress}
         />
-        <View style={styles.ground}>
-          <View style={styles.groundItems}>
+        <View style={styles.device}>
+          <View style={styles.deviceItems}>
             <ScrollView
               scrollEventThrottle={50}
               scrollEnabled={this.state.scrollEnabled}
             >
               <FlatList
-              /* data={data}
+                data={data}
                 keyExtractor={keyExtractor}
                 renderItem={({ item }) => (
-                  <PlantItem
+                  <DeviceItems
                     onOpen={() => this.onOpen(1)}
                     onScroll={this.scroll}
                     close={this.state.open !== 1}
                     id={item.id}
                     name={item.name}
-                    waterQuantity={item.waterQuantity}
-                    temperature={item.temperature}
-                    distanceX={item.distanceX}
-                    distanceY={item.distanceY}*/
+                    deviceNumber={item.deviceNumber}
+                  />
+                )}
               />
             </ScrollView>
           </View>

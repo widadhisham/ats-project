@@ -8,7 +8,6 @@ import login from "../redux/actions/user";
 class RootContainer extends Component {
   componentDidMount() {
     //this.props.authenticationRequest();
-    // do authorizing
   }
   render() {
     const { isAuthenticated } = this.props;

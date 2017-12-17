@@ -91,6 +91,12 @@ class Ground extends React.Component {
   scroll = value => {
     this.setState({ scrollEnabled: value });
   };
+  handleActionSheetPress = index => {
+    if (index === 1) {
+      this.showModal();
+    }
+    if (index === 2) this.setState({ sortBy: "name" });
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -125,7 +131,7 @@ class Ground extends React.Component {
           ref={o => (this.ActionSheet = o)}
           options={this.options}
           cancelButtonIndex={0}
-          //onPress={this.handleSortPress}
+          onPress={this.handleActionSheetPress}
         />
         <View style={styles.ground}>
           <View style={styles.groundItems}>

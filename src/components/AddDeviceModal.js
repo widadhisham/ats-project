@@ -31,15 +31,7 @@ class AddDevice extends React.Component {
   state = {};
 
   render() {
-    const {
-      error = "",
-      closeModal,
-      id,
-      name,
-      groundWidth,
-      groundHeight,
-      add
-    } = this.props;
+    const { error = "", closeModal, id, name, deviceNumber, add } = this.props;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
