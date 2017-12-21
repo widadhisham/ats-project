@@ -56,7 +56,8 @@ class GroundItem extends React.Component {
       id,
       name,
       groundWidth,
-      groundHeight
+      groundHeight,
+      asignPlant
     } = this.props;
     const { photoA } = this.state;
     const swipeout = [
@@ -106,12 +107,18 @@ class GroundItem extends React.Component {
               </View>
               <View style={styles.row}>
                 <Text style={styles.text}>Width</Text>
-                <Text>{groundWidth + " Cup"}</Text>
+                <Text>{groundWidth + " M"}</Text>
               </View>
               <View style={styles.row}>
                 <Text style={styles.text}>Height</Text>
-                <Text>{groundHeight + " °C"}</Text>
+                <Text>{groundHeight + " M"}</Text>
               </View>
+              {asignPlant && (
+                <View style={styles.row}>
+                  <Text style={styles.text}>Assign to: </Text>
+                  <Text>{plantName}</Text>
+                </View>
+              )}
             </View>
           </View>
           <GeneralModal

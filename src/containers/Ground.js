@@ -13,6 +13,10 @@ import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
 import AddGround from "../components/AddGroundModal";
 import GeneralModal from "../components/GeneralModal";
+import GroundItems from "../components/GroundItems";
+
+const uuidv4 = require("uuid/v4");
+const keyExtractor = () => uuidv4();
 
 const styles = StyleSheet.create({
   container: {
@@ -98,6 +102,12 @@ class Ground extends React.Component {
     if (index === 2) this.setState({ sortBy: "name" });
   };
   render() {
+    const {
+      ground = [
+        { id: 1, name: "Ground 1", width: 300, height: 400 },
+        { id: 2, name: "Ground 2", width: 300, height: 400 }
+      ]
+    } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.groundHeader}>
@@ -140,19 +150,20 @@ class Ground extends React.Component {
               scrollEnabled={this.state.scrollEnabled}
             >
               <FlatList
-              /* data={data}
+                data={ground}
                 keyExtractor={keyExtractor}
                 renderItem={({ item }) => (
-                  <PlantItem
+                  <GroundItems
                     onOpen={() => this.onOpen(1)}
                     onScroll={this.scroll}
                     close={this.state.open !== 1}
                     id={item.id}
                     name={item.name}
-                    waterQuantity={item.waterQuantity}
-                    temperature={item.temperature}
-                    distanceX={item.distanceX}
-                    distanceY={item.distanceY}*/
+                    width={item.width}
+                    height={item.height}
+                    asignPlant={item.asignPlant}
+                  />
+                )}
               />
             </ScrollView>
           </View>

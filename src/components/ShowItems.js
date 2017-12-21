@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class ShowGround extends React.Component {
+class ShowItems extends React.Component {
   state = {
     error: ""
   };
@@ -33,7 +33,7 @@ class ShowGround extends React.Component {
     const {
       error = "",
       closeModal,
-      grounds = [{ id: 1, name: "Ground 1" }, { id: 2, name: "Ground 2" }]
+      Items = [{ id: 1, name: "Ground 1" }, { id: 2, name: "Ground 2" }]
     } = this.props;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
@@ -43,7 +43,7 @@ class ShowGround extends React.Component {
               <View style={{ flexDirection: "row" }}>
                 <CloseButton onPress={closeModal} />
               </View>
-              <View>{grounds.map(item => <View>{item.name}</View>)}</View>
+              <View>{Items.map(item => <View>{item.name}</View>)}</View>
 
               <View style={styles.button}>
                 <Button
@@ -60,4 +60,4 @@ class ShowGround extends React.Component {
   }
 }
 
-export default ShowGround;
+export default ShowItems;

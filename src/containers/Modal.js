@@ -1,10 +1,11 @@
 import React from "react";
 import Modal from "react-native-modal";
+import { connect } from "react-redux";
 import AddDevice from "../components/AddDeviceModal";
 import AddGround from "../components/AddGroundModal";
 import AddPlant from "../components/AddPlantModal";
 import Alert from "../components/AlertModal";
-import ShowGround from "../components/ShowGround";
+import ShowItems from "../components/ShowItems";
 import SignUp from "../components/SignupModal";
 import * as modalActions from "../redux/actions/modal";
 
@@ -13,7 +14,7 @@ export const constants = {
   ADD_GROUND: "ADD_GROUND",
   ADD_PLANT: "ADD_PLANT",
   ALERT: "ALERT",
-  SHOW_GROUND: "SHOW_GROUND",
+  SHOW_ITEMS: "SHOW_ITEMS",
   SIGN_UP: "SIGN_UP"
 };
 
@@ -22,7 +23,7 @@ const MODAL_COMPONENTS = {
   [constants.ADD_GROUND]: AddGround,
   [constants.ADD_PLANT]: AddPlant,
   [constants.ALERT]: Alert,
-  [constants.SHOW_GROUND]: ShowGround,
+  [constants.SHOW_ITEMS]: ShowItems,
   [constants.SIGN_UP]: SignUp
 };
 const GeneralModal = props => {

@@ -15,6 +15,8 @@ import GeneralModal from "../components/GeneralModal";
 import Signup from "../components/SignupModal";
 import * as validation from "../utils/validator";
 import * as userActions from "../redux/actions/user";
+import * as ModalAction from "../redux/actions/modal";
+import { constants } from "../containers/Modal";
 
 const styles = StyleSheet.create({
   container: {
@@ -61,7 +63,7 @@ class Login extends React.Component {
   closeModal = () => this.setState({ showModal: false });
 
   render() {
-    const { login } = this.props;
+    const { login, signup, dispatch } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.logo}>
@@ -143,7 +145,11 @@ class Login extends React.Component {
           />
           <View style={styles.signup}>
             <Text style={styles.textGray}>Don't have an account? </Text>
-            <TouchableOpacity onPress={() => this.showModal()}>
+            <TouchableOpacity
+              onPress={() =>
+                dispatch(ModalAction.showModal(constants.SIGN_UP, {}))
+              }
+            >
               <Text style={styles.textGreen}>Register Now!</Text>
             </TouchableOpacity>
           </View>
@@ -160,4 +166,9 @@ class Login extends React.Component {
   }
 }
 const mapStateToProps = state => ({});
-export default connect(mapStateToProps, { login: userActions.login })(Login);
+function mapDispatchToProps(dispatch) {
+  return { signup: () => dispatch(ModalAction.showModal(constants.SIGN_UP)) };
+}
+export default connect(mapStateToProps, {
+  login: userActions.login
+})(Login);

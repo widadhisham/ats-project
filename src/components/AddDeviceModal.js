@@ -66,7 +66,7 @@ class AddDevice extends React.Component {
                     returnKeyType="next"
                     ChangeText={text => {
                       props.setFieldValue("name", text);
-                    }}
+                    }}  
                     value={props.values.name}
                     errorMessage={props.errors.name}
                     touched={props.touched.name}
