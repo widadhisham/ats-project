@@ -4,7 +4,7 @@ import RootNavigation from "../navigation/RootNavigator";
 import { connect } from "react-redux";
 import { StatusBar, View } from "react-native";
 import login from "../redux/actions/user";
-
+import Modal from "../containers/Modal";
 class RootContainer extends Component {
   componentDidMount() {
     //this.props.authenticationRequest();
@@ -14,6 +14,7 @@ class RootContainer extends Component {
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" />
+        <Modal />
         {isAuthenticated ? <RootNavigation /> : <RootNavigation />}
       </View>
     );

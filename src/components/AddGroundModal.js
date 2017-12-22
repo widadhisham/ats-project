@@ -33,7 +33,7 @@ class AddGround extends React.Component {
   render() {
     const {
       error = "",
-      closeModal,
+      hideModal,
       id,
       name,
       groundWidth,
@@ -72,7 +72,7 @@ class AddGround extends React.Component {
               render={props => (
                 <View>
                   <View style={{ flexDirection: "row" }}>
-                    <CloseButton onPress={closeModal} />
+                    <CloseButton onPress={hideModal} />
                   </View>
                   <Input
                     autoCorrect={false}

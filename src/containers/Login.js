@@ -11,8 +11,6 @@ import { Formik } from "formik";
 import { connect } from "react-redux";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import GeneralModal from "../components/GeneralModal";
-import Signup from "../components/SignupModal";
 import * as validation from "../utils/validator";
 import * as userActions from "../redux/actions/user";
 import * as ModalAction from "../redux/actions/modal";
@@ -56,11 +54,8 @@ const styles = StyleSheet.create({
 
 class Login extends React.Component {
   state = {
-    secureTextEntry: true,
-    showModal: false
+    secureTextEntry: true
   };
-  showModal = () => this.setState({ showModal: true });
-  closeModal = () => this.setState({ showModal: false });
 
   render() {
     const { login, signup, dispatch } = this.props;
@@ -146,29 +141,22 @@ class Login extends React.Component {
           <View style={styles.signup}>
             <Text style={styles.textGray}>Don't have an account? </Text>
             <TouchableOpacity
-              onPress={() =>
-                dispatch(ModalAction.showModal(constants.SIGN_UP, {}))
-              }
+              onPress={() => {
+                ModalAction.DispatchAction(
+                  ModalAction.showModal(constants.SIGN_UP, {})
+                );
+              }}
             >
               <Text style={styles.textGreen}>Register Now!</Text>
             </TouchableOpacity>
           </View>
         </View>
-        <GeneralModal
-          isVisible={this.state.showModal}
-          onBackdropPress={() => this.closeModal()}
-          onBackButtonPress={() => this.closeModal()}
-        >
-          <Signup closeModal={() => this.closeModal()} />
-        </GeneralModal>
       </View>
     );
   }
 }
 const mapStateToProps = state => ({});
-function mapDispatchToProps(dispatch) {
-  return { signup: () => dispatch(ModalAction.showModal(constants.SIGN_UP)) };
-}
+
 export default connect(mapStateToProps, {
   login: userActions.login
 })(Login);

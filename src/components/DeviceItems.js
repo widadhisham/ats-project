@@ -4,9 +4,9 @@ import { Icon, Avatar } from "react-native-elements";
 import Swipeout from "react-native-swipeout";
 import ActionSheet from "react-native-actionsheet";
 import ImagePicker from "./ImagePicker";
-import AddDevice from "./AddDeviceModal";
-import GeneralModal from "./GeneralModal";
-import AlertModal from "./AlertModal";
+import * as ModalAction from "../redux/actions/modal";
+import { constants } from "../containers/Modal";
+import DeviceItems from "../components/DeviceItems";
 
 const styles = StyleSheet.create({
   swipe: {
@@ -43,14 +43,7 @@ const styles = StyleSheet.create({
 });
 
 class DeviceItem extends React.Component {
-  state = {
-    showEditModal: false,
-    showAlertModal: false
-  };
-  showModal = () => this.setState({ showEditModal: true });
-  closeModal = () => this.setState({ showEditModal: false });
-  showAlertModal = () => this.setState({ showAlertModal: true });
-  closeAlertModal = () => this.setState({ showAlertModal: false });
+  state = {};
   handleOpenActionSheet = () => this.ActionSheet.show();
 
   options = [
@@ -63,10 +56,14 @@ class DeviceItem extends React.Component {
   ];
   handleActionSheetPress = index => {
     if (index === 1 && this.props.asignGround) {
-      this.showModal();
+      ModalAction.DispatchAction(
+        ModalAction.showModal(constants.Alert, { ...this.props })
+      );
     }
     if (index === 1 && !this.props.asignGround) {
-      this.showModal();
+      ModalAction.DispatchAction(
+        ModalAction.showModal(constants.ADD_DEVICE, { add: true })
+      );
     }
   };
   render() {
@@ -87,7 +84,11 @@ class DeviceItem extends React.Component {
           </View>
         ),
         type: "secondary",
-        onPress: () => this.showAlertModal(),
+        onPress: () => {
+          ModalAction.DispatchAction(
+            ModalAction.showModal(constants.ALERT, { ...this.props })
+          );
+        },
         backgroundColor: "#611b00"
       },
       {
@@ -97,7 +98,14 @@ class DeviceItem extends React.Component {
           </View>
         ),
         type: "primary",
-        onPress: () => this.showModal(),
+        onPress: () => {
+          ModalAction.DispatchAction(
+            ModalAction.showModal(constants.ADD_DEVICE, {
+              add: false,
+              ...this.props
+            })
+          );
+        },
         backgroundColor: "#77990d"
       }
     ];
@@ -142,31 +150,6 @@ class DeviceItem extends React.Component {
                 cancelButtonIndex={0}
                 onPress={this.handleActionSheetPress}
               />
-              <GeneralModal
-                isVisible={this.state.showEditModal}
-                onBackdropPress={() => this.closeModal()}
-                onBackButtonPress={() => this.closeModal()}
-              >
-                <AddDevice
-                  closeModal={() => this.closeModal()}
-                  id={id}
-                  name={name}
-                  deviceNumber={deviceNumber}
-                  add={false}
-                />
-              </GeneralModal>
-              <GeneralModal
-                isVisible={this.state.showAlertModal}
-                onBackdropPress={() => this.closeAlertModal()}
-                onBackButtonPress={() => this.closeAlertModal()}
-              >
-                <AlertModal
-                  closeModal={() => this.closeAlertModal()}
-                  id={id}
-                  name={name}
-                  onPressD={() => {}}
-                />
-              </GeneralModal>
             </View>
           </TouchableOpacity>
         </View>

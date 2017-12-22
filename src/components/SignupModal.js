@@ -34,7 +34,7 @@ class Signup extends React.Component {
   };
 
   render() {
-    const { error = "", closeModal } = this.props;
+    const { error = "", closeModal, hideModal } = this.props;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
@@ -78,7 +78,7 @@ class Signup extends React.Component {
               render={props => (
                 <View>
                   <View style={{ flexDirection: "row" }}>
-                    <CloseButton onPress={closeModal} />
+                    <CloseButton onPress={hideModal} />
                   </View>
                   <Input
                     name="person"

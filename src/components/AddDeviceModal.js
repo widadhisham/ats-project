@@ -31,7 +31,7 @@ class AddDevice extends React.Component {
   state = {};
 
   render() {
-    const { error = "", closeModal, id, name, deviceNumber, add } = this.props;
+    const { error = "", hideModal, id, name, deviceNumber, add } = this.props;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
@@ -58,7 +58,7 @@ class AddDevice extends React.Component {
               render={props => (
                 <View>
                   <View style={{ flexDirection: "row" }}>
-                    <CloseButton onPress={closeModal} />
+                    <CloseButton onPress={hideModal} />
                   </View>
                   <Input
                     autoCorrect={false}
@@ -66,7 +66,7 @@ class AddDevice extends React.Component {
                     returnKeyType="next"
                     ChangeText={text => {
                       props.setFieldValue("name", text);
-                    }}  
+                    }}
                     value={props.values.name}
                     errorMessage={props.errors.name}
                     touched={props.touched.name}

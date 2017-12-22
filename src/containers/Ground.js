@@ -11,9 +11,9 @@ import { SearchBar, Icon } from "react-native-elements";
 import ActionSheet from "react-native-actionsheet";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
-import AddGround from "../components/AddGroundModal";
-import GeneralModal from "../components/GeneralModal";
 import GroundItems from "../components/GroundItems";
+import * as ModalAction from "../redux/actions/modal";
+import { constants } from "../containers/Modal";
 
 const uuidv4 = require("uuid/v4");
 const keyExtractor = () => uuidv4();
@@ -72,11 +72,13 @@ const styles = StyleSheet.create({
     shadowColor: "rgba(0, 0, 0, 0.2)"
   }
 });
-
+const ground2 = [
+  { id: 1, name: "Ground 1", width: 300, height: 400 },
+  { id: 2, name: "Ground 2", width: 300, height: 400 }
+];
 class Ground extends React.Component {
   state = {
     searchText: "",
-    showModal: false,
     sortBy: "",
     scrollEnabled: true,
     open: -1
@@ -87,8 +89,6 @@ class Ground extends React.Component {
     <Text style={styles.actionsheetText}>Sort By Name</Text>
   ];
   handleOpenActionSheet = () => this.ActionSheet.show();
-  showModal = () => this.setState({ showModal: true });
-  closeModal = () => this.setState({ showModal: false });
   onOpen = value => {
     this.setState({ open: value });
   };
@@ -97,7 +97,9 @@ class Ground extends React.Component {
   };
   handleActionSheetPress = index => {
     if (index === 1) {
-      this.showModal();
+      ModalAction.DispatchAction(
+        ModalAction.showModal(constants.ADD_GROUND, { add: true })
+      );
     }
     if (index === 2) this.setState({ sortBy: "name" });
   };
@@ -150,7 +152,7 @@ class Ground extends React.Component {
               scrollEnabled={this.state.scrollEnabled}
             >
               <FlatList
-                data={ground}
+                data={ground2}
                 keyExtractor={keyExtractor}
                 renderItem={({ item }) => (
                   <GroundItems
@@ -168,17 +170,16 @@ class Ground extends React.Component {
             </ScrollView>
           </View>
           <View style={styles.AddButton}>
-            <TouchableOpacity onPress={() => this.showModal()}>
+            <TouchableOpacity
+              onPress={() => {
+                ModalAction.DispatchAction(
+                  ModalAction.showModal(constants.ADD_GROUND, { add: true })
+                );
+              }}
+            >
               <Icon reverse name="add" color="#611b00" style={styles.add} />
             </TouchableOpacity>
           </View>
-          <GeneralModal
-            isVisible={this.state.showModal}
-            onBackdropPress={() => this.closeModal()}
-            onBackButtonPress={() => this.closeModal()}
-          >
-            <AddGround closeModal={() => this.closeModal()} add={true} />
-          </GeneralModal>
         </View>
       </View>
     );

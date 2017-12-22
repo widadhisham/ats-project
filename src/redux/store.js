@@ -6,8 +6,8 @@ import user from "./reducers/user";
 import modal from "./reducers/modal";
 
 const allReducers = combineReducers({
-  user: user,
-  modal: modal
+  user,
+  modal
 });
 
 const store = createStore(

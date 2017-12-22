@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const AlertModal = ({ onPressD, closeModal, name, id }) => (
+const AlertModal = ({ onPressD, hideModal, name, id }) => (
   <View style={styles.Container}>
     <Text style={styles.title}>Are You Want To Delete {name} ?</Text>
     <View style={styles.ButtonContainer}>
@@ -44,7 +44,7 @@ const AlertModal = ({ onPressD, closeModal, name, id }) => (
         title="Cancel"
         buttonStyle={styles.button}
         textStyle={styles.text2}
-        onPress={closeModal}
+        onPress={hideModal}
       />
       <Button
         title="Delete"

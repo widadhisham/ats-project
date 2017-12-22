@@ -3,9 +3,8 @@ import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
 import { Icon, Avatar } from "react-native-elements";
 import Swipeout from "react-native-swipeout";
 import ImagePicker from "./ImagePicker";
-import AddGround from "./AddGroundModal";
-import GeneralModal from "./GeneralModal";
-import AlertModal from "./AlertModal";
+import * as ModalAction from "../redux/actions/modal";
+import { constants } from "../containers/Modal";
 
 const styles = StyleSheet.create({
   swipe: {
@@ -37,15 +36,7 @@ const styles = StyleSheet.create({
   }
 });
 class GroundItem extends React.Component {
-  state = {
-    showEditModal: false,
-    showAlertModal: false,
-    photoA: this.props.photo
-  };
-  showModal = () => this.setState({ showEditModal: true });
-  closeModal = () => this.setState({ showEditModal: false });
-  showAlertModal = () => this.setState({ showAlertModal: true });
-  closeAlertModal = () => this.setState({ showAlertModal: false });
+  state = {};
 
   render() {
     const {
@@ -59,7 +50,6 @@ class GroundItem extends React.Component {
       groundHeight,
       asignPlant
     } = this.props;
-    const { photoA } = this.state;
     const swipeout = [
       {
         component: (
@@ -68,7 +58,11 @@ class GroundItem extends React.Component {
           </View>
         ),
         type: "secondary",
-        onPress: () => this.showAlertModal(),
+        onPress: () => {
+          ModalAction.DispatchAction(
+            ModalAction.showModal(constants.ALERT, { ...this.props })
+          );
+        },
         backgroundColor: "#611b00"
       },
       {
@@ -78,7 +72,14 @@ class GroundItem extends React.Component {
           </View>
         ),
         type: "primary",
-        onPress: () => this.showModal(),
+        onPress: () => {
+          ModalAction.DispatchAction(
+            ModalAction.showModal(constants.ADD_GROUND, {
+              add: false,
+              ...this.props
+            })
+          );
+        },
         backgroundColor: "#77990d"
       }
     ];
@@ -121,32 +122,6 @@ class GroundItem extends React.Component {
               )}
             </View>
           </View>
-          <GeneralModal
-            isVisible={this.state.showEditModal}
-            onBackdropPress={() => this.closeModal()}
-            onBackButtonPress={() => this.closeModal()}
-          >
-            <AddGround
-              closeModal={() => this.closeModal()}
-              id={id}
-              name={name}
-              groundWidth={groundWidth}
-              groundHeight={groundHeight}
-              add={false}
-            />
-          </GeneralModal>
-          <GeneralModal
-            isVisible={this.state.showAlertModal}
-            onBackdropPress={() => this.closeAlertModal()}
-            onBackButtonPress={() => this.closeAlertModal()}
-          >
-            <AlertModal
-              closeModal={() => this.closeAlertModal()}
-              id={id}
-              name={name}
-              onPressD={() => {}}
-            />
-          </GeneralModal>
         </View>
       </Swipeout>
     );

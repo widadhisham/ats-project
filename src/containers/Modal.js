@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-native-modal";
 import { connect } from "react-redux";
+import { View, Platform } from "react-native";
 import AddDevice from "../components/AddDeviceModal";
 import AddGround from "../components/AddGroundModal";
 import AddPlant from "../components/AddPlantModal";
@@ -41,9 +42,15 @@ const GeneralModal = props => {
       animationOutTiming={800}
       backdropTransitionInTiming={800}
       backdropTransitionOutTiming={800}
-      onBackdropPress={onBackdropPress}
-      onBackButtonPress={onBackButtonPress}
-      isVisible={isVisible}
+      onBackdropPress={hideModal}
+      onBackButtonPress={hideModal}
+      isVisible
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row"
+      }}
     >
       <SpecificModal {...modalProps} hideModal={hideModal} />
     </Modal>

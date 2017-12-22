@@ -12,9 +12,9 @@ import ActionSheet from "react-native-actionsheet";
 import _ from "lodash";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
-import AddPlant from "../components/AddPlantModal";
-import GeneralModal from "../components/GeneralModal";
 import PlantItem from "../components/PlantItems";
+import * as ModalAction from "../redux/actions/modal";
+import { constants } from "../containers/Modal";
 
 const uuidv4 = require("uuid/v4");
 const keyExtractor = () => uuidv4();
@@ -95,11 +95,9 @@ const data = [
 class Plant extends React.Component {
   state = {
     searchText: "",
-    showModal: false,
     sortBy: "",
     scrollEnabled: true,
-    open: -1,
-    showEditModal: false
+    open: -1
   };
   options = [
     <Text style={styles.actionsheetText}>Cancel</Text>,
@@ -108,8 +106,6 @@ class Plant extends React.Component {
   ];
 
   handleOpenActionSheet = () => this.ActionSheet.show();
-  showModal = () => this.setState({ showModal: true });
-  closeModal = () => this.setState({ showModal: false });
   onOpen = value => {
     this.setState({ open: value });
   };
@@ -118,7 +114,9 @@ class Plant extends React.Component {
   };
   handleActionSheetPress = index => {
     if (index === 1) {
-      this.showModal();
+      ModalAction.DispatchAction(
+        ModalAction.showModal(constants.ADD_PLANT, { add: true })
+      );
     }
     if (index === 2) this.setState({ sortBy: "name" });
   };
@@ -222,18 +220,17 @@ class Plant extends React.Component {
             </ScrollView>
           </View>
           <View style={styles.AddButton}>
-            <TouchableOpacity onPress={() => this.showModal()}>
+            <TouchableOpacity
+              onPress={() => {
+                ModalAction.DispatchAction(
+                  ModalAction.showModal(constants.ADD_PLANT, { add: true })
+                );
+              }}
+            >
               <Icon reverse name="add" color="#77990d" style={styles.add} />
             </TouchableOpacity>
           </View>
         </View>
-        <GeneralModal
-          isVisible={this.state.showModal}
-          onBackdropPress={() => this.closeModal()}
-          onBackButtonPress={() => this.closeModal()}
-        >
-          <AddPlant closeModal={() => this.closeModal()} add={true} />
-        </GeneralModal>
       </View>
     );
   }
