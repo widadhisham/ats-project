@@ -17,7 +17,7 @@ const CloseButton = ({ onPress }) => (
       }}
       hitSlop={{ top: 40, left: 40, bottom: 40, right: 40 }}
     >
-      <Text style={{ fontSize: 20, color: "#77990d" }}>&#215;</Text>
+      <Text style={{ fontSize: 20, color: "#179543" }}>&#215;</Text>
     </TouchableOpacity>
   </View>
 );

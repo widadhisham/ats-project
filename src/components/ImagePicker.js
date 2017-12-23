@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   actionsheetText: {
-    color: "#77990d",
+    color: "#179543",
     fontSize: 18
   }
 });

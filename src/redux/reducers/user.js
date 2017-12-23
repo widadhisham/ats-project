@@ -9,7 +9,7 @@ const initialState = {
   loginError: undefined
 };
 
-const user = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     /* case Types.AUTH_REQUEST:
       return { ...state, isLoadingAuth: true };
@@ -78,5 +78,3 @@ const user = (state = initialState, action) => {
       return state;
   }
 };
-
-export default user;

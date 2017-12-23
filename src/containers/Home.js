@@ -14,7 +14,8 @@ import Header from "../components/Header";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#f2f2f2"
   },
   homeHeader: {
     flex: 1
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   headerIcon: {
-    marginTop: "6%",
+    marginTop: "8%",
     marginRight: "4%"
   }
 });
@@ -48,7 +49,7 @@ class Home extends React.Component {
                 <Icon
                   name="menu"
                   size={35}
-                  color="#d9d9d9"
+                  color="#CFD0CF"
                   onPress={this.handleOpenActionSheet}
                   style={styles.headerIcon}
                 />

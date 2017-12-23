@@ -40,11 +40,21 @@ class AddPlant extends React.Component {
       temperature,
       distanceX,
       distanceY,
-      add
+      add,
+      submit
     } = this.props;
+    console.log(waterQuantity + "kk");
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingRight: "5%"
+            }}
+          >
+            <CloseButton onPress={hideModal} />
+          </View>
           <View style={styles.content}>
             <Formik
               initialValues={{
@@ -71,22 +81,27 @@ class AddPlant extends React.Component {
                 if (!validation.isFloat(values.distanceY)) {
                   errors.distanceY = "Enter Valied length distance";
                 }
+
                 return errors;
               }}
               onSubmit={values => {
                 Keyboard.dismiss();
                 add
-                  ? console.log(values.email + values.password)
+                  ? submit({
+                      name: values.name,
+                      waterQuantity: values.waterQuantity,
+                      temperature: values.temperature,
+                      distanceX: values.distanceX,
+                      distanceY: values.distanceY
+                    })
                   : console.log(values.email + values.password);
+                hideModal();
               }}
               render={props => (
                 <View>
-                  <View style={{ flexDirection: "row" }}>
-                    <CloseButton onPress={hideModal} />
-                  </View>
                   <Input
                     autoCorrect={false}
-                    placeholder={add ? "Plant Name" : ""}
+                    placeholder={add ? "Name" : ""}
                     returnKeyType="next"
                     ChangeText={text => {
                       props.setFieldValue("name", text);
@@ -160,9 +175,7 @@ class AddPlant extends React.Component {
                     placeholder={add ? "Length Distance (M)" : ""}
                     keyboardType="numeric"
                     returnKeyType="go"
-                    ChangeText={text =>
-                      props.setFieldValue("confirmPassword", text)
-                    }
+                    ChangeText={text => props.setFieldValue("distanceY", text)}
                     errorMessage={props.errors.distanceY}
                     touched={props.touched.distanceY}
                     onBlur={() => {

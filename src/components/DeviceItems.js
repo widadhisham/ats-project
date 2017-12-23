@@ -6,7 +6,6 @@ import ActionSheet from "react-native-actionsheet";
 import ImagePicker from "./ImagePicker";
 import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
-import DeviceItems from "../components/DeviceItems";
 
 const styles = StyleSheet.create({
   swipe: {
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
     color: "#737373"
   },
   actionsheetText: {
-    color: "#77990d",
+    color: "#179543",
     fontSize: 18
   }
 });
@@ -57,13 +56,19 @@ class DeviceItem extends React.Component {
   handleActionSheetPress = index => {
     if (index === 1 && this.props.asignGround) {
       ModalAction.DispatchAction(
-        ModalAction.showModal(constants.Alert, { ...this.props })
+        ModalAction.showModal(constants.ALERT, {
+          ...this.props,
+          name: `Assign to ${this.props.asignGround} `
+        })
       );
     }
     if (index === 1 && !this.props.asignGround) {
       ModalAction.DispatchAction(
-        ModalAction.showModal(constants.ADD_DEVICE, { add: true })
+        ModalAction.showModal(constants.SHOW_ITEMS, {
+          ...this.props
+        })
       );
+      console.log("k");
     }
   };
   render() {

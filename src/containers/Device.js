@@ -20,7 +20,8 @@ const keyExtractor = () => uuidv4();
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#f2f2f2"
   },
   deviceHeader: {
     flex: 1
@@ -42,15 +43,15 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%"
   },
   search: {
-    width: "85%"
+    width: "90%"
   },
   menu: {
-    width: "15%",
+    width: "10%",
     alignItems: "center",
     justifyContent: "center"
   },
   actionsheetText: {
-    color: "#77990d",
+    color: "#179543",
     fontSize: 18
   },
   deviceItems: {
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     position: "absolute"
   },
   add: {
-    shadowColor: "rgba(0, 0, 0, 0.2)"
+    shadowColor: "rgba(0, 0, 0, 1)"
   }
 });
 
@@ -150,12 +151,9 @@ class Device extends React.Component {
                 />
               </View>
               <View style={styles.menu}>
-                <Icon
-                  name="menu"
-                  size={40}
-                  color="#d9d9d9"
-                  onPress={this.handleOpenActionSheet}
-                />
+                <TouchableOpacity onPress={this.handleOpenActionSheet}>
+                  <Icon name="more-vert" size={45} color="#CFD0CF" />
+                </TouchableOpacity>
               </View>
             </View>
           </LinearGradient>
@@ -197,7 +195,7 @@ class Device extends React.Component {
                 );
               }}
             >
-              <Icon reverse name="add" color="#611b00" style={styles.add} />
+              <Icon raised name="add" color="#179543" style={styles.add} />
             </TouchableOpacity>
           </View>
         </View>

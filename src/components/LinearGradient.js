@@ -1,17 +1,15 @@
 import React from "react";
 import { LinearGradient } from "expo";
-
+import { View } from "react-native";
 const GeneralLinearGradient = ({ children }) => (
-  <LinearGradient
+  <View
     style={{
-      flex: 1
+      flex: 1,
+      backgroundColor: "#179543"
     }}
-    start={{ x: 0.0, y: 0.5 }}
-    end={{ x: 1.0, y: 0.5 }}
-    colors={["#77990d", "#611b00"]}
   >
     {children}
-  </LinearGradient>
+  </View>
 );
 
 export default GeneralLinearGradient;

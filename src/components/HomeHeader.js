@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "5%"
+    marginTop: "7%"
   },
   name: {
     marginLeft: 20

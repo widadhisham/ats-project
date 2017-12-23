@@ -9,19 +9,22 @@ import {
 } from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
 import ActionSheet from "react-native-actionsheet";
+import { connect } from "react-redux";
 import _ from "lodash";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
 import PlantItem from "../components/PlantItems";
 import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
+import * as PlantAction from "../redux/actions/plant";
 
 const uuidv4 = require("uuid/v4");
 const keyExtractor = () => uuidv4();
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#f2f2f2"
   },
   plantHeader: {
     flex: 1
@@ -43,15 +46,15 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%"
   },
   search: {
-    width: "85%"
+    width: "90%"
   },
   menu: {
-    width: "15%",
+    width: "10%",
     alignItems: "center",
     justifyContent: "center"
   },
   actionsheetText: {
-    color: "#77990d",
+    color: "#179543",
     fontSize: 18
   },
   plantItems: {
@@ -140,7 +143,8 @@ class Plant extends React.Component {
           distanceX: "0.2",
           distanceY: "0.2"
         }
-      ]
+      ],
+      addPlant
     } = this.props;
     let plantItems;
     if (plants) {
@@ -178,12 +182,9 @@ class Plant extends React.Component {
                 />
               </View>
               <View style={styles.menu}>
-                <Icon
-                  name="menu"
-                  size={40}
-                  color="#d9d9d9"
-                  onPress={this.handleOpenActionSheet}
-                />
+                <TouchableOpacity onPress={this.handleOpenActionSheet}>
+                  <Icon name="more-vert" size={45} color="#CFD0CF" />
+                </TouchableOpacity>
               </View>
             </View>
           </LinearGradient>
@@ -223,11 +224,14 @@ class Plant extends React.Component {
             <TouchableOpacity
               onPress={() => {
                 ModalAction.DispatchAction(
-                  ModalAction.showModal(constants.ADD_PLANT, { add: true })
+                  ModalAction.showModal(constants.ADD_PLANT, {
+                    add: true,
+                    submit: addPlant
+                  })
                 );
               }}
             >
-              <Icon reverse name="add" color="#77990d" style={styles.add} />
+              <Icon raised name="add" color="#179543" style={styles.add} />
             </TouchableOpacity>
           </View>
         </View>
@@ -236,4 +240,10 @@ class Plant extends React.Component {
   }
 }
 
-export default Plant;
+const mapStateToProps = state => ({
+  //  plants: state.plant.
+});
+
+export default connect(mapStateToProps, {
+  addPlant: PlantAction.addPlant
+})(Plant);

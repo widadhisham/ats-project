@@ -32,25 +32,28 @@ class ShowItems extends React.Component {
   render() {
     const {
       error = "",
-      closeModal,
+      hideModal,
       Items = [{ id: 1, name: "Ground 1" }, { id: 2, name: "Ground 2" }]
     } = this.props;
+    console.log("jjjj");
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
           <View style={styles.content}>
             <View>
               <View style={{ flexDirection: "row" }}>
-                <CloseButton onPress={closeModal} />
+                <CloseButton onPress={hideModal} />
               </View>
-              <View>{Items.map(item => <View>{item.name}</View>)}</View>
-
+              <Text>Items: </Text>
+              <View>
+                {Items.map(item => (
+                  <ScrollView>
+                    <Text>{item.name}</Text>
+                  </ScrollView>
+                ))}
+              </View>
               <View style={styles.button}>
-                <Button
-                  title="Submit"
-                  onPress={props.handleSubmit}
-                  loading={false}
-                />
+                <Button title="Submit" onPress="" loading={false} />
               </View>
             </View>
           </View>

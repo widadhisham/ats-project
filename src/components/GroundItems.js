@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
 import { Icon, Avatar } from "react-native-elements";
 import Swipeout from "react-native-swipeout";
+import ActionSheet from "react-native-actionsheet";
 import ImagePicker from "./ImagePicker";
 import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
@@ -33,11 +34,42 @@ const styles = StyleSheet.create({
   text: {
     paddingRight: "5%",
     color: "#737373"
+  },
+  actionsheetText: {
+    color: "#179543",
+    fontSize: 18
   }
 });
 class GroundItem extends React.Component {
   state = {};
+  handleOpenActionSheet = () => this.ActionSheet.show();
 
+  options = [
+    <Text style={styles.actionsheetText}>Cancel</Text>,
+    this.props.asignPlant ? (
+      <Text style={styles.actionsheetText}>Delete Asign To Plant</Text>
+    ) : (
+      <Text style={styles.actionsheetText}>Asign To Plant</Text>
+    )
+  ];
+
+  handleActionSheetPress = index => {
+    if (index === 1 && this.props.asignPlant) {
+      ModalAction.DispatchAction(
+        ModalAction.showModal(constants.ALERT, {
+          ...this.props,
+          name: `Assign to ${this.props.asignPlant} `
+        })
+      );
+    }
+    if (index === 1 && !this.props.asignPlant) {
+      ModalAction.DispatchAction(
+        ModalAction.showModal(constants.SHOW_ITEMS, {
+          ...this.props
+        })
+      );
+    }
+  };
   render() {
     const {
       close,
@@ -100,28 +132,36 @@ class GroundItem extends React.Component {
         }}
       >
         <View style={styles.plantContainer}>
-          <View style={styles.plantBody}>
-            <View style={styles.data}>
-              <View style={styles.row}>
-                <Text style={styles.text}>Name:</Text>
-                <Text>{name}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={styles.text}>Width</Text>
-                <Text>{groundWidth + " M"}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={styles.text}>Height</Text>
-                <Text>{groundHeight + " M"}</Text>
-              </View>
-              {asignPlant && (
+          <TouchableOpacity onPress={this.handleOpenActionSheet}>
+            <View style={styles.plantBody}>
+              <View style={styles.data}>
                 <View style={styles.row}>
-                  <Text style={styles.text}>Assign to: </Text>
-                  <Text>{plantName}</Text>
+                  <Text style={styles.text}>Name:</Text>
+                  <Text>{name}</Text>
                 </View>
-              )}
+                <View style={styles.row}>
+                  <Text style={styles.text}>Width</Text>
+                  <Text>{groundWidth + " M"}</Text>
+                </View>
+                <View style={styles.row}>
+                  <Text style={styles.text}>Height</Text>
+                  <Text>{groundHeight + " M"}</Text>
+                </View>
+                {asignPlant && (
+                  <View style={styles.row}>
+                    <Text style={styles.text}>Assign to: </Text>
+                    <Text>{asignPlant}</Text>
+                  </View>
+                )}
+              </View>
             </View>
-          </View>
+          </TouchableOpacity>
+          <ActionSheet
+            ref={o => (this.ActionSheet = o)}
+            options={this.options}
+            cancelButtonIndex={0}
+            onPress={this.handleActionSheetPress}
+          />
         </View>
       </Swipeout>
     );

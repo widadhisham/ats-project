@@ -3,11 +3,14 @@ import { ActivityIndicator, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 
 const styles = StyleSheet.create({
-  buttonContainer: {},
+  buttonContainer: {
+    height: 40
+  },
   button: {
-    backgroundColor: "#77990d",
-    borderRadius: 15,
-    position: "relative"
+    backgroundColor: "#179543",
+    borderRadius: 25,
+    position: "relative",
+    paddingTop: "5%"
   },
   text: {
     fontSize: 18,
@@ -17,8 +20,8 @@ const styles = StyleSheet.create({
 const loadingProps = {
   iconRight: { werid: "s" },
   disabled: true,
-  color: "#77990d",
-  iconComponent: () => <ActivityIndicator size="small" color="#77990d" />
+  color: "#179543",
+  iconComponent: () => <ActivityIndicator size="small" color="#179543" />
 };
 const ButtonWithLoadingIncator = ({ title, loading, onPress }) => (
   <Button

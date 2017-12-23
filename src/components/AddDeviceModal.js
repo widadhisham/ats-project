@@ -35,6 +35,14 @@ class AddDevice extends React.Component {
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingRight: "5%"
+            }}
+          >
+            <CloseButton onPress={hideModal} />
+          </View>
           <View style={styles.content}>
             <Formik
               initialValues={{
@@ -57,9 +65,6 @@ class AddDevice extends React.Component {
               }}
               render={props => (
                 <View>
-                  <View style={{ flexDirection: "row" }}>
-                    <CloseButton onPress={hideModal} />
-                  </View>
                   <Input
                     autoCorrect={false}
                     placeholder={add ? "Device Name" : ""}

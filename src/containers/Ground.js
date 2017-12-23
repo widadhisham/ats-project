@@ -20,7 +20,8 @@ const keyExtractor = () => uuidv4();
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#f2f2f2"
   },
   groundHeader: {
     flex: 1
@@ -42,15 +43,15 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%"
   },
   search: {
-    width: "85%"
+    width: "90%"
   },
   menu: {
-    width: "15%",
+    width: "10%",
     alignItems: "center",
     justifyContent: "center"
   },
   actionsheetText: {
-    color: "#77990d",
+    color: "#179543",
     fontSize: 18
   },
   groundItems: {
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
 });
 const ground2 = [
   { id: 1, name: "Ground 1", width: 300, height: 400 },
-  { id: 2, name: "Ground 2", width: 300, height: 400 }
+  { id: 2, name: "Ground 2", width: 300, height: 400, asignPlant: "Tomato" }
 ];
 class Ground extends React.Component {
   state = {
@@ -129,12 +130,9 @@ class Ground extends React.Component {
                 />
               </View>
               <View style={styles.menu}>
-                <Icon
-                  name="menu"
-                  size={40}
-                  color="#d9d9d9"
-                  onPress={this.handleOpenActionSheet}
-                />
+                <TouchableOpacity onPress={this.handleOpenActionSheet}>
+                  <Icon name="more-vert" size={45} color="#CFD0CF" />
+                </TouchableOpacity>
               </View>
             </View>
           </LinearGradient>
@@ -161,8 +159,8 @@ class Ground extends React.Component {
                     close={this.state.open !== 1}
                     id={item.id}
                     name={item.name}
-                    width={item.width}
-                    height={item.height}
+                    groundWidth={item.width}
+                    groundHeight={item.height}
                     asignPlant={item.asignPlant}
                   />
                 )}
@@ -177,7 +175,7 @@ class Ground extends React.Component {
                 );
               }}
             >
-              <Icon reverse name="add" color="#611b00" style={styles.add} />
+              <Icon raised name="add" color="#179543" style={styles.add} />
             </TouchableOpacity>
           </View>
         </View>

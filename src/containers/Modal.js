@@ -8,6 +8,7 @@ import AddPlant from "../components/AddPlantModal";
 import Alert from "../components/AlertModal";
 import ShowItems from "../components/ShowItems";
 import SignUp from "../components/SignupModal";
+
 import * as modalActions from "../redux/actions/modal";
 
 export const constants = {
@@ -27,6 +28,7 @@ const MODAL_COMPONENTS = {
   [constants.SHOW_ITEMS]: ShowItems,
   [constants.SIGN_UP]: SignUp
 };
+
 const GeneralModal = props => {
   const { modalType, modalProps, hideModal } = props;
   if (!modalType) {
