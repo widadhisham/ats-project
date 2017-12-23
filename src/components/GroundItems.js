@@ -63,11 +63,7 @@ class GroundItem extends React.Component {
       );
     }
     if (index === 1 && !this.props.asignPlant) {
-      ModalAction.DispatchAction(
-        ModalAction.showModal(constants.SHOW_ITEMS, {
-          ...this.props
-        })
-      );
+      this.props.isAssignPress();
     }
   };
   render() {

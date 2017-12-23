@@ -9,7 +9,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case PlantActions.ADD_PLANT:
-      console.log(action.payload);
+      //console.log(action.payload);
       return {
         ...state,
         plantsById: {

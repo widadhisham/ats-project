@@ -35,7 +35,6 @@ class ShowItems extends React.Component {
       hideModal,
       Items = [{ id: 1, name: "Ground 1" }, { id: 2, name: "Ground 2" }]
     } = this.props;
-    console.log("jjjj");
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>

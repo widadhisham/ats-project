@@ -43,7 +43,6 @@ class AddPlant extends React.Component {
       add,
       submit
     } = this.props;
-    console.log(waterQuantity + "kk");
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>

@@ -22,7 +22,7 @@ class Home extends React.Component {
   };
 
   render() {
-    return <UserHome />;
+    return <UserHome {...this.props} />;
   }
 }
 
@@ -38,7 +38,7 @@ class Ground extends React.Component {
   };
 
   render() {
-    return <UserGround />;
+    return <UserGround {...this.props} />;
   }
 }
 class Plant extends React.Component {
@@ -53,7 +53,7 @@ class Plant extends React.Component {
   };
 
   render() {
-    return <UserPlant />;
+    return <UserPlant {...this.props} />;
   }
 }
 class Device extends React.Component {
@@ -68,9 +68,10 @@ class Device extends React.Component {
   };
 
   render() {
-    return <UserDevice />;
+    return <UserDevice {...this.props} />;
   }
 }
+
 const styles = StyleSheet.create({
   icon: {
     width: 26,
@@ -80,16 +81,19 @@ const styles = StyleSheet.create({
 
 const deviceStack = StackNavigator({
   Device: { screen: Device },
-  AssignTo: { screen: AssignTo }
+  AssignToGround: { screen: AssignTo }
 });
-
+const groundStack = StackNavigator({
+  Ground: { screen: Ground },
+  AssignToPlant: { screen: AssignTo }
+});
 const RootTabs = TabNavigator(
   {
     Home: {
       screen: Home
     },
     Ground: {
-      screen: Ground
+      screen: groundStack
     },
     Plant: {
       screen: Plant

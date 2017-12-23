@@ -30,13 +30,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 25
+    fontSize: 20
   },
   text2: {
     fontSize: 16
   },
   row: {
     flexDirection: "row",
+    justifyContent: "space-between",
     borderColor: "rgba(0,0,0,0.05)",
     borderWidth: 2,
     backgroundColor: "white",
@@ -51,11 +52,15 @@ class AssignTo extends React.Component {
   });
 
   state = {
-    checked: false
+    checked: false,
+    id: -1
+  };
+
+  handleChange = id => {
+    this.setState({ checked: true, id });
   };
 
   render() {
-    const { checked } = this.state;
     const {
       items = [
         { id: 1, name: "item 1" },
@@ -63,6 +68,8 @@ class AssignTo extends React.Component {
         { id: 3, name: "item 3" }
       ]
     } = this.props;
+    const { checked, id } = this.state;
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -70,7 +77,9 @@ class AssignTo extends React.Component {
             <Icon name="arrow-back" color="white" size={35} />
           </TouchableOpacity>
           {checked && (
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.goBack(null)}
+            >
               <Text style={styles.text}>OK</Text>
             </TouchableOpacity>
           )}
@@ -79,9 +88,15 @@ class AssignTo extends React.Component {
         <View style={styles.containt}>
           {items.map(item => {
             return (
-              <View style={styles.row}>
-                <Text style={styles.text2}>{item.name}</Text>
-              </View>
+              <TouchableOpacity onPress={() => this.handleChange(item.id)}>
+                <View style={styles.row}>
+                  <Text style={styles.text2}>{item.name}</Text>
+                  {checked &&
+                    id === item.id && (
+                      <Icon name="check" color="#179543" size={20} />
+                    )}
+                </View>
+              </TouchableOpacity>
             );
           })}
         </View>

@@ -78,7 +78,7 @@ class Signup extends React.Component {
               }}
               onSubmit={values => {
                 Keyboard.dismiss();
-                console.log(values.email + values.password);
+                //console.log(values.email + values.password);
               }}
               render={props => (
                 <View>

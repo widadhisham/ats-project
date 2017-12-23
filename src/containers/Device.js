@@ -188,8 +188,8 @@ class Device extends React.Component {
                     name={item.name}
                     deviceNumber={item.deviceNumber}
                     asignGround={item.asignGround}
-                    ifAssignPress={() =>
-                      this.props.navigation.navigate("AssignTo", {})
+                    isAssignPress={() =>
+                      this.props.navigation.navigate("AssignToGround", {})
                     }
                   />
                 )}
