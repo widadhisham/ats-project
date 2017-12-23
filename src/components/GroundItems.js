@@ -91,7 +91,7 @@ class GroundItem extends React.Component {
             ModalAction.showModal(constants.ALERT, { ...this.props })
           );
         },
-        backgroundColor: "#611b00"
+        backgroundColor: "#bfc0bf"
       },
       {
         component: (
@@ -108,7 +108,7 @@ class GroundItem extends React.Component {
             })
           );
         },
-        backgroundColor: "#77990d"
+        backgroundColor: "#179543"
       }
     ];
     return (

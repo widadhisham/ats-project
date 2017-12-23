@@ -79,14 +79,20 @@ const styles = StyleSheet.create({
   }
 });
 
-const deviceStack = StackNavigator({
-  Device: { screen: Device },
-  AssignToGround: { screen: AssignTo }
-});
-const groundStack = StackNavigator({
-  Ground: { screen: Ground },
-  AssignToPlant: { screen: AssignTo }
-});
+const deviceStack = StackNavigator(
+  {
+    Device: { screen: Device },
+    AssignToGround: { screen: AssignTo }
+  },
+  { headerMode: "none" }
+);
+const groundStack = StackNavigator(
+  {
+    Ground: { screen: Ground },
+    AssignToPlant: { screen: AssignTo }
+  },
+  { headerMode: "none" }
+);
 const RootTabs = TabNavigator(
   {
     Home: {

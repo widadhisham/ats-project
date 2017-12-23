@@ -70,7 +70,7 @@ class PlantItem extends React.Component {
             })
           );
         },
-        backgroundColor: "#611b00"
+        backgroundColor: "#bfc0bf"
       },
       {
         component: (
@@ -87,7 +87,7 @@ class PlantItem extends React.Component {
             })
           );
         },
-        backgroundColor: "#77990d"
+        backgroundColor: "#179543"
       }
     ];
     return (

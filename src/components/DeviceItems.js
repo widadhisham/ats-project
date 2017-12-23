@@ -112,7 +112,7 @@ class DeviceItem extends React.Component {
             })
           );
         },
-        backgroundColor: "#85B398"
+        backgroundColor: "#179543"
       }
     ];
     return (
