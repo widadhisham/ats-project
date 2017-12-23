@@ -71,16 +71,16 @@ class Device extends React.Component {
     return <UserDevice />;
   }
 }
-const deviceStack = StackNavigator({
-  Device: { screen: Device },
-  AssignTo: { screen: AssignTo }
-});
-
 const styles = StyleSheet.create({
   icon: {
     width: 26,
     height: 26
   }
+});
+
+const deviceStack = StackNavigator({
+  Device: { screen: Device },
+  AssignTo: { screen: AssignTo }
 });
 
 const RootTabs = TabNavigator(

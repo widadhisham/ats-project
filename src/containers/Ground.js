@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
 import ActionSheet from "react-native-actionsheet";
+import { connect } from "react-redux";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
 import GroundItems from "../components/GroundItems";
@@ -184,4 +185,5 @@ class Ground extends React.Component {
   }
 }
 
-export default Ground;
+const mapStateToProps = state => ({});
+export default connect(mapStateToProps, {})(Ground);

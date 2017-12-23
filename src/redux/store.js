@@ -7,13 +7,15 @@ import modal from "./reducers/modal";
 import plant from "./reducers/plant";
 import ground from "./reducers/ground";
 import device from "./reducers/device";
+import snackbar from "./reducers/snackbar";
 
 const allReducers = combineReducers({
   user,
   modal,
   plant,
   ground,
-  device
+  device,
+  snackbar
 });
 
 const store = createStore(

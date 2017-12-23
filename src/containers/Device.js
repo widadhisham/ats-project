@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
 import ActionSheet from "react-native-actionsheet";
+import { connect } from "react-redux";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
 import * as ModalAction from "../redux/actions/modal";
@@ -212,4 +213,5 @@ class Device extends React.Component {
   }
 }
 
-export default Device;
+const mapStateToProps = state => ({});
+export default connect(mapStateToProps, {})(Device);

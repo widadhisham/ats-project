@@ -10,7 +10,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     backgroundColor: "white",
-    borderRadius: 20
+    borderRadius: 20,
+    height: "100%",
+    width: "100%"
   },
   content: {
     flexDirection: "column",
@@ -34,10 +36,13 @@ class Signup extends React.Component {
   };
 
   render() {
-    const { error = "", closeModal, hideModal } = this.props;
+    const { error = "", hideModal } = this.props;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
+          <View style={{ flexDirection: "row", paddingRight: "5%" }}>
+            <CloseButton onPress={hideModal} />
+          </View>
           <View style={styles.content}>
             <Formik
               initialValues={{
@@ -77,9 +82,6 @@ class Signup extends React.Component {
               }}
               render={props => (
                 <View>
-                  <View style={{ flexDirection: "row" }}>
-                    <CloseButton onPress={hideModal} />
-                  </View>
                   <Input
                     name="person"
                     autoCorrect={false}

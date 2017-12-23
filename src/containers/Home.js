@@ -8,6 +8,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Icon } from "react-native-elements";
+import { connect } from "react-redux";
 import LinearGradient from "../components/LinearGradient";
 import HomeHeader from "../components/HomeHeader";
 import Header from "../components/Header";
@@ -65,4 +66,5 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({});
+export default connect(mapStateToProps, {})(Home);

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   textGreen: {
     fontSize: 15,
-    color: "#77990d"
+    color: "#179543"
   }
 });
 

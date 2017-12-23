@@ -24,11 +24,24 @@ const styles = StyleSheet.create({
     marginBottom: "2%"
   },
   containt: {
-    flex: 14
+    flex: 14,
+    margin: "5%",
+    flexDirection: "column"
   },
   text: {
     color: "white",
     fontSize: 25
+  },
+  text2: {
+    fontSize: 16
+  },
+  row: {
+    flexDirection: "row",
+    borderColor: "rgba(0,0,0,0.05)",
+    borderWidth: 2,
+    backgroundColor: "white",
+    padding: "3%",
+    marginTop: "3%"
   }
 });
 
@@ -43,7 +56,13 @@ class AssignTo extends React.Component {
 
   render() {
     const { checked } = this.state;
-    const { items } = this.props;
+    const {
+      items = [
+        { id: 1, name: "item 1" },
+        { id: 2, name: "item 2" },
+        { id: 3, name: "item 3" }
+      ]
+    } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -58,7 +77,13 @@ class AssignTo extends React.Component {
         </View>
 
         <View style={styles.containt}>
-          <Text style={styles.text}>OK</Text>
+          {items.map(item => {
+            return (
+              <View style={styles.row}>
+                <Text style={styles.text2}>{item.name}</Text>
+              </View>
+            );
+          })}
         </View>
       </View>
     );

@@ -63,8 +63,8 @@ class DeviceItem extends React.Component {
       );
     }
     if (index === 1 && !this.props.asignGround) {
-      console.log("k");
-      this.props.ifAssignPress();
+      this.props.navigation.navigate("AssignTo", {});
+
       /*ModalAction.DispatchAction(
         ModalAction.showModal(constants.SHOW_ITEMS, {
           ...this.props
