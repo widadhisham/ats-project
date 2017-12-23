@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 4,
     borderColor: "rgba(0,0,0,0.05)",
     borderWidth: 2,
-    borderRightColor: "#611b00"
+    borderRightColor: "#bfc0bf"
   },
   plantBody: {
     margin: "5%",
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   text: {
     paddingRight: "5%",
-    color: "#737373"
+    color: "#B5B5B5"
   },
   actionsheetText: {
     color: "#179543",
@@ -63,12 +63,13 @@ class DeviceItem extends React.Component {
       );
     }
     if (index === 1 && !this.props.asignGround) {
-      ModalAction.DispatchAction(
+      console.log("k");
+      this.props.ifAssignPress();
+      /*ModalAction.DispatchAction(
         ModalAction.showModal(constants.SHOW_ITEMS, {
           ...this.props
         })
-      );
-      console.log("k");
+      );*/
     }
   };
   render() {
@@ -94,7 +95,7 @@ class DeviceItem extends React.Component {
             ModalAction.showModal(constants.ALERT, { ...this.props })
           );
         },
-        backgroundColor: "#611b00"
+        backgroundColor: "#bfc0bf"
       },
       {
         component: (
@@ -111,7 +112,7 @@ class DeviceItem extends React.Component {
             })
           );
         },
-        backgroundColor: "#77990d"
+        backgroundColor: "#85B398"
       }
     ];
     return (
@@ -135,11 +136,11 @@ class DeviceItem extends React.Component {
             <View style={styles.plantBody}>
               <View style={styles.data}>
                 <View style={styles.row}>
-                  <Text style={styles.text}>Name:</Text>
+                  <Text style={styles.text}>Name</Text>
                   <Text>{name}</Text>
                 </View>
                 <View style={styles.row}>
-                  <Text style={styles.text}>MAC</Text>
+                  <Text style={styles.text}>MAC Adress</Text>
                   <Text>{deviceNumber}</Text>
                 </View>
                 {asignGround && (

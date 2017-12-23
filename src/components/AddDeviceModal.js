@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop: "5%"
   },
   errorText: {
-    color: "#FF0000",
+    color: "#CFD0CF",
     fontSize: 13
   }
 });
@@ -31,7 +31,15 @@ class AddDevice extends React.Component {
   state = {};
 
   render() {
-    const { error = "", hideModal, id, name, deviceNumber, add } = this.props;
+    const {
+      error = "",
+      hideModal,
+      id,
+      name,
+      deviceNumber,
+      add,
+      submit
+    } = this.props;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
@@ -59,9 +67,10 @@ class AddDevice extends React.Component {
               }}
               onSubmit={values => {
                 Keyboard.dismiss();
-                add
-                  ? console.log(values.email + values.password)
-                  : console.log(values.email + values.password);
+                submit({
+                  name: values.name,
+                  deviceNumber: values.deviceNumber
+                });
               }}
               render={props => (
                 <View>

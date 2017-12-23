@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 4,
     borderColor: "rgba(0,0,0,0.05)",
     borderWidth: 2,
-    borderRightColor: "#611b00"
+    borderRightColor: "#bfc0bf"
   },
   plantBody: {
     margin: "5%",
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   text: {
     paddingRight: "5%",
-    color: "#737373"
+    color: "#B5B5B5"
   }
 });
 

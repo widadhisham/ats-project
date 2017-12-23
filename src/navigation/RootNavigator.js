@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { TabNavigator } from "react-navigation";
+import { TabNavigator, StackNavigator } from "react-navigation";
 import { Icon } from "react-native-elements";
 import Login from "../containers/Login";
 import TabBarComponent from "../components/TabBarComponent";
@@ -8,6 +8,7 @@ import UserHome from "../containers/Home";
 import UserGround from "../containers/Ground";
 import UserPlant from "../containers/Plant";
 import UserDevice from "../containers/Device";
+import AssignTo from "../components/AssignTo";
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -70,6 +71,11 @@ class Device extends React.Component {
     return <UserDevice />;
   }
 }
+const deviceStack = StackNavigator({
+  Device: { screen: Device },
+  AssignTo: { screen: AssignTo }
+});
+
 const styles = StyleSheet.create({
   icon: {
     width: 26,
@@ -89,7 +95,7 @@ const RootTabs = TabNavigator(
       screen: Plant
     },
     Device: {
-      screen: Device
+      screen: deviceStack
     }
   },
   {

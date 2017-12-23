@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: "#77990d"
+    color: "#179543"
   },
   text2: {
     fontSize: 18,
-    color: "#611b00"
+    color: "#CFD0CF"
   },
   title: {
     fontSize: 20

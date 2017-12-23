@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import store from "./src/redux/store";
 import RootContainer from "./src/containers/RootContainer";
-import Process from "./src/components/AgricultureProcess";
+import AssignTo from "./src/components/AssignTo";
 
 export default class App extends React.Component {
   render() {

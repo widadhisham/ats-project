@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { StatusBar, View } from "react-native";
 import login from "../redux/actions/user";
 import Modal from "../containers/Modal";
+
 class RootContainer extends Component {
   componentDidMount() {
     //this.props.authenticationRequest();

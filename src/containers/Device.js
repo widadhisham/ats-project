@@ -90,12 +90,17 @@ const data = [
 ];
 
 class Device extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: null
+  });
+
   state = {
     searchText: "",
     sortBy: "",
     scrollEnabled: true,
     open: -1
   };
+
   options = [
     <Text style={styles.actionsheetText}>Cancel</Text>,
     <Text style={styles.actionsheetText}>Add Device</Text>,
@@ -182,6 +187,9 @@ class Device extends React.Component {
                     name={item.name}
                     deviceNumber={item.deviceNumber}
                     asignGround={item.asignGround}
+                    ifAssignPress={() =>
+                      this.props.navigation.navigate("AssignTo", {})
+                    }
                   />
                 )}
               />

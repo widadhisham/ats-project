@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop: "5%"
   },
   errorText: {
-    color: "#FF0000",
+    color: "#CFD0CF",
     fontSize: 13
   }
 });
@@ -38,7 +38,8 @@ class AddGround extends React.Component {
       name,
       groundWidth,
       groundHeight,
-      add
+      add,
+      submit
     } = this.props;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
@@ -73,9 +74,11 @@ class AddGround extends React.Component {
               }}
               onSubmit={values => {
                 Keyboard.dismiss();
-                add
-                  ? console.log(values.email + values.password)
-                  : console.log(values.email + values.password);
+                submit({
+                  name: values.name,
+                  groundWidth: values.groundWidth,
+                  groundHeight: values.groundHeight
+                });
               }}
               render={props => (
                 <View>

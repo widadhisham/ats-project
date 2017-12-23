@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop: "5%"
   },
   errorText: {
-    color: "#FF0000",
+    color: "#CFD0CF",
     fontSize: 13
   }
 });
@@ -86,16 +86,13 @@ class AddPlant extends React.Component {
               }}
               onSubmit={values => {
                 Keyboard.dismiss();
-                add
-                  ? submit({
-                      name: values.name,
-                      waterQuantity: values.waterQuantity,
-                      temperature: values.temperature,
-                      distanceX: values.distanceX,
-                      distanceY: values.distanceY
-                    })
-                  : console.log(values.email + values.password);
-                hideModal();
+                submit({
+                  name: values.name,
+                  waterQuantity: values.waterQuantity,
+                  temperature: values.temperature,
+                  distanceX: values.distanceX,
+                  distanceY: values.distanceY
+                });
               }}
               render={props => (
                 <View>
