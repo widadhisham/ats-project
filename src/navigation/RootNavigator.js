@@ -116,8 +116,8 @@ const RootTabs = TabNavigator(
     lazy: true,
     swipeEnabled: false,
     tabBarOptions: {
-      activeTintColor: "#77990d",
-      inactiveTintColor: "#664d00",
+      activeTintColor: "#179543",
+      inactiveTintColor: "#bfc0bf",
       style: { backgroundColor: "#f2f2f2" }
     }
   }
