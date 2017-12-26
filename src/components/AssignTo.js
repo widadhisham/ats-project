@@ -69,20 +69,75 @@ class AssignTo extends React.Component {
       ]
     } = this.props;
     const { checked, id } = this.state;
-
+    const {
+      process,
+      assignDevice,
+      assignPlant,
+      ground
+    } = this.props.navigation.state.params;
+    console.log(assignDevice + "D");
+    console.log(assignPlant + "P");
+    console.log(ground + "G");
     return (
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => this.props.navigation.goBack(null)}>
             <Icon name="arrow-back" color="white" size={35} />
           </TouchableOpacity>
-          {checked && (
-            <TouchableOpacity
-              onPress={() => this.props.navigation.goBack(null)}
-            >
-              <Text style={styles.text}>OK</Text>
-            </TouchableOpacity>
-          )}
+          {checked &&
+            process && (
+              <TouchableOpacity
+                onPress={() => {
+                  if (ground) {
+                    if (assignPlant) {
+                      if (assignDevice) {
+                        this.props.navigation.navigate("Process", {
+                          process: process,
+                          assignPlant: assignPlant,
+                          assignDevice: assignDevice,
+                          ground: ground
+                        });
+                      } else {
+                        // navigate to data, time, page
+                        this.props.navigation.navigate("Process", {
+                          process: process,
+                          assignPlant: assignPlant,
+                          assignDevice: this.state.id,
+                          ground: ground
+                          // pass data of devices
+                        });
+                      }
+                    } else {
+                      this.props.navigation.navigate("AssignTo", {
+                        process: process,
+                        assignPlant: this.state.id,
+                        assignDevice: assignDevice,
+                        ground: ground
+                        // pass data of plants
+                      });
+                    }
+                  } else {
+                    this.props.navigation.navigate("AssignTo", {
+                      process: process,
+                      assignPlant: assignPlant,
+                      assignDevice: assignDevice,
+                      ground: this.state.id
+                      // pass data of plants
+                    });
+                  }
+                }}
+              >
+                <Text style={styles.text}>Next</Text>
+              </TouchableOpacity>
+            )}
+          {checked &&
+            !process && (
+              <TouchableOpacity
+                onPress={() => this.props.navigation.goBack(null)}
+              >
+                <Text style={styles.text}>OK</Text>
+              </TouchableOpacity>
+            )}
         </View>
 
         <View style={styles.containt}>

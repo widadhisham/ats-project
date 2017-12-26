@@ -9,6 +9,7 @@ import UserGround from "../containers/Ground";
 import UserPlant from "../containers/Plant";
 import UserDevice from "../containers/Device";
 import AssignTo from "../components/AssignTo";
+import Process from "../components/Process";
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -93,10 +94,19 @@ const groundStack = StackNavigator(
   },
   { headerMode: "none" }
 );
+const homeStack = StackNavigator(
+  {
+    Home: { screen: Home },
+    AssignTo: { screen: AssignTo },
+    Process: { screen: Process }
+  },
+  { headerMode: "none" }
+);
+
 const RootTabs = TabNavigator(
   {
     Home: {
-      screen: Home
+      screen: homeStack
     },
     Ground: {
       screen: groundStack

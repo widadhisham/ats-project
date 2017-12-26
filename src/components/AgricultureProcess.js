@@ -36,7 +36,7 @@ class Process extends React.Component {
           isVisible={this.state.isDateTimePickerVisible}
           onConfirm={this._handleDatePicked}
           onCancel={this._hideDateTimePicker}
-          datePickerModeAndroid={"default"}
+          //datePickerModeAndroid={"default"}
           mode="datetime"
           cancelTextIOS={{ color: "green" }}
           cancelTextStyle={{ color: "green" }}
