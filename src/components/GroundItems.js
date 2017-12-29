@@ -88,16 +88,31 @@ class GroundItem extends React.Component {
       this.props.isAssignPressPlant();
     }
     if (index === 2 && this.props.asignPlant) {
-      this.props.isAssignPressPlant();
       ModalAction.DispatchAction(
         ModalAction.showModal(constants.ALERT, {
           ...this.props,
-          name: `Assign to ${this.props.asignPlant} `
+          name: `assign to ${this.props.asignPlant} `
         })
       );
     }
     if (index === 1 && !this.props.asignPlant) {
       this.props.isAssignPressPlant();
+    }
+  };
+  handleActionSheetPress2 = index => {
+    if (index === 1 && this.props.asignDevice) {
+      this.props.isAssignPressDevice();
+    }
+    if (index === 2 && this.props.asignDevice) {
+      ModalAction.DispatchAction(
+        ModalAction.showModal(constants.ALERT, {
+          ...this.props,
+          name: `assign to ${this.props.asignDevice} `
+        })
+      );
+    }
+    if (index === 1 && !this.props.asignDevice) {
+      this.props.isAssignPressDevice();
     }
   };
   render() {

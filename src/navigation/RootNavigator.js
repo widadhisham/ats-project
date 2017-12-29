@@ -11,7 +11,7 @@ import UserDevice from "../containers/Device";
 import AssignTo from "../components/AssignTo";
 import Process from "../components/Process";
 
-class Home extends React.Component {
+class Schedule extends React.Component {
   static navigationOptions = {
     tabBarLabel: "Schedule",
     tabBarIcon: ({ focused }) =>
@@ -26,7 +26,36 @@ class Home extends React.Component {
     return <UserHome {...this.props} />;
   }
 }
+class AssignToSchedule extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: "Schedule",
+    tabBarIcon: ({ focused }) =>
+      focused ? (
+        <Image source={require("../assets/Home.png")} />
+      ) : (
+        <Image source={require("../assets/Home2.png")} />
+      )
+  };
 
+  render() {
+    return <AssignTo {...this.props} />;
+  }
+}
+class ScheduleProcess extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: "Schedule",
+    tabBarIcon: ({ focused }) =>
+      focused ? (
+        <Image source={require("../assets/Home.png")} />
+      ) : (
+        <Image source={require("../assets/Home2.png")} />
+      )
+  };
+
+  render() {
+    return <Process {...this.props} />;
+  }
+}
 class Ground extends React.Component {
   static navigationOptions = {
     tabBarLabel: "Ground",
@@ -40,6 +69,21 @@ class Ground extends React.Component {
 
   render() {
     return <UserGround {...this.props} />;
+  }
+}
+class AssignToGround extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: "Ground",
+    tabBarIcon: ({ focused }) =>
+      focused ? (
+        <Image source={require("../assets/Ground.png")} />
+      ) : (
+        <Image source={require("../assets/Ground2.png")} />
+      )
+  };
+
+  render() {
+    return <AssignTo {...this.props} />;
   }
 }
 class Plant extends React.Component {
@@ -82,23 +126,22 @@ const styles = StyleSheet.create({
 
 const deviceStack = StackNavigator(
   {
-    Device: { screen: Device },
-    AssignToGround: { screen: AssignTo }
+    Device: { screen: Device }
   },
   { headerMode: "none" }
 );
 const groundStack = StackNavigator(
   {
     Ground: { screen: Ground },
-    AssignToPlant: { screen: AssignTo }
+    AssignTo: { screen: AssignToGround }
   },
   { headerMode: "none" }
 );
 const homeStack = StackNavigator(
   {
-    Home: { screen: Home },
-    AssignTo: { screen: AssignTo },
-    Process: { screen: Process }
+    Schedule: { screen: Schedule },
+    AssignTo: { screen: AssignToSchedule },
+    Process: { screen: ScheduleProcess }
   },
   { headerMode: "none" }
 );
@@ -114,7 +157,7 @@ const RootTabs = TabNavigator(
     Device: {
       screen: deviceStack
     },
-    Home: {
+    Schedule: {
       screen: homeStack
     }
   },
@@ -127,8 +170,8 @@ const RootTabs = TabNavigator(
     swipeEnabled: false,
     tabBarOptions: {
       activeTintColor: "#179543",
-      inactiveTintColor: "#bfc0bf",
-      style: { backgroundColor: "#f2f2f2" }
+      inactiveTintColor: "#bfc0bf"
+      // style: { backgroundColor: "#f2f2f2" }
     }
   }
 );

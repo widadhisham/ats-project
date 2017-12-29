@@ -47,9 +47,23 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: "3%",
     marginTop: "3%"
+  },
+  textDateTime: {
+    width: "80%",
+    height: 40,
+    paddingTop: 10,
+    paddingLeft: 17
   }
 });
-
+const daysName = [
+  { id: 1, name: "Sat" },
+  { id: 2, name: "Sun" },
+  { id: 3, name: "Mon" },
+  { id: 4, name: "Tue" },
+  { id: 5, name: "Wed" },
+  { id: 6, name: "Thu" },
+  { id: 7, name: "Fri" }
+];
 class Process extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     header: null
@@ -59,10 +73,21 @@ class Process extends React.Component {
     checked: false,
     text: undefined,
     date: undefined,
-    time: "",
-    days: [],
+    time: undefined,
+    days: new Map(),
     isDatePickerVisible: false,
     isTimePickerVisible: false
+  };
+
+  handleCheck = item => {
+    let daysMap = this.state.days;
+    if (daysMap.has(item)) {
+      const value = daysMap.get(item);
+      daysMap.set(item, !value);
+    } else {
+      daysMap.set(item, true);
+    }
+    this.setState({ days: daysMap });
   };
 
   handleChange = id => {
@@ -95,7 +120,7 @@ class Process extends React.Component {
         { id: 3, name: "item 3" }
       ]
     } = this.props;
-    const { checked, id } = this.state;
+    const { id, text, date, time, days } = this.state;
     const {
       process,
       assignDevice,
@@ -111,8 +136,20 @@ class Process extends React.Component {
             <Icon name="arrow-back" color="white" size={35} />
           </TouchableOpacity>
 
-          {checked &&
-            process && (
+          {text &&
+            date &&
+            time &&
+            process === "agri" && (
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("Schedule")}
+              >
+                <Text style={styles.text}>Done</Text>
+              </TouchableOpacity>
+            )}
+          {text &&
+            time &&
+            days.length > 0 &&
+            process === "irrig" && (
               <TouchableOpacity
                 onPress={() => this.props.navigation.goBack(null)}
               >
@@ -151,9 +188,7 @@ class Process extends React.Component {
                 >
                   <Icon name="today" color="#179543" />
                 </TouchableOpacity>
-                <Text style={{ width: "80%", height: 40, paddingTop: 20 }}>
-                  {x}
-                </Text>
+                <Text style={styles.textDateTime}>{x}</Text>
                 <DateTimePicker
                   isVisible={this.state.isDatePickerVisible}
                   onConfirm={this._handleDatePicked}
@@ -180,7 +215,7 @@ class Process extends React.Component {
             >
               <Icon name="timer" color="#179543" />
             </TouchableOpacity>
-            <Text style={{ width: "80%", height: 40 }}>{y}</Text>
+            <Text style={styles.textDateTime}>{y}</Text>
             <DateTimePicker
               isVisible={this.state.isTimePickerVisible}
               onConfirm={this._handleTimePicked}
@@ -202,83 +237,32 @@ class Process extends React.Component {
                 paddingTop: 90
               }}
             >
-              <Avatar
-                small
-                rounded
-                title="Sat"
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.7}
-                containerStyle={{
-                  backgroundColor: "#179543",
-                  margin: "1%"
-                }}
-              />
-              <Avatar
-                small
-                rounded
-                title="Sun"
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.7}
-                containerStyle={{
-                  backgroundColor: "#179543",
-                  margin: "1%"
-                }}
-              />
-              <Avatar
-                small
-                rounded
-                title="Mon"
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.7}
-                containerStyle={{
-                  backgroundColor: "#179543",
-                  margin: "1%"
-                }}
-              />
-              <Avatar
-                small
-                rounded
-                title="Tue"
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.7}
-                containerStyle={{
-                  backgroundColor: "#179543",
-                  margin: "1%"
-                }}
-              />
-              <Avatar
-                small
-                rounded
-                title="Wed"
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.7}
-                containerStyle={{
-                  backgroundColor: "#179543",
-                  margin: "1%"
-                }}
-              />
-              <Avatar
-                small
-                rounded
-                title="Thu"
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.7}
-                containerStyle={{
-                  backgroundColor: "#179543",
-                  margin: "1%"
-                }}
-              />
-              <Avatar
-                small
-                rounded
-                title="Fri"
-                onPress={() => console.log("Works!")}
-                activeOpacity={0.7}
-                containerStyle={{
-                  backgroundColor: "#179543",
-                  margin: "1%"
-                }}
-              />
+              {daysName.map(item => {
+                const checked = this.state.days.get(item.name);
+
+                return (
+                  <Avatar
+                    small
+                    rounded
+                    title={item.name}
+                    key={item.id}
+                    onPress={() => this.handleCheck(item.name)}
+                    activeOpacity={0.7}
+                    containerStyle={
+                      checked
+                        ? {
+                            backgroundColor: "#179543",
+                            margin: "1%"
+                          }
+                        : {
+                            backgroundColor: "#bfc0bf",
+                            margin: "1%"
+                          }
+                    }
+                    titleStyle={{ fontSize: 13 }}
+                  />
+                );
+              })}
             </View>
           )}
         </View>

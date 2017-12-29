@@ -153,7 +153,10 @@ class AssignTo extends React.Component {
           </View>
           {items.map(item => {
             return (
-              <TouchableOpacity onPress={() => this.handleChange(item.id)}>
+              <TouchableOpacity
+                onPress={() => this.handleChange(item.id)}
+                key={item.id}
+              >
                 <View style={styles.row}>
                   <Text style={styles.text2}>{item.name}</Text>
                   {checked &&

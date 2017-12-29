@@ -102,7 +102,7 @@ class Home extends React.Component {
   options = [
     <Text style={styles.actionsheetText}>Cancel</Text>,
     <Text style={styles.actionsheetText}>Agriculture Process</Text>,
-    <Text style={styles.actionsheetText}>Irrigation Process</Text>,
+    <Text style={styles.actionsheetText}>Irrigation Process</Text>
   ];
   handleOpenActionSheet = () => this.ActionSheet.show();
 
