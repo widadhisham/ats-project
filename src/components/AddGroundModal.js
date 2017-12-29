@@ -64,13 +64,13 @@ class AddGround extends React.Component {
               validate={values => {
                 const errors = {};
                 if (!validation.isEmpty(values.name)) {
-                  errors.name = "Requierd";
+                  errors.name = "Required";
                 }
                 if (!validation.isFloat(values.groundWidth)) {
-                  errors.groundWidth = "Enter Valied Width";
+                  errors.groundWidth = "Enter Valid Width";
                 }
                 if (!validation.isFloat(values.groundHeight)) {
-                  errors.groundHeight = "Enter Valied Height";
+                  errors.groundHeight = "Enter Valid Height";
                 }
                 return errors;
               }}

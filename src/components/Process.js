@@ -77,7 +77,6 @@ class Process extends React.Component {
   _hideTimePicker = () => this.setState({ isTimePickerVisible: false });
 
   _handleDatePicked = date => {
-    console.log(date);
     this._hideDatePicker();
     this.setState({ date: date });
   };
@@ -86,6 +85,8 @@ class Process extends React.Component {
     this._hideTimePicker();
     this.setState({ time: date });
   };
+  handleChoseDays = id => {};
+
   render() {
     const {
       items = [
@@ -101,8 +102,8 @@ class Process extends React.Component {
       assignPlant,
       ground
     } = this.props.navigation.state.params;
-    console.log(this.state.date);
-    let x = this.state.date;
+    let x = JSON.stringify(this.state.date);
+    let y = JSON.stringify(this.state.time);
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -150,7 +151,9 @@ class Process extends React.Component {
                 >
                   <Icon name="today" color="#179543" />
                 </TouchableOpacity>
-                <Text style={{ width: "80%", height: 40 }}>{x}</Text>
+                <Text style={{ width: "80%", height: 40, paddingTop: 20 }}>
+                  {x}
+                </Text>
                 <DateTimePicker
                   isVisible={this.state.isDatePickerVisible}
                   onConfirm={this._handleDatePicked}
@@ -177,7 +180,7 @@ class Process extends React.Component {
             >
               <Icon name="timer" color="#179543" />
             </TouchableOpacity>
-            <Text style={{ width: "80%", height: 40 }}>{this.state.time}</Text>
+            <Text style={{ width: "80%", height: 40 }}>{y}</Text>
             <DateTimePicker
               isVisible={this.state.isTimePickerVisible}
               onConfirm={this._handleTimePicked}

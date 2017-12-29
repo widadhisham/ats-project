@@ -116,7 +116,9 @@ class Device extends React.Component {
   };
   handleActionSheetPress = index => {
     if (index === 1) {
-      this.showModal();
+      ModalAction.DispatchAction(
+        ModalAction.showModal(constants.ADD_DEVICE, { add: true })
+      );
     }
     if (index === 2) this.setState({ sortBy: "name" });
   };
@@ -127,14 +129,12 @@ class Device extends React.Component {
         {
           id: 1,
           name: "Arduino 1",
-          deviceNumber: "",
-          asignGround: undefined
+          deviceNumber: ""
         },
         {
           id: 2,
           name: "Arduino 2",
-          deviceNumber: "",
-          asignGround: "Ground 1"
+          deviceNumber: ""
         }
       ]
     } = this.props;
@@ -187,10 +187,6 @@ class Device extends React.Component {
                     id={item.id}
                     name={item.name}
                     deviceNumber={item.deviceNumber}
-                    asignGround={item.asignGround}
-                    isAssignPress={() =>
-                      this.props.navigation.navigate("AssignToGround", {})
-                    }
                   />
                 )}
               />

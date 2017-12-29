@@ -129,23 +129,23 @@ class PlantItem extends React.Component {
             />
             <View style={styles.data}>
               <View style={styles.row}>
-                <Text style={styles.text}>Name:</Text>
+                <Text style={styles.text}>Name</Text>
                 <Text>{name}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.text}>Water Quantity:</Text>
+                <Text style={styles.text}>Water Quantity</Text>
                 <Text>{waterQuantity + " Cup"}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.text}>Temperature:</Text>
+                <Text style={styles.text}>Temperature</Text>
                 <Text>{temperature + " °C"}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.text}>Distance in x axis:</Text>
+                <Text style={styles.text}>Distance In Width</Text>
                 <Text>{distanceX + " M"}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.text}>Distance in y axis:</Text>
+                <Text style={styles.text}>Distance In Length</Text>
                 <Text>{distanceY + " M"}</Text>
               </View>
             </View>

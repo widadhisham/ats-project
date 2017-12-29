@@ -43,45 +43,9 @@ const styles = StyleSheet.create({
 
 class DeviceItem extends React.Component {
   state = {};
-  handleOpenActionSheet = () => this.ActionSheet.show();
 
-  options = [
-    <Text style={styles.actionsheetText}>Cancel</Text>,
-    this.props.asignGround ? (
-      <Text style={styles.actionsheetText}>Delete Asign To Ground</Text>
-    ) : (
-      <Text style={styles.actionsheetText}>Asign To Ground</Text>
-    )
-  ];
-  handleActionSheetPress = index => {
-    if (index === 1 && this.props.asignGround) {
-      ModalAction.DispatchAction(
-        ModalAction.showModal(constants.ALERT, {
-          ...this.props,
-          name: `Assign to ${this.props.asignGround} `
-        })
-      );
-    }
-    if (index === 1 && !this.props.asignGround) {
-      this.props.isAssignPress();
-      //this.props.navigation.navigate("AssignTo", {});
-      /*ModalAction.DispatchAction(
-        ModalAction.showModal(constants.SHOW_ITEMS, {
-          ...this.props
-        })
-      );*/
-    }
-  };
   render() {
-    const {
-      close,
-      onScroll,
-      onOpen,
-      id,
-      name,
-      deviceNumber,
-      asignGround
-    } = this.props;
+    const { close, onScroll, onOpen, id, name, deviceNumber } = this.props;
     const swipeout = [
       {
         component: (
@@ -132,7 +96,7 @@ class DeviceItem extends React.Component {
         }}
       >
         <View style={styles.plantContainer}>
-          <TouchableOpacity onPress={this.handleOpenActionSheet}>
+          <TouchableOpacity>
             <View style={styles.plantBody}>
               <View style={styles.data}>
                 <View style={styles.row}>
@@ -140,22 +104,10 @@ class DeviceItem extends React.Component {
                   <Text>{name}</Text>
                 </View>
                 <View style={styles.row}>
-                  <Text style={styles.text}>MAC Adress</Text>
+                  <Text style={styles.text}>MAC Address</Text>
                   <Text>{deviceNumber}</Text>
                 </View>
-                {asignGround && (
-                  <View style={styles.row}>
-                    <Text style={styles.text}>Asign To Ground</Text>
-                    <Text>{asignGround}</Text>
-                  </View>
-                )}
               </View>
-              <ActionSheet
-                ref={o => (this.ActionSheet = o)}
-                options={this.options}
-                cancelButtonIndex={0}
-                onPress={this.handleActionSheetPress}
-              />
             </View>
           </TouchableOpacity>
         </View>

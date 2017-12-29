@@ -163,7 +163,10 @@ class Ground extends React.Component {
                     groundWidth={item.width}
                     groundHeight={item.height}
                     asignPlant={item.asignPlant}
-                    isAssignPress={() =>
+                    isAssignPressPlant={() =>
+                      this.props.navigation.navigate("AssignToPlant", {})
+                    }
+                    isAssignPressDevice={() =>
                       this.props.navigation.navigate("AssignToPlant", {})
                     }
                   />

@@ -9,7 +9,7 @@ import {
   FlatList,
   ScrollView
 } from "react-native";
-import { Icon } from "react-native-elements";
+import { SearchBar, Icon } from "react-native-elements";
 import ActionSheet from "react-native-actionsheet";
 import { connect } from "react-redux";
 import LinearGradient from "../components/LinearGradient";
@@ -27,6 +27,27 @@ const styles = StyleSheet.create({
   },
   schedual: {
     flex: 4
+  },
+  searchBar: {
+    backgroundColor: "transparent",
+    marginHorizontal: 0,
+    borderTopColor: "transparent",
+    borderBottomColor: "transparent",
+    margin: 0,
+    padding: 0
+  },
+  searchContainer: {
+    flexDirection: "row",
+    marginTop: "10%",
+    marginHorizontal: "5%"
+  },
+  search: {
+    width: "90%"
+  },
+  menu: {
+    width: "10%",
+    alignItems: "center",
+    justifyContent: "center"
   },
   row: {
     flexDirection: "row",
@@ -75,11 +96,13 @@ class Home extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     header: Header({})
   });
+  state = {
+    searchText: ""
+  };
   options = [
     <Text style={styles.actionsheetText}>Cancel</Text>,
     <Text style={styles.actionsheetText}>Agriculture Process</Text>,
     <Text style={styles.actionsheetText}>Irrigation Process</Text>,
-    <Text style={styles.actionsheetText}>Log out</Text>
   ];
   handleOpenActionSheet = () => this.ActionSheet.show();
 
@@ -89,7 +112,8 @@ class Home extends React.Component {
         process: "agri",
         assignPlant: this.props.asignPlant,
         assignDevice: this.props.assignDevice,
-        ground: this.props.ground
+        ground: this.props.ground,
+        name: "Grounds"
       });
     }
     if (index === 2) {
@@ -97,7 +121,8 @@ class Home extends React.Component {
         process: "irrig",
         assignPlant: this.props.asignPlant,
         assignDevice: this.props.assignDevice,
-        ground: this.props.ground
+        ground: this.props.ground,
+        name: "Grounds"
       });
     }
   };
@@ -106,16 +131,24 @@ class Home extends React.Component {
       <View style={styles.container}>
         <View style={styles.homeHeader}>
           <LinearGradient style={styles.row}>
-            <View style={styles.row}>
-              <HomeHeader />
-              <View style={styles.headerIcon}>
-                <Icon
-                  name="menu"
-                  size={35}
-                  color="#CFD0CF"
-                  onPress={this.handleOpenActionSheet}
-                  style={styles.headerIcon}
+            <View style={styles.searchContainer}>
+              <View style={styles.search}>
+                <SearchBar
+                  lightTheme
+                  clearIcon
+                  onChangeText={text => {
+                    this.setState({ searchText: text });
+                  }}
+                  placeholder="Search"
+                  containerStyle={styles.searchBar}
+                  inputStyle={styles.searchBarInput}
+                  showLoadingIcon={false}
                 />
+              </View>
+              <View style={styles.menu}>
+                <TouchableOpacity onPress={this.handleOpenActionSheet}>
+                  <Icon name="more-vert" size={45} color="#CFD0CF" />
+                </TouchableOpacity>
               </View>
             </View>
           </LinearGradient>

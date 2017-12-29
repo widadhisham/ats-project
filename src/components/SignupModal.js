@@ -55,16 +55,16 @@ class Signup extends React.Component {
               validate={values => {
                 const errors = {};
                 if (!validation.isEmpty(values.firstName)) {
-                  errors.firstName = "Requierd";
+                  errors.firstName = "Required";
                 }
                 if (!validation.isEmpty(values.lastName)) {
-                  errors.lastName = "Requierd";
+                  errors.lastName = "Required";
                 }
                 if (!validation.isValidEmail(values.email)) {
-                  errors.email = "Enter Valied Email";
+                  errors.email = "Enter Valid Email";
                 }
                 if (!validation.isValidPassword(values.password)) {
-                  errors.password = "Enter Valied Password";
+                  errors.password = "Enter Valid Password";
                 }
                 if (
                   !validation.isConfirmPassword(
@@ -176,7 +176,7 @@ class Signup extends React.Component {
                   />
                   <View style={styles.button}>
                     <Button
-                      title="SIGNUP"
+                      title="Sign Up"
                       onPress={props.handleSubmit}
                       loading={false}
                     />

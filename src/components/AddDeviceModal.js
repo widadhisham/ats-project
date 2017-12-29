@@ -62,7 +62,10 @@ class AddDevice extends React.Component {
               validate={values => {
                 const errors = {};
                 if (!validation.isEmpty(values.name)) {
-                  errors.name = "Requierd";
+                  errors.name = "Required";
+                }
+                if (!validation.isEmpty(values.deviceNumber)) {
+                  errors.deviceNumber = "Required";
                 }
 
                 return errors;

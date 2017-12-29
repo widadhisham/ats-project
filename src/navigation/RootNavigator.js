@@ -13,7 +13,7 @@ import Process from "../components/Process";
 
 class Home extends React.Component {
   static navigationOptions = {
-    tabBarLabel: "Home",
+    tabBarLabel: "Schedule",
     tabBarIcon: ({ focused }) =>
       focused ? (
         <Image source={require("../assets/Home.png")} />
@@ -105,9 +105,6 @@ const homeStack = StackNavigator(
 
 const RootTabs = TabNavigator(
   {
-    Home: {
-      screen: homeStack
-    },
     Ground: {
       screen: groundStack
     },
@@ -116,6 +113,9 @@ const RootTabs = TabNavigator(
     },
     Device: {
       screen: deviceStack
+    },
+    Home: {
+      screen: homeStack
     }
   },
   {

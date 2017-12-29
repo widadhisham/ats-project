@@ -68,19 +68,19 @@ class AddPlant extends React.Component {
               validate={values => {
                 const errors = {};
                 if (!validation.isEmpty(values.name)) {
-                  errors.name = "Requierd";
+                  errors.name = "Required";
                 }
                 if (!validation.isFloat(values.waterQuantity)) {
-                  errors.waterQuantity = "Enter Valied Water Quantity";
+                  errors.waterQuantity = "Enter Valid Water Quantity";
                 }
                 if (!validation.isFloat(values.temperature)) {
-                  errors.temperature = "Enter Valied Temperature";
+                  errors.temperature = "Enter Valid Temperature";
                 }
                 if (!validation.isFloat(values.distanceX)) {
-                  errors.distanceX = "Enter Valied width distance";
+                  errors.distanceX = "Enter Valid Width Distance";
                 }
                 if (!validation.isFloat(values.distanceY)) {
-                  errors.distanceY = "Enter Valied length distance";
+                  errors.distanceY = "Enter Valid Length Distance";
                 }
 
                 return errors;
@@ -154,7 +154,7 @@ class AddPlant extends React.Component {
                     text={"Temperature °C"}
                   />
                   <Input
-                    placeholder={add ? "Width Distance (M)" : ""}
+                    placeholder={add ? "Distance In Width (M)" : ""}
                     keyboardType="numeric"
                     returnKeyType="next"
                     ChangeText={text => props.setFieldValue("distanceX", text)}
@@ -167,10 +167,10 @@ class AddPlant extends React.Component {
                     value={props.values.distanceX}
                     autoCapitalize="none"
                     add={add}
-                    text={"Width Distance (M)"}
+                    text={"Distance In Width (M)"}
                   />
                   <Input
-                    placeholder={add ? "Length Distance (M)" : ""}
+                    placeholder={add ? "Distance In Length (M)" : ""}
                     keyboardType="numeric"
                     returnKeyType="go"
                     ChangeText={text => props.setFieldValue("distanceY", text)}
@@ -184,7 +184,7 @@ class AddPlant extends React.Component {
                     onSubmitEditing={props.handleSubmit}
                     autoCapitalize="none"
                     add={add}
-                    text={"Length Distance (M)"}
+                    text={"Distance In Length (M)"}
                   />
                   <View style={styles.button}>
                     <Button

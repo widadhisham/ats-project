@@ -77,10 +77,10 @@ class Login extends React.Component {
             validate={values => {
               const errors = {};
               if (!validation.isValidEmail(values.email)) {
-                errors.email = "Enter Valied Email";
+                errors.email = "Enter Valid Email";
               }
               if (!validation.isValidPassword(values.password)) {
-                errors.password = "Enter Valied Password";
+                errors.password = "Enter Valid Password";
               }
               return errors;
             }}
@@ -130,7 +130,7 @@ class Login extends React.Component {
                 />
                 <View style={styles.button}>
                   <Button
-                    title="LOGIN"
+                    title="Log In"
                     onPress={props.handleSubmit}
                     loading={false}
                   />

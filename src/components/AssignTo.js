@@ -35,6 +35,10 @@ const styles = StyleSheet.create({
   text2: {
     fontSize: 16
   },
+  name: {
+    color: "white",
+    fontSize: 20
+  },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -43,6 +47,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: "3%",
     marginTop: "3%"
+  },
+  center: {
+    alignItems: "center"
   }
 });
 
@@ -73,11 +80,9 @@ class AssignTo extends React.Component {
       process,
       assignDevice,
       assignPlant,
-      ground
+      ground,
+      name
     } = this.props.navigation.state.params;
-    console.log(assignDevice + "D");
-    console.log(assignPlant + "P");
-    console.log(ground + "G");
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -112,7 +117,8 @@ class AssignTo extends React.Component {
                         process: process,
                         assignPlant: this.state.id,
                         assignDevice: assignDevice,
-                        ground: ground
+                        ground: ground,
+                        name: "Devices"
                         // pass data of plants
                       });
                     }
@@ -121,7 +127,8 @@ class AssignTo extends React.Component {
                       process: process,
                       assignPlant: assignPlant,
                       assignDevice: assignDevice,
-                      ground: this.state.id
+                      ground: this.state.id,
+                      name: "Plants"
                       // pass data of plants
                     });
                   }
@@ -141,6 +148,9 @@ class AssignTo extends React.Component {
         </View>
 
         <View style={styles.containt}>
+          <View style={styles.center}>
+            <Text style={styles.text2}>{name}</Text>
+          </View>
           {items.map(item => {
             return (
               <TouchableOpacity onPress={() => this.handleChange(item.id)}>
