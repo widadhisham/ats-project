@@ -17,6 +17,7 @@ import PlantItem from "../components/PlantItems";
 import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
 import * as PlantAction from "../redux/actions/plant";
+import * as PlantReducer from "../redux/reducers/plant";
 
 const uuidv4 = require("uuid/v4");
 const keyExtractor = () => uuidv4();
@@ -125,39 +126,19 @@ class Plant extends React.Component {
   };
 
   render() {
-    const {
-      plants = [
-        {
-          id: 1,
-          name: "Tomato",
-          waterQuantity: "2",
-          temperature: "25",
-          distanceX: "0.1",
-          distanceY: "0.1"
-        },
-        {
-          id: 2,
-          name: "Cucumber",
-          waterQuantity: "3",
-          temperature: "23",
-          distanceX: "0.2",
-          distanceY: "0.2"
-        }
-      ],
-      addPlant
-    } = this.props;
+    const { plants, addPlant } = this.props;
     let plantItems;
-    if (plants) {
+    /*if (plants) {
       plantItems = plants.filter(
         item =>
           item.name
             .toLowerCase()
             .search(this.state.searchText.toLowerCase()) !== -1
       );
-    }
+    }*/
     switch (this.state.sortBy) {
       case "name":
-        plantItems = _.sortBy(plantItems, "name");
+        plantItems = _.sortBy(plants, "name");
         break;
       default:
         break;
@@ -202,7 +183,7 @@ class Plant extends React.Component {
               scrollEnabled={this.state.scrollEnabled}
             >
               <FlatList
-                data={data}
+                data={plants}
                 keyExtractor={keyExtractor}
                 renderItem={({ item }) => (
                   <PlantItem
@@ -241,7 +222,7 @@ class Plant extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  //  plants: state.plant.
+  plants: PlantReducer.getPlants(state)
 });
 
 export default connect(mapStateToProps, {

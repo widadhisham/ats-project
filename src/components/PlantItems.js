@@ -134,7 +134,7 @@ class PlantItem extends React.Component {
               </View>
               <View style={styles.row}>
                 <Text style={styles.text}>Water Quantity</Text>
-                <Text>{waterQuantity + " Cup"}</Text>
+                <Text>{waterQuantity + " Liter"}</Text>
               </View>
               <View style={styles.row}>
                 <Text style={styles.text}>Temperature</Text>

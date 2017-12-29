@@ -2,14 +2,43 @@ import _ from "lodash";
 import * as PlantActions from "../actions/plant";
 
 const initialState = {
-  plantsIds: [],
-  plantsById: {}
+  plantsIds: [1, 2, 3, 4],
+  plantsById: {
+    1: {
+      name: "Tomato",
+      waterQuantity: 1,
+      temperature: 24,
+      distanceX: 0.1,
+      distanceY: 0.1
+    },
+    2: {
+      name: "Cucumber",
+      waterQuantity: 2,
+      temperature: 26,
+      distanceX: 0.15,
+      distanceY: 0.15
+    },
+    3: {
+      name: "Onions",
+      waterQuantity: 0.5,
+      temperature: 20,
+      distanceX: 0.05,
+      distanceY: 0.05
+    },
+    4: {
+      name: "Bean",
+      waterQuantity: 2,
+      temperature: 24,
+      distanceX: 0.2,
+      distanceY: 0.15
+    }
+  }
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case PlantActions.ADD_PLANT:
-      //console.log(action.payload);
+      console.log(action.payload);
       return {
         ...state,
         plantsById: {
@@ -28,4 +57,14 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
+};
+
+export const getPlants = state => {
+  const plants = [];
+  const { plantsIds } = state.plant;
+  plantsIds.forEach(plantId => {
+    const plant = state.plant.plantsById[plantId];
+    plants.push(plant);
+  });
+  return plants;
 };

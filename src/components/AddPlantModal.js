@@ -118,7 +118,7 @@ class AddPlant extends React.Component {
                   <Input
                     autoCorrect={false}
                     keyboardType="numeric"
-                    placeholder={add ? "Water Quantity (Cup)" : ""}
+                    placeholder={add ? "Water Quantity (Liter)" : ""}
                     returnKeyType="next"
                     ChangeText={text => {
                       props.setFieldValue("waterQuantity", text);
@@ -132,7 +132,7 @@ class AddPlant extends React.Component {
                     }}
                     autoCapitalize="none"
                     add={add}
-                    text={"Water Quantity (Cup)"}
+                    text={"Water Quantity (Liter)"}
                   />
                   <Input
                     autoCorrect={false}

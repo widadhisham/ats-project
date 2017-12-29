@@ -15,6 +15,7 @@ import Header from "../components/Header";
 import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
 import DeviceItems from "../components/DeviceItems";
+import * as DeviceReducer from "../redux/reducers/device";
 
 const uuidv4 = require("uuid/v4");
 const keyExtractor = () => uuidv4();
@@ -124,20 +125,7 @@ class Device extends React.Component {
   };
 
   render() {
-    const {
-      devices = [
-        {
-          id: 1,
-          name: "Arduino 1",
-          deviceNumber: ""
-        },
-        {
-          id: 2,
-          name: "Arduino 2",
-          deviceNumber: ""
-        }
-      ]
-    } = this.props;
+    const { devices } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.deviceHeader}>
@@ -177,7 +165,7 @@ class Device extends React.Component {
               scrollEnabled={this.state.scrollEnabled}
             >
               <FlatList
-                data={data}
+                data={devices}
                 keyExtractor={keyExtractor}
                 renderItem={({ item }) => (
                   <DeviceItems
@@ -209,5 +197,7 @@ class Device extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  devices: DeviceReducer.getDevices(state)
+});
 export default connect(mapStateToProps, {})(Device);

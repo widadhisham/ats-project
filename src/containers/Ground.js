@@ -15,6 +15,7 @@ import Header from "../components/Header";
 import GroundItems from "../components/GroundItems";
 import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
+import * as GroundReducer from "../redux/reducers/ground";
 
 const uuidv4 = require("uuid/v4");
 const keyExtractor = () => uuidv4();
@@ -106,12 +107,7 @@ class Ground extends React.Component {
     if (index === 2) this.setState({ sortBy: "name" });
   };
   render() {
-    const {
-      ground = [
-        { id: 1, name: "Ground 1", width: 300, height: 400 },
-        { id: 2, name: "Ground 2", width: 300, height: 400 }
-      ]
-    } = this.props;
+    const { grounds } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.groundHeader}>
@@ -151,7 +147,7 @@ class Ground extends React.Component {
               scrollEnabled={this.state.scrollEnabled}
             >
               <FlatList
-                data={ground2}
+                data={grounds}
                 keyExtractor={keyExtractor}
                 renderItem={({ item }) => (
                   <GroundItems
@@ -191,5 +187,7 @@ class Ground extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  grounds: GroundReducer.getGrounds(state)
+});
 export default connect(mapStateToProps, {})(Ground);
