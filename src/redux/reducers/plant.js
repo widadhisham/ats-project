@@ -5,6 +5,7 @@ const initialState = {
   plantsIds: [1, 2, 3, 4],
   plantsById: {
     1: {
+      id: 1,
       name: "Tomato",
       waterQuantity: 1,
       temperature: 24,
@@ -12,6 +13,7 @@ const initialState = {
       distanceY: 0.1
     },
     2: {
+      id: 2,
       name: "Cucumber",
       waterQuantity: 2,
       temperature: 26,
@@ -19,6 +21,7 @@ const initialState = {
       distanceY: 0.15
     },
     3: {
+      id: 3,
       name: "Onions",
       waterQuantity: 0.5,
       temperature: 20,
@@ -26,6 +29,7 @@ const initialState = {
       distanceY: 0.05
     },
     4: {
+      id: 4,
       name: "Bean",
       waterQuantity: 2,
       temperature: 24,

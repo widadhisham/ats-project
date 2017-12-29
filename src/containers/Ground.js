@@ -16,6 +16,8 @@ import GroundItems from "../components/GroundItems";
 import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
 import * as GroundReducer from "../redux/reducers/ground";
+import * as DeviceReducer from "../redux/reducers/device";
+import * as PlantReducer from "../redux/reducers/plant";
 
 const uuidv4 = require("uuid/v4");
 const keyExtractor = () => uuidv4();
@@ -107,7 +109,7 @@ class Ground extends React.Component {
     if (index === 2) this.setState({ sortBy: "name" });
   };
   render() {
-    const { grounds } = this.props;
+    const { grounds, plants, devices } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.groundHeader}>
@@ -160,10 +162,16 @@ class Ground extends React.Component {
                     groundHeight={item.height}
                     asignPlant={item.asignPlant}
                     isAssignPressPlant={() =>
-                      this.props.navigation.navigate("AssignTo", {})
+                      this.props.navigation.navigate("AssignTo", {
+                        assignToItems: plants,
+                        name: "Plants"
+                      })
                     }
                     isAssignPressDevice={() =>
-                      this.props.navigation.navigate("AssignTo", {})
+                      this.props.navigation.navigate("AssignTo", {
+                        assignToItems: devices,
+                        name: "Devices"
+                      })
                     }
                   />
                 )}
@@ -188,6 +196,8 @@ class Ground extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  grounds: GroundReducer.getGrounds(state)
+  grounds: GroundReducer.getGrounds(state),
+  devices: DeviceReducer.getDevices(state),
+  plants: PlantReducer.getPlants(state)
 });
 export default connect(mapStateToProps, {})(Ground);

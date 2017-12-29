@@ -16,6 +16,9 @@ import LinearGradient from "../components/LinearGradient";
 import HomeHeader from "../components/HomeHeader";
 import Header from "../components/Header";
 import ProcessItem from "../components/ProcessItem";
+import * as GroundReducer from "../redux/reducers/ground";
+import * as DeviceReducer from "../redux/reducers/device";
+import * as PlantReducer from "../redux/reducers/plant";
 
 const styles = StyleSheet.create({
   container: {
@@ -112,7 +115,9 @@ class Home extends React.Component {
         process: "agri",
         assignPlant: this.props.asignPlant,
         assignDevice: this.props.assignDevice,
-        ground: this.props.ground,
+        assignToItems: this.props.grounds,
+        devices: this.props.devices,
+        plants: this.props.plants,
         name: "Grounds"
       });
     }
@@ -121,7 +126,9 @@ class Home extends React.Component {
         process: "irrig",
         assignPlant: this.props.asignPlant,
         assignDevice: this.props.assignDevice,
-        ground: this.props.ground,
+        assignToItems: this.props.grounds,
+        devices: this.props.devices,
+        plants: this.props.plants,
         name: "Grounds"
       });
     }
@@ -184,5 +191,9 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  grounds: GroundReducer.getGrounds(state),
+  devices: DeviceReducer.getDevices(state),
+  plants: PlantReducer.getPlants(state)
+});
 export default connect(mapStateToProps, {})(Home);

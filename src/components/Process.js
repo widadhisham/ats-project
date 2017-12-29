@@ -72,8 +72,8 @@ class Process extends React.Component {
   state = {
     checked: false,
     text: undefined,
-    date: undefined,
-    time: undefined,
+    date: "Date",
+    time: "Time",
     days: new Map(),
     isDatePickerVisible: false,
     isTimePickerVisible: false

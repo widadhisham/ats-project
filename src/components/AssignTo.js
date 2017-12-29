@@ -81,7 +81,10 @@ class AssignTo extends React.Component {
       assignDevice,
       assignPlant,
       ground,
-      name
+      name,
+      assignToItems,
+      devices,
+      plants
     } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
@@ -118,7 +121,8 @@ class AssignTo extends React.Component {
                         assignPlant: this.state.id,
                         assignDevice: assignDevice,
                         ground: ground,
-                        name: "Devices"
+                        name: "Devices",
+                        assignToItems: devices
                         // pass data of plants
                       });
                     }
@@ -128,7 +132,9 @@ class AssignTo extends React.Component {
                       assignPlant: assignPlant,
                       assignDevice: assignDevice,
                       ground: this.state.id,
-                      name: "Plants"
+                      name: "Plants",
+                      assignToItems: plants,
+                      devices: devices
                       // pass data of plants
                     });
                   }
@@ -151,7 +157,7 @@ class AssignTo extends React.Component {
           <View style={styles.center}>
             <Text style={styles.text2}>{name}</Text>
           </View>
-          {items.map(item => {
+          {assignToItems.map(item => {
             return (
               <TouchableOpacity
                 onPress={() => this.handleChange(item.id)}
