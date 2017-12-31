@@ -126,7 +126,8 @@ class GroundItem extends React.Component {
       groundWidth,
       groundHeight,
       asignPlant,
-      asignDevice
+      asignDevice,
+      deleteGround
     } = this.props;
     const swipeout = [
       {
@@ -138,7 +139,10 @@ class GroundItem extends React.Component {
         type: "secondary",
         onPress: () => {
           ModalAction.DispatchAction(
-            ModalAction.showModal(constants.ALERT, { ...this.props })
+            ModalAction.showModal(constants.ALERT, {
+              ...this.props,
+              onPressD: deleteGround
+            })
           );
         },
         backgroundColor: "#bfc0bf"
@@ -201,7 +205,7 @@ class GroundItem extends React.Component {
               {asignDevice && (
                 <View style={styles.row}>
                   <Text style={styles.text}>Assign To Device</Text>
-                  <Text>{asignPlant}</Text>
+                  <Text>{asignDevice}</Text>
                 </View>
               )}
               <View style={styles.row2}>

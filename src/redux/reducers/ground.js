@@ -4,21 +4,52 @@ import * as groundActions from "../actions/ground";
 const initialState = {
   groundsIds: [1, 2, 3],
   groundsById: {
-    1: { id: 1, name: "Ground 1 ", width: 300, height: 200 },
-    2: { id: 2, name: "Ground 2 ", width: 200, height: 150 },
-    3: { id: 3, name: "Ground 3 ", width: 100, height: 200 }
+    1: {
+      id: 1,
+      name: "Ground 1 ",
+      width: 300,
+      height: 200
+    },
+    2: {
+      id: 2,
+      name: "Ground 2 ",
+      width: 200,
+      height: 150,
+      asignPlant: "Tomato",
+      asignDevice: "Device 1"
+    },
+    3: {
+      id: 3,
+      name: "Ground 3 ",
+      width: 100,
+      height: 200
+    }
   }
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case groundActions.ADD_GROUND:
+      console.log(action.payload.ground);
       return {
-        ...state
+        ...state,
+        groundsById: {
+          [action.payload.id]: action.payload.ground,
+          ...state.groundsById
+        },
+        groundsIds: [action.payload.id, ...state.groundsIds]
       };
 
     case groundActions.DELETE_GROUND:
-      return {};
+      const deleted = _.without(
+        state.groundsIds,
+        String(action.payload.groundId)
+      );
+      return {
+        ...state,
+        groundsById: _.omit(state.groundsById, [action.payload.groundId]),
+        groundsIds: _.without(deleted, action.payload.groundId)
+      };
 
     case groundActions.EDIT_GROUND:
       return {};

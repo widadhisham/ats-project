@@ -18,9 +18,11 @@ import { constants } from "../containers/Modal";
 import * as GroundReducer from "../redux/reducers/ground";
 import * as DeviceReducer from "../redux/reducers/device";
 import * as PlantReducer from "../redux/reducers/plant";
+import * as GroundAction from "../redux/actions/ground";
 
 const uuidv4 = require("uuid/v4");
 const keyExtractor = () => uuidv4();
+let actionSheet;
 
 const styles = StyleSheet.create({
   container: {
@@ -93,7 +95,7 @@ class Ground extends React.Component {
     <Text style={styles.actionsheetText}>Add Ground</Text>,
     <Text style={styles.actionsheetText}>Sort By Name</Text>
   ];
-  handleOpenActionSheet = () => this.ActionSheet.show();
+  handleOpenActionSheet = () => actionSheet.show();
   onOpen = value => {
     this.setState({ open: value });
   };
@@ -103,13 +105,16 @@ class Ground extends React.Component {
   handleActionSheetPress = index => {
     if (index === 1) {
       ModalAction.DispatchAction(
-        ModalAction.showModal(constants.ADD_GROUND, { add: true })
+        ModalAction.showModal(constants.ADD_GROUND, {
+          add: true,
+          submit: this.props.addGround
+        })
       );
     }
     if (index === 2) this.setState({ sortBy: "name" });
   };
   render() {
-    const { grounds, plants, devices } = this.props;
+    const { grounds, plants, devices, addGround, deleteGround } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.groundHeader}>
@@ -137,7 +142,7 @@ class Ground extends React.Component {
           </LinearGradient>
         </View>
         <ActionSheet
-          ref={o => (this.ActionSheet = o)}
+          ref={o => (actionSheet = o)}
           options={this.options}
           cancelButtonIndex={0}
           onPress={this.handleActionSheetPress}
@@ -161,6 +166,7 @@ class Ground extends React.Component {
                     groundWidth={item.width}
                     groundHeight={item.height}
                     asignPlant={item.asignPlant}
+                    asignDevice={item.asignDevice}
                     isAssignPressPlant={() =>
                       this.props.navigation.navigate("AssignTo", {
                         assignToItems: plants,
@@ -173,6 +179,7 @@ class Ground extends React.Component {
                         name: "Devices"
                       })
                     }
+                    deleteGround={() => deleteGround(item.id)}
                   />
                 )}
               />
@@ -182,7 +189,10 @@ class Ground extends React.Component {
             <TouchableOpacity
               onPress={() => {
                 ModalAction.DispatchAction(
-                  ModalAction.showModal(constants.ADD_GROUND, { add: true })
+                  ModalAction.showModal(constants.ADD_GROUND, {
+                    add: true,
+                    submit: addGround
+                  })
                 );
               }}
             >
@@ -200,4 +210,7 @@ const mapStateToProps = state => ({
   devices: DeviceReducer.getDevices(state),
   plants: PlantReducer.getPlants(state)
 });
-export default connect(mapStateToProps, {})(Ground);
+export default connect(mapStateToProps, {
+  addGround: GroundAction.addGround,
+  deleteGround: GroundAction.deleteGround
+})(Ground);

@@ -16,6 +16,7 @@ import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
 import DeviceItems from "../components/DeviceItems";
 import * as DeviceReducer from "../redux/reducers/device";
+import * as DeviceActions from "../redux/actions/device";
 
 const uuidv4 = require("uuid/v4");
 const keyExtractor = () => uuidv4();
@@ -118,14 +119,17 @@ class Device extends React.Component {
   handleActionSheetPress = index => {
     if (index === 1) {
       ModalAction.DispatchAction(
-        ModalAction.showModal(constants.ADD_DEVICE, { add: true })
+        ModalAction.showModal(constants.ADD_DEVICE, {
+          add: true,
+          submit: this.props.addDevice
+        })
       );
     }
     if (index === 2) this.setState({ sortBy: "name" });
   };
 
   render() {
-    const { devices } = this.props;
+    const { devices, addDevice, deleteDevice } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.deviceHeader}>
@@ -175,6 +179,7 @@ class Device extends React.Component {
                     id={item.id}
                     name={item.name}
                     deviceNumber={item.deviceNumber}
+                    deleteDevice={() => deleteDevice(item.id)}
                   />
                 )}
               />
@@ -184,7 +189,10 @@ class Device extends React.Component {
             <TouchableOpacity
               onPress={() => {
                 ModalAction.DispatchAction(
-                  ModalAction.showModal(constants.ADD_DEVICE, { add: true })
+                  ModalAction.showModal(constants.ADD_DEVICE, {
+                    add: true,
+                    submit: addDevice
+                  })
                 );
               }}
             >
@@ -200,4 +208,7 @@ class Device extends React.Component {
 const mapStateToProps = state => ({
   devices: DeviceReducer.getDevices(state)
 });
-export default connect(mapStateToProps, {})(Device);
+export default connect(mapStateToProps, {
+  addDevice: DeviceActions.addDevice,
+  deleteDevice: DeviceActions.deleteDevice
+})(Device);

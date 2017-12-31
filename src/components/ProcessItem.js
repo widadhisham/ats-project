@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginLeft: 15
+  },
+  textGray: {
+    marginRight: "5%",
+    color: "#B5B5B5"
   }
 });
 
@@ -63,10 +67,26 @@ class ProcessItem extends React.Component {
             {type === "irrig" && (
               <Text style={styles.textCenter}>Irrigation Process</Text>
             )}
-            <Text style={styles.textCenter}>{name}</Text>
-            {date && <Text style={styles.textCenter}>{date}</Text>}
-            <Text style={styles.textCenter}>{time}</Text>
-            {days && <Text style={styles.textCenter}>{days}</Text>}
+            <Text style={styles.textCenter}>
+              <Text style={styles.textGray}>Name </Text>
+              {name}
+            </Text>
+            {date && (
+              <Text style={styles.textCenter}>
+                <Text style={styles.textGray}>Date </Text>
+                {date}
+              </Text>
+            )}
+            <Text style={styles.textCenter}>
+              <Text style={styles.textGray}>Time </Text>
+              {time}
+            </Text>
+            {days && (
+              <Text style={styles.textCenter}>
+                <Text style={styles.textGray}>Days </Text>
+                {days}
+              </Text>
+            )}
           </View>
           <View style={styles.row}>
             {type === "agri" && (

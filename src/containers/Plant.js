@@ -126,7 +126,7 @@ class Plant extends React.Component {
   };
 
   render() {
-    const { plants, addPlant } = this.props;
+    const { plants, addPlant, deletePlant, editPlant } = this.props;
     let plantItems;
     /*if (plants) {
       plantItems = plants.filter(
@@ -196,6 +196,8 @@ class Plant extends React.Component {
                     temperature={item.temperature}
                     distanceX={item.distanceX}
                     distanceY={item.distanceY}
+                    deletePlant={() => deletePlant(item.id)}
+                    editPlant={() => editPlant(item)}
                   />
                 )}
               />
@@ -226,5 +228,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  addPlant: PlantAction.addPlant
+  addPlant: PlantAction.addPlant,
+  deletePlant: PlantAction.deletePlant,
+  editPlant: PlantAction.editPlant
 })(Plant);

@@ -42,7 +42,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case PlantActions.ADD_PLANT:
-      console.log(action.payload);
       return {
         ...state,
         plantsById: {
@@ -53,7 +52,15 @@ export default (state = initialState, action) => {
       };
 
     case PlantActions.DELETE_PLANT:
-      return {};
+      const deleted = _.without(
+        state.plantsIds,
+        String(action.payload.plantId)
+      );
+      return {
+        ...state,
+        plantsById: _.omit(state.plantsById, [action.payload.plantId]),
+        plantsIds: _.without(deleted, action.payload.plantId)
+      };
 
     case PlantActions.EDIT_PLANT:
       return {};

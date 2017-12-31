@@ -45,7 +45,15 @@ class DeviceItem extends React.Component {
   state = {};
 
   render() {
-    const { close, onScroll, onOpen, id, name, deviceNumber } = this.props;
+    const {
+      close,
+      onScroll,
+      onOpen,
+      id,
+      name,
+      deviceNumber,
+      deleteDevice
+    } = this.props;
     const swipeout = [
       {
         component: (
@@ -56,7 +64,10 @@ class DeviceItem extends React.Component {
         type: "secondary",
         onPress: () => {
           ModalAction.DispatchAction(
-            ModalAction.showModal(constants.ALERT, { ...this.props })
+            ModalAction.showModal(constants.ALERT, {
+              ...this.props,
+              onPressD: deleteDevice
+            })
           );
         },
         backgroundColor: "#bfc0bf"

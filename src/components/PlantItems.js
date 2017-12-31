@@ -52,7 +52,9 @@ class PlantItem extends React.Component {
       waterQuantity,
       temperature,
       distanceX,
-      distanceY
+      distanceY,
+      deletePlant,
+      editPlant
     } = this.props;
     const { photoA } = this.state;
     const swipeout = [
@@ -66,7 +68,8 @@ class PlantItem extends React.Component {
         onPress: () => {
           ModalAction.DispatchAction(
             ModalAction.showModal(constants.ALERT, {
-              ...this.props
+              ...this.props,
+              onPressD: deletePlant
             })
           );
         },
@@ -83,7 +86,8 @@ class PlantItem extends React.Component {
           ModalAction.DispatchAction(
             ModalAction.showModal(constants.ADD_PLANT, {
               add: false,
-              ...this.props
+              ...this.props,
+              submit: editPlant
             })
           );
         },

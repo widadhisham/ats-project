@@ -1,8 +1,10 @@
+import uuid from "uuid";
+
 export const ADD_DEVICE = "ADD_DEVICE";
 
 export const addDevice = device => ({
   type: ADD_DEVICE,
-  payload: { device }
+  payload: { id: uuid.v1(), device }
 });
 
 export const EDIT_DEVICE = "EDIT_DEVICE";

@@ -84,6 +84,9 @@ class Process extends React.Component {
     if (daysMap.has(item)) {
       const value = daysMap.get(item);
       daysMap.set(item, !value);
+      if (value === false) {
+        daysMap.delete(item);
+      }
     } else {
       daysMap.set(item, true);
     }
@@ -102,6 +105,7 @@ class Process extends React.Component {
   _hideTimePicker = () => this.setState({ isTimePickerVisible: false });
 
   _handleDatePicked = date => {
+    console.log(date);
     this._hideDatePicker();
     this.setState({ date: date });
   };
@@ -137,8 +141,8 @@ class Process extends React.Component {
           </TouchableOpacity>
 
           {text &&
-            date &&
-            time &&
+            date !== "Date" &&
+            time !== "Time" &&
             process === "agri" && (
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate("Schedule")}
@@ -147,8 +151,8 @@ class Process extends React.Component {
               </TouchableOpacity>
             )}
           {text &&
-            time &&
-            days.length > 0 &&
+            time !== "Time" &&
+            days.size > 0 &&
             process === "irrig" && (
               <TouchableOpacity
                 onPress={() => this.props.navigation.goBack(null)}
@@ -188,7 +192,7 @@ class Process extends React.Component {
                 >
                   <Icon name="today" color="#179543" />
                 </TouchableOpacity>
-                <Text style={styles.textDateTime}>{x}</Text>
+                {x && <Text style={styles.textDateTime}>{x}</Text>}
                 <DateTimePicker
                   isVisible={this.state.isDatePickerVisible}
                   onConfirm={this._handleDatePicked}
@@ -215,7 +219,7 @@ class Process extends React.Component {
             >
               <Icon name="timer" color="#179543" />
             </TouchableOpacity>
-            <Text style={styles.textDateTime}>{y}</Text>
+            {y && <Text style={styles.textDateTime}>{y}</Text>}
             <DateTimePicker
               isVisible={this.state.isTimePickerVisible}
               onConfirm={this._handleTimePicked}

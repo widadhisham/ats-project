@@ -13,12 +13,24 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case deviceActions.ADD_DEVICE:
       return {
-        ...state
+        ...state,
+        devicesById: {
+          [action.payload.id]: action.payload.device,
+          ...state.devicesById
+        },
+        devicesIds: [action.payload.id, ...state.devicesIds]
       };
 
     case deviceActions.DELETE_DEVICE:
-      return {};
-
+      const deleted = _.without(
+        state.devicesIds,
+        String(action.payload.deviceId)
+      );
+      return {
+        ...state,
+        devicesById: _.omit(state.devicesById, [action.payload.deviceId]),
+        devicesIds: _.without(deleted, action.payload.deviceId)
+      };
     case deviceActions.EDIT_DEVICE:
       return {};
 

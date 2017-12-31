@@ -81,17 +81,17 @@ const data = [
     id: "1",
     type: "agri",
     name: "Process 1",
-    date: "Date 1",
-    time: "Time 1",
-    days: "Days 1"
+    date: "2017-12-29",
+    time: "01:00:00.000Z",
+    days: undefined
   },
   {
     id: "2",
     type: "irrig",
     name: "Process 2",
-    date: "Date 2",
-    time: "Time 2",
-    days: "Days 2"
+    date: undefined,
+    time: "02:00:00.000Z",
+    days: "Sun, Thu, Fri"
   }
 ];
 

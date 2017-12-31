@@ -38,8 +38,8 @@ class AddGround extends React.Component {
       hideModal,
       id,
       name,
-      groundWidth,
-      groundHeight,
+      width,
+      height,
       add,
       submit
     } = this.props;
@@ -58,8 +58,8 @@ class AddGround extends React.Component {
             <Formik
               initialValues={{
                 name: name,
-                groundWidth: groundWidth,
-                groundHeight: groundHeight
+                groundWidth: width,
+                groundHeight: height
               }}
               validate={values => {
                 const errors = {};
@@ -78,8 +78,8 @@ class AddGround extends React.Component {
                 Keyboard.dismiss();
                 submit({
                   name: values.name,
-                  groundWidth: values.groundWidth,
-                  groundHeight: values.groundHeight
+                  width: values.groundWidth,
+                  height: values.groundHeight
                 });
               }}
               render={props => (

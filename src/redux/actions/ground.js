@@ -1,27 +1,29 @@
+import uuid from "uuid";
+
 export const ADD_GROUND = "ADD_GROUND";
 
 export const addGround = ground => ({
   type: ADD_GROUND,
-  payload: { ground }
+  payload: { id: uuid.v1(), ground }
 });
 
 export const EDIT_GROUND = "EDIT_GROUND";
 
-export const editGROUND = ground => ({
+export const editGround = ground => ({
   type: EDIT_GROUND,
   payload: { ground }
 });
 
 export const DELETE_GROUND = "DELETE_GROUND";
 
-export const deleteGROUND = groundId => ({
+export const deleteGround = groundId => ({
   type: DELETE_GROUND,
   payload: { groundId }
 });
 
 export const GET_GROUNDS = "GET_GROUNDS";
 
-export const getGROUNDs = (userId, ground) => ({
+export const getGrounds = (userId, ground) => ({
   type: GET_GROUNDS,
   payload: { userId, ground }
 });
