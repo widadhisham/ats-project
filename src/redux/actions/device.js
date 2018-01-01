@@ -9,9 +9,9 @@ export const addDevice = device => ({
 
 export const EDIT_DEVICE = "EDIT_DEVICE";
 
-export const editDevice = device => ({
+export const editDevice = (id, device) => ({
   type: EDIT_DEVICE,
-  payload: { device }
+  payload: { id, device }
 });
 
 export const DELETE_DEVICE = "DELETE_DEVICE";

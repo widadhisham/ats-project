@@ -60,10 +60,10 @@ class AddPlant extends React.Component {
             <Formik
               initialValues={{
                 name: name,
-                waterQuantity: waterQuantity,
-                temperature: temperature,
-                distanceX: distanceX,
-                distanceY: distanceY
+                waterQuantity: waterQuantity + "",
+                temperature: temperature + "",
+                distanceX: distanceX + "",
+                distanceY: distanceY + ""
               }}
               validate={values => {
                 const errors = {};

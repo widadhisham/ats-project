@@ -8,7 +8,7 @@ import {
   FlatList
 } from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
-import ActionSheet from "react-native-actionsheet";
+import { ActionSheetCustom as ActionSheet } from "react-native-actionsheet";
 import { connect } from "react-redux";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
@@ -129,7 +129,7 @@ class Device extends React.Component {
   };
 
   render() {
-    const { devices, addDevice, deleteDevice } = this.props;
+    const { devices, addDevice, deleteDevice, editDevice } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.deviceHeader}>
@@ -180,6 +180,9 @@ class Device extends React.Component {
                     name={item.name}
                     deviceNumber={item.deviceNumber}
                     deleteDevice={() => deleteDevice(item.id)}
+                    editDevice={deviceObject =>
+                      editDevice(item.id, deviceObject)
+                    }
                   />
                 )}
               />
@@ -210,5 +213,6 @@ const mapStateToProps = state => ({
 });
 export default connect(mapStateToProps, {
   addDevice: DeviceActions.addDevice,
-  deleteDevice: DeviceActions.deleteDevice
+  deleteDevice: DeviceActions.deleteDevice,
+  editDevice: DeviceActions.editDevice
 })(Device);

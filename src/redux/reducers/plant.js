@@ -63,7 +63,16 @@ export default (state = initialState, action) => {
       };
 
     case PlantActions.EDIT_PLANT:
-      return {};
+      return {
+        ...state,
+        plantsById: {
+          ...state.plantsById,
+          [action.payload.id]: {
+            ...state.plantsById[action.payload.id],
+            ...action.payload.plant
+          }
+        }
+      };
 
     default:
       return state;

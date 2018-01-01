@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
 const Splash = () => (
   <View style={styles.logoContainer}>
-    <Image width="100%" height="100%" source={require("../assets/ATS2.png")} />
+    <Image width="100%" height="100%" source={require("../assets/ats2.png")} />
 
     <ActivityIndicator color="#179543" />
   </View>

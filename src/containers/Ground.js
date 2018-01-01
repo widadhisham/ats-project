@@ -8,7 +8,7 @@ import {
   FlatList
 } from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
-import ActionSheet from "react-native-actionsheet";
+import { ActionSheetCustom as ActionSheet } from "react-native-actionsheet";
 import { connect } from "react-redux";
 import LinearGradient from "../components/LinearGradient";
 import Header from "../components/Header";
@@ -114,7 +114,16 @@ class Ground extends React.Component {
     if (index === 2) this.setState({ sortBy: "name" });
   };
   render() {
-    const { grounds, plants, devices, addGround, deleteGround } = this.props;
+    const {
+      grounds,
+      plants,
+      devices,
+      addGround,
+      deleteGround,
+      assignPlant,
+      assignDevice,
+      editGround
+    } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.groundHeader}>
@@ -163,25 +172,32 @@ class Ground extends React.Component {
                     close={this.state.open !== 1}
                     id={item.id}
                     name={item.name}
-                    groundWidth={item.width}
-                    groundHeight={item.height}
+                    width={item.width}
+                    height={item.height}
                     assignPlant={item.assignPlant}
+                    assignPlantName={item.assignPlantName}
                     assignDevice={item.assignDevice}
+                    assignDeviceName={item.assignDeviceName}
                     isAssignPressPlant={() =>
                       this.props.navigation.navigate("AssignTo", {
                         assignToItems: plants,
                         name: "Plants",
-                        id: item.id
+                        id: item.id,
+                        submit: assignPlant
                       })
                     }
                     isAssignPressDevice={() =>
                       this.props.navigation.navigate("AssignTo", {
                         assignToItems: devices,
                         name: "Devices",
-                        id: item.id
+                        id: item.id,
+                        submit: assignDevice
                       })
                     }
                     deleteGround={() => deleteGround(item.id)}
+                    editGround={groundObject =>
+                      editGround(item.id, groundObject)
+                    }
                   />
                 )}
               />
@@ -214,5 +230,8 @@ const mapStateToProps = state => ({
 });
 export default connect(mapStateToProps, {
   addGround: GroundAction.addGround,
-  deleteGround: GroundAction.deleteGround
+  deleteGround: GroundAction.deleteGround,
+  editGround: GroundAction.editGround,
+  assignPlant: GroundAction.assignPlant,
+  assignDevice: GroundAction.assignDevice
 })(Ground);

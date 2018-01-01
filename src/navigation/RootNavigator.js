@@ -16,9 +16,9 @@ class Schedule extends React.Component {
     tabBarLabel: "Schedule",
     tabBarIcon: ({ focused }) =>
       focused ? (
-        <Image source={require("../assets/Home.png")} />
+        <Image source={require("../assets/home.png")} />
       ) : (
-        <Image source={require("../assets/Home2.png")} />
+        <Image source={require("../assets/home2.png")} />
       )
   };
 
@@ -31,9 +31,9 @@ class AssignToSchedule extends React.Component {
     tabBarLabel: "Schedule",
     tabBarIcon: ({ focused }) =>
       focused ? (
-        <Image source={require("../assets/Home.png")} />
+        <Image source={require("../assets/home.png")} />
       ) : (
-        <Image source={require("../assets/Home2.png")} />
+        <Image source={require("../assets/home2.png")} />
       )
   };
 
@@ -46,9 +46,9 @@ class ScheduleProcess extends React.Component {
     tabBarLabel: "Schedule",
     tabBarIcon: ({ focused }) =>
       focused ? (
-        <Image source={require("../assets/Home.png")} />
+        <Image source={require("../assets/home.png")} />
       ) : (
-        <Image source={require("../assets/Home2.png")} />
+        <Image source={require("../assets/home2.png")} />
       )
   };
 
@@ -61,9 +61,9 @@ class Ground extends React.Component {
     tabBarLabel: "Ground",
     tabBarIcon: ({ focused }) =>
       focused ? (
-        <Image source={require("../assets/Ground.png")} />
+        <Image source={require("../assets/ground.png")} />
       ) : (
-        <Image source={require("../assets/Ground2.png")} />
+        <Image source={require("../assets/ground2.png")} />
       )
   };
 
@@ -76,9 +76,9 @@ class AssignToGround extends React.Component {
     tabBarLabel: "Ground",
     tabBarIcon: ({ focused }) =>
       focused ? (
-        <Image source={require("../assets/Ground.png")} />
+        <Image source={require("../assets/ground.png")} />
       ) : (
-        <Image source={require("../assets/Ground2.png")} />
+        <Image source={require("../assets/ground2.png")} />
       )
   };
 
@@ -91,9 +91,9 @@ class Plant extends React.Component {
     tabBarLabel: "Plant",
     tabBarIcon: ({ focused }) =>
       focused ? (
-        <Image source={require("../assets/Plant.png")} />
+        <Image source={require("../assets/plant.png")} />
       ) : (
-        <Image source={require("../assets/Plant2.png")} />
+        <Image source={require("../assets/plant2.png")} />
       )
   };
 
@@ -106,9 +106,9 @@ class Device extends React.Component {
     tabBarLabel: "Device",
     tabBarIcon: ({ focused }) =>
       focused ? (
-        <Image source={require("../assets/Device.png")} />
+        <Image source={require("../assets/device.png")} />
       ) : (
-        <Image source={require("../assets/Device2.png")} />
+        <Image source={require("../assets/device2.png")} />
       )
   };
 

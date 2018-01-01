@@ -13,8 +13,7 @@ import Input from "./Input";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#f2f2f2"
+    flex: 1
   },
   header: {
     flex: 1,
@@ -105,12 +104,10 @@ class Process extends React.Component {
   _hideTimePicker = () => this.setState({ isTimePickerVisible: false });
 
   _handleDatePicked = date => {
-    console.log(date);
     this._hideDatePicker();
     this.setState({ date: date });
   };
   _handleTimePicked = date => {
-    console.log(date);
     this._hideTimePicker();
     this.setState({ time: date });
   };

@@ -8,7 +8,7 @@ import {
   FlatList
 } from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
-import ActionSheet from "react-native-actionsheet";
+import { ActionSheetCustom as ActionSheet } from "react-native-actionsheet";
 import { connect } from "react-redux";
 import _ from "lodash";
 import LinearGradient from "../components/LinearGradient";
@@ -197,7 +197,7 @@ class Plant extends React.Component {
                     distanceX={item.distanceX}
                     distanceY={item.distanceY}
                     deletePlant={() => deletePlant(item.id)}
-                    editPlant={() => editPlant(item)}
+                    editPlant={plantObject => editPlant(item.id, plantObject)}
                   />
                 )}
               />

@@ -1,6 +1,6 @@
 import React from "react";
 import { Alert, Platform, Linking, StyleSheet, Text } from "react-native";
-import ActionSheet from "react-native-actionsheet";
+import { ActionSheetCustom as ActionSheet } from "react-native-actionsheet";
 import { ImagePicker } from "expo";
 import PropTypes from "prop-types";
 

@@ -9,9 +9,9 @@ export const addPlant = plant => ({
 
 export const EDIT_PLANT = "EDIT_PLANT";
 
-export const editPlant = plant => ({
+export const editPlant = (id, plant) => ({
   type: EDIT_PLANT,
-  payload: { plant }
+  payload: { id, plant }
 });
 
 export const DELETE_PLANT = "DELETE_PLANT";

@@ -10,7 +10,7 @@ import {
   ScrollView
 } from "react-native";
 import { SearchBar, Icon } from "react-native-elements";
-import ActionSheet from "react-native-actionsheet";
+import { ActionSheetCustom as ActionSheet } from "react-native-actionsheet";
 import { connect } from "react-redux";
 import LinearGradient from "../components/LinearGradient";
 import HomeHeader from "../components/HomeHeader";
@@ -83,7 +83,9 @@ const data = [
     name: "Process 1",
     date: "2017-12-29",
     time: "01:00:00.000Z",
-    days: undefined
+    days: undefined,
+    assignPlant: "Tomato",
+    assignDevice: "Device 1"
   },
   {
     id: "2",
@@ -91,7 +93,9 @@ const data = [
     name: "Process 2",
     date: undefined,
     time: "02:00:00.000Z",
-    days: "Sun, Thu, Fri"
+    days: "Sun, Thu, Fri",
+    assignPlant: "Bean",
+    assignDevice: "Device 2"
   }
 ];
 
@@ -174,6 +178,8 @@ class Home extends React.Component {
                     date={item.date}
                     time={item.time}
                     days={item.days}
+                    assignPlant={item.assignPlant}
+                    assignDevice={item.assignDevice}
                   />
                 )}
               />

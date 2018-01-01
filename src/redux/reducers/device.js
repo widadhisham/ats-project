@@ -32,7 +32,16 @@ export default (state = initialState, action) => {
         devicesIds: _.without(deleted, action.payload.deviceId)
       };
     case deviceActions.EDIT_DEVICE:
-      return {};
+      return {
+        ...state,
+        devicesById: {
+          ...state.devicesById,
+          [action.payload.id]: {
+            ...state.devicesById[action.payload.id],
+            ...action.payload.device
+          }
+        }
+      };
 
     default:
       return state;

@@ -58,19 +58,19 @@ class AddGround extends React.Component {
             <Formik
               initialValues={{
                 name: name,
-                groundWidth: width,
-                groundHeight: height
+                width: width + "",
+                height: height + ""
               }}
               validate={values => {
                 const errors = {};
                 if (!validation.isEmpty(values.name)) {
                   errors.name = "Required";
                 }
-                if (!validation.isFloat(values.groundWidth)) {
-                  errors.groundWidth = "Enter Valid Width";
+                if (!validation.isFloat(values.width)) {
+                  errors.width = "Enter Valid Width";
                 }
-                if (!validation.isFloat(values.groundHeight)) {
-                  errors.groundHeight = "Enter Valid Height";
+                if (!validation.isFloat(values.height)) {
+                  errors.height = "Enter Valid Height";
                 }
                 return errors;
               }}
@@ -78,8 +78,8 @@ class AddGround extends React.Component {
                 Keyboard.dismiss();
                 submit({
                   name: values.name,
-                  width: values.groundWidth,
-                  height: values.groundHeight
+                  width: values.width,
+                  height: values.height
                 });
               }}
               render={props => (
@@ -101,6 +101,7 @@ class AddGround extends React.Component {
                     autoCapitalize="none"
                     add={add}
                     text={"Ground Name"}
+                    onChangeText=""
                   />
                   <Input
                     autoCorrect={false}
@@ -108,18 +109,19 @@ class AddGround extends React.Component {
                     placeholder={add ? "Ground Width" : ""}
                     returnKeyType="next"
                     ChangeText={text => {
-                      props.setFieldValue("groundWidth", text);
+                      props.setFieldValue("width", text);
                     }}
-                    value={props.values.groundWidth}
-                    errorMessage={props.errors.groundWidth}
-                    touched={props.touched.groundWidth}
+                    value={props.values.width}
+                    errorMessage={props.errors.width}
+                    touched={props.touched.width}
                     onBlur={() => {
-                      if (props.values.groundWidth !== "")
-                        props.setFieldTouched("groundWidth", true);
+                      if (props.values.width !== "")
+                        props.setFieldTouched("width", true);
                     }}
                     autoCapitalize="none"
                     add={add}
                     text={"Ground Width"}
+                    onChangeText=""
                   />
                   <Input
                     autoCorrect={false}
@@ -127,14 +129,14 @@ class AddGround extends React.Component {
                     keyboardType="numeric"
                     returnKeyType="next"
                     ChangeText={text => {
-                      props.setFieldValue("groundHeight", text);
+                      props.setFieldValue("height", text);
                     }}
-                    value={props.values.groundHeight}
-                    errorMessage={props.errors.groundHeight}
-                    touched={props.touched.groundHeight}
+                    value={props.values.height}
+                    errorMessage={props.errors.height}
+                    touched={props.touched.height}
                     onBlur={() => {
-                      if (props.values.groundHeight !== "")
-                        props.setFieldTouched("groundHeight", true);
+                      if (props.values.height !== "")
+                        props.setFieldTouched("height", true);
                     }}
                     autoCapitalize="none"
                     add={add}

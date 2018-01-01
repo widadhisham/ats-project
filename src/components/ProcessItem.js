@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     borderRightWidth: 4,
     borderColor: "rgba(0,0,0,0.05)",
     borderWidth: 2,
-    borderRightColor: "#bfc0bf"
+    borderRightColor: "#bfc0bf",
+    backgroundColor: "white"
   },
   plantBody: {
     margin: "5%",
@@ -54,7 +55,15 @@ class ProcessItem extends React.Component {
   };
 
   render() {
-    const { type, name, date, time, days } = this.props;
+    const {
+      type,
+      name,
+      date,
+      time,
+      days,
+      assignPlant,
+      assignDevice
+    } = this.props;
     const { photoA } = this.state;
 
     return (
@@ -70,6 +79,14 @@ class ProcessItem extends React.Component {
             <Text style={styles.textCenter}>
               <Text style={styles.textGray}>Name </Text>
               {name}
+            </Text>
+            <Text style={styles.textCenter}>
+              <Text style={styles.textGray}>Planted With </Text>
+              {assignPlant}
+            </Text>
+            <Text style={styles.textCenter}>
+              <Text style={styles.textGray}>Managed By </Text>
+              {assignDevice}
             </Text>
             {date && (
               <Text style={styles.textCenter}>

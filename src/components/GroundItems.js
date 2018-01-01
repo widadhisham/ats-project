@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Icon, Avatar } from "react-native-elements";
 import Swipeout from "react-native-swipeout";
-import ActionSheet from "react-native-actionsheet";
+import { ActionSheetCustom as ActionSheet } from "react-native-actionsheet";
 import ImagePicker from "./ImagePicker";
 import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
@@ -65,22 +65,22 @@ class GroundItem extends React.Component {
   options = this.props.assignPlant
     ? [
         <Text style={styles.actionsheetText}>Cancel</Text>,
-        <Text style={styles.actionsheetText}>Assign To Plant</Text>,
-        <Text style={styles.actionsheetText}>Delete Assign To Plant</Text>
+        <Text style={styles.actionsheetText}>Planting With Plant</Text>,
+        <Text style={styles.actionsheetText}>Delete Planting With</Text>
       ]
     : [
         <Text style={styles.actionsheetText}>Cancel</Text>,
-        <Text style={styles.actionsheetText}>Assign To Plant</Text>
+        <Text style={styles.actionsheetText}>Planting With Plant</Text>
       ];
   options2 = this.props.assignDevice
     ? [
         <Text style={styles.actionsheetText}>Cancel</Text>,
-        <Text style={styles.actionsheetText}>Assign To Device</Text>,
-        <Text style={styles.actionsheetText}>Delete Assign To Device</Text>
+        <Text style={styles.actionsheetText}>Managing By Device</Text>,
+        <Text style={styles.actionsheetText}>Delete Managing By Device</Text>
       ]
     : [
         <Text style={styles.actionsheetText}>Cancel</Text>,
-        <Text style={styles.actionsheetText}>Assign To Device</Text>
+        <Text style={styles.actionsheetText}>Managing By Device</Text>
       ];
 
   handleActionSheetPress = index => {
@@ -123,11 +123,14 @@ class GroundItem extends React.Component {
       photo,
       id,
       name,
-      groundWidth,
-      groundHeight,
+      width,
+      height,
       assignPlant,
       assignDevice,
-      deleteGround
+      deleteGround,
+      assignPlantName,
+      assignDeviceName,
+      editGround
     } = this.props;
     const swipeout = [
       {
@@ -158,7 +161,8 @@ class GroundItem extends React.Component {
           ModalAction.DispatchAction(
             ModalAction.showModal(constants.ADD_GROUND, {
               add: false,
-              ...this.props
+              ...this.props,
+              submit: editGround
             })
           );
         },
@@ -190,22 +194,22 @@ class GroundItem extends React.Component {
               </View>
               <View style={styles.row}>
                 <Text style={styles.text}>Width</Text>
-                <Text>{groundWidth + " M"}</Text>
+                <Text>{width + " M"}</Text>
               </View>
               <View style={styles.row}>
                 <Text style={styles.text}>Height</Text>
-                <Text>{groundHeight + " M"}</Text>
+                <Text>{height + " M"}</Text>
               </View>
               {assignPlant && (
                 <View style={styles.row}>
-                  <Text style={styles.text}>Assign To Plant</Text>
-                  <Text>{assignPlant}</Text>
+                  <Text style={styles.text}>Planted with</Text>
+                  <Text>{assignPlantName}</Text>
                 </View>
               )}
               {assignDevice && (
                 <View style={styles.row}>
-                  <Text style={styles.text}>Assign To Device</Text>
-                  <Text>{assignDevice}</Text>
+                  <Text style={styles.text}>Managed By</Text>
+                  <Text>{assignDeviceName}</Text>
                 </View>
               )}
               <View style={styles.row2}>

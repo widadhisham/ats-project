@@ -60,11 +60,11 @@ class AssignTo extends React.Component {
 
   state = {
     checked: false,
-    id: -1
+    chechedId: -1
   };
 
-  handleChange = id => {
-    this.setState({ checked: true, id });
+  handleChange = chechedId => {
+    this.setState({ checked: true, chechedId });
   };
 
   render() {
@@ -75,7 +75,7 @@ class AssignTo extends React.Component {
         { id: 3, name: "item 3" }
       ]
     } = this.props;
-    const { checked, id } = this.state;
+    const { checked, chechedId } = this.state;
     const {
       process,
       assignDevice,
@@ -84,7 +84,9 @@ class AssignTo extends React.Component {
       name,
       assignToItems,
       devices,
-      plants
+      plants,
+      submit,
+      id
     } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
@@ -110,7 +112,7 @@ class AssignTo extends React.Component {
                         this.props.navigation.navigate("Process", {
                           process: process,
                           assignPlant: assignPlant,
-                          assignDevice: this.state.id,
+                          assignDevice: this.state.chechedId,
                           ground: ground
                           // pass data of devices
                         });
@@ -118,7 +120,7 @@ class AssignTo extends React.Component {
                     } else {
                       this.props.navigation.navigate("AssignTo", {
                         process: process,
-                        assignPlant: this.state.id,
+                        assignPlant: this.state.chechedId,
                         assignDevice: assignDevice,
                         ground: ground,
                         name: "Devices",
@@ -131,7 +133,7 @@ class AssignTo extends React.Component {
                       process: process,
                       assignPlant: assignPlant,
                       assignDevice: assignDevice,
-                      ground: this.state.id,
+                      ground: this.state.chechedId,
                       name: "Plants",
                       assignToItems: plants,
                       devices: devices
@@ -146,7 +148,10 @@ class AssignTo extends React.Component {
           {checked &&
             !process && (
               <TouchableOpacity
-                onPress={() => this.props.navigation.goBack(null)}
+                onPress={() => {
+                  submit(id, chechedId);
+                  this.props.navigation.goBack(null);
+                }}
               >
                 <Text style={styles.text}>OK</Text>
               </TouchableOpacity>
@@ -166,7 +171,7 @@ class AssignTo extends React.Component {
                 <View style={styles.row}>
                   <Text style={styles.text2}>{item.name}</Text>
                   {checked &&
-                    id === item.id && (
+                    chechedId === item.id && (
                       <Icon name="check" color="#179543" size={20} />
                     )}
                 </View>

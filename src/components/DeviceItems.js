@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
 import { Icon, Avatar } from "react-native-elements";
 import Swipeout from "react-native-swipeout";
-import ActionSheet from "react-native-actionsheet";
+import { ActionSheetCustom as ActionSheet } from "react-native-actionsheet";
 import ImagePicker from "./ImagePicker";
 import * as ModalAction from "../redux/actions/modal";
 import { constants } from "../containers/Modal";
@@ -52,7 +52,8 @@ class DeviceItem extends React.Component {
       id,
       name,
       deviceNumber,
-      deleteDevice
+      deleteDevice,
+      editDevice
     } = this.props;
     const swipeout = [
       {
@@ -83,7 +84,8 @@ class DeviceItem extends React.Component {
           ModalAction.DispatchAction(
             ModalAction.showModal(constants.ADD_DEVICE, {
               add: false,
-              ...this.props
+              ...this.props,
+              submit: editDevice
             })
           );
         },

@@ -9,9 +9,9 @@ export const addGround = ground => ({
 
 export const EDIT_GROUND = "EDIT_GROUND";
 
-export const editGround = ground => ({
+export const editGround = (id, ground) => ({
   type: EDIT_GROUND,
-  payload: { ground }
+  payload: { id, ground }
 });
 
 export const DELETE_GROUND = "DELETE_GROUND";
