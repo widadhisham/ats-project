@@ -15,8 +15,8 @@ const initialState = {
       name: "Ground 2 ",
       width: 200,
       height: 150,
-      asignPlant: "Tomato",
-      asignDevice: "Device 1"
+      assignPlant: "Tomato",
+      assignDevice: "Device 1"
     },
     3: {
       id: 3,
@@ -54,6 +54,14 @@ export default (state = initialState, action) => {
     case groundActions.EDIT_GROUND:
       return {};
 
+    case groundActions.ASSIGN_PLANT:
+      return {};
+    //  payload: { groundId, plantId }
+
+    case groundActions.ASSIGN_DEVICE:
+      return {};
+    //  payload: { groundId, deviceId }
+
     default:
       return state;
   }
@@ -68,3 +76,5 @@ export const getGrounds = state => {
   });
   return grounds;
 };
+
+export const getPlantName = state => {};

@@ -27,3 +27,17 @@ export const getGrounds = (userId, ground) => ({
   type: GET_GROUNDS,
   payload: { userId, ground }
 });
+
+export const ASSIGN_PLANT = "ASSIGN_PLANT";
+
+export const assignPlant = (groundId, plantId) => ({
+  type: ASSIGN_PLANT,
+  payload: { groundId, plantId }
+});
+
+export const ASSIGN_DEVICE = "ASSIGN_DEVICE";
+
+export const assignDevice = (groundId, deviceId) => ({
+  type: ASSIGN_DEVICE,
+  payload: { groundId, deviceId }
+});

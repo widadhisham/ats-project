@@ -165,18 +165,20 @@ class Ground extends React.Component {
                     name={item.name}
                     groundWidth={item.width}
                     groundHeight={item.height}
-                    asignPlant={item.asignPlant}
-                    asignDevice={item.asignDevice}
+                    assignPlant={item.assignPlant}
+                    assignDevice={item.assignDevice}
                     isAssignPressPlant={() =>
                       this.props.navigation.navigate("AssignTo", {
                         assignToItems: plants,
-                        name: "Plants"
+                        name: "Plants",
+                        id: item.id
                       })
                     }
                     isAssignPressDevice={() =>
                       this.props.navigation.navigate("AssignTo", {
                         assignToItems: devices,
-                        name: "Devices"
+                        name: "Devices",
+                        id: item.id
                       })
                     }
                     deleteGround={() => deleteGround(item.id)}

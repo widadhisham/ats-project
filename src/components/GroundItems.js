@@ -62,7 +62,7 @@ class GroundItem extends React.Component {
   handleOpenActionSheet = () => this.ActionSheet.show();
   handleOpenActionSheet2 = () => this.ActionSheet2.show();
 
-  options = this.props.asignPlant
+  options = this.props.assignPlant
     ? [
         <Text style={styles.actionsheetText}>Cancel</Text>,
         <Text style={styles.actionsheetText}>Assign To Plant</Text>,
@@ -72,7 +72,7 @@ class GroundItem extends React.Component {
         <Text style={styles.actionsheetText}>Cancel</Text>,
         <Text style={styles.actionsheetText}>Assign To Plant</Text>
       ];
-  options2 = this.props.asignDevice
+  options2 = this.props.assignDevice
     ? [
         <Text style={styles.actionsheetText}>Cancel</Text>,
         <Text style={styles.actionsheetText}>Assign To Device</Text>,
@@ -84,34 +84,34 @@ class GroundItem extends React.Component {
       ];
 
   handleActionSheetPress = index => {
-    if (index === 1 && this.props.asignPlant) {
+    if (index === 1 && this.props.assignPlant) {
       this.props.isAssignPressPlant();
     }
-    if (index === 2 && this.props.asignPlant) {
+    if (index === 2 && this.props.assignPlant) {
       ModalAction.DispatchAction(
         ModalAction.showModal(constants.ALERT, {
           ...this.props,
-          name: `assign to ${this.props.asignPlant} `
+          name: `assign to ${this.props.assignPlant} `
         })
       );
     }
-    if (index === 1 && !this.props.asignPlant) {
+    if (index === 1 && !this.props.assignPlant) {
       this.props.isAssignPressPlant();
     }
   };
   handleActionSheetPress2 = index => {
-    if (index === 1 && this.props.asignDevice) {
+    if (index === 1 && this.props.assignDevice) {
       this.props.isAssignPressDevice();
     }
-    if (index === 2 && this.props.asignDevice) {
+    if (index === 2 && this.props.assignDevice) {
       ModalAction.DispatchAction(
         ModalAction.showModal(constants.ALERT, {
           ...this.props,
-          name: `assign to ${this.props.asignDevice} `
+          name: `assign to ${this.props.assignDevice} `
         })
       );
     }
-    if (index === 1 && !this.props.asignDevice) {
+    if (index === 1 && !this.props.assignDevice) {
       this.props.isAssignPressDevice();
     }
   };
@@ -125,8 +125,8 @@ class GroundItem extends React.Component {
       name,
       groundWidth,
       groundHeight,
-      asignPlant,
-      asignDevice,
+      assignPlant,
+      assignDevice,
       deleteGround
     } = this.props;
     const swipeout = [
@@ -196,16 +196,16 @@ class GroundItem extends React.Component {
                 <Text style={styles.text}>Height</Text>
                 <Text>{groundHeight + " M"}</Text>
               </View>
-              {asignPlant && (
+              {assignPlant && (
                 <View style={styles.row}>
                   <Text style={styles.text}>Assign To Plant</Text>
-                  <Text>{asignPlant}</Text>
+                  <Text>{assignPlant}</Text>
                 </View>
               )}
-              {asignDevice && (
+              {assignDevice && (
                 <View style={styles.row}>
                   <Text style={styles.text}>Assign To Device</Text>
-                  <Text>{asignDevice}</Text>
+                  <Text>{assignDevice}</Text>
                 </View>
               )}
               <View style={styles.row2}>
