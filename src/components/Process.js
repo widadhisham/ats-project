@@ -133,6 +133,8 @@ class Process extends React.Component {
     } = this.props.navigation.state.params;
     let x = JSON.stringify(this.state.date);
     let y = JSON.stringify(this.state.time);
+    const mainDate = JSON.parse(x).substring(0, 10);
+    const mainTime = JSON.parse(y);
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -192,7 +194,9 @@ class Process extends React.Component {
                 >
                   <Icon name="today" color="#179543" />
                 </TouchableOpacity>
-                {x && <Text style={styles.textDateTime}>{x}</Text>}
+                {mainDate && (
+                  <Text style={styles.textDateTime}>{mainDate}</Text>
+                )}
                 <DateTimePicker
                   isVisible={this.state.isDatePickerVisible}
                   onConfirm={this._handleDatePicked}
@@ -219,7 +223,7 @@ class Process extends React.Component {
             >
               <Icon name="timer" color="#179543" />
             </TouchableOpacity>
-            {y && <Text style={styles.textDateTime}>{y}</Text>}
+            {mainTime && <Text style={styles.textDateTime}>{mainTime}</Text>}
             <DateTimePicker
               isVisible={this.state.isTimePickerVisible}
               onConfirm={this._handleTimePicked}

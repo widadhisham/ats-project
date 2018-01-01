@@ -170,8 +170,8 @@ const RootTabs = TabNavigator(
     swipeEnabled: false,
     tabBarOptions: {
       activeTintColor: "#179543",
-      inactiveTintColor: "#bfc0bf"
-      // style: { backgroundColor: "#f2f2f2" }
+      inactiveTintColor: "#bfc0bf",
+      style: { backgroundColor: "#E6E6E5" }
     }
   }
 );

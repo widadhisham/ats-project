@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     justifyContent: "flex-start",
     backgroundColor: "transparent",
-    marginBottom: 10,
-    marginRight: 10,
-    marginTop: "110%",
-    marginLeft: "70%",
-    position: "absolute"
+    marginBottom: 3,
+    marginRight: 8
+    // marginTop: "110%",
+    //  marginLeft: "70%",
+    //n  position: "absolute"
   },
   add: {
     shadowColor: "rgba(0, 0, 0, 0.2)"
