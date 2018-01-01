@@ -124,6 +124,7 @@ class Ground extends React.Component {
       assignDevice,
       editGround
     } = this.props;
+    console.log(grounds);
     return (
       <View style={styles.container}>
         <View style={styles.groundHeader}>
@@ -183,7 +184,8 @@ class Ground extends React.Component {
                         assignToItems: plants,
                         name: "Plants",
                         id: item.id,
-                        submit: assignPlant
+                        submit: assignPlant,
+                        item: item.assignPlant
                       })
                     }
                     isAssignPressDevice={() =>
@@ -191,7 +193,8 @@ class Ground extends React.Component {
                         assignToItems: devices,
                         name: "Devices",
                         id: item.id,
-                        submit: assignDevice
+                        submit: assignDevice,
+                        item: item.assignDevice
                       })
                     }
                     deleteGround={() => deleteGround(item.id)}

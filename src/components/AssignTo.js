@@ -75,7 +75,7 @@ class AssignTo extends React.Component {
         { id: 3, name: "item 3" }
       ]
     } = this.props;
-    const { checked, chechedId } = this.state;
+    let { checked, chechedId } = this.state;
     const {
       process,
       assignDevice,
@@ -86,8 +86,13 @@ class AssignTo extends React.Component {
       devices,
       plants,
       submit,
-      id
+      id,
+      item
     } = this.props.navigation.state.params;
+    if (item) {
+      checked = true;
+      chechedId = item;
+    }
     return (
       <View style={styles.container}>
         <View style={styles.header}>
