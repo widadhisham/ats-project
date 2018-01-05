@@ -19,6 +19,7 @@ import ProcessItem from "../components/ProcessItem";
 import * as GroundReducer from "../redux/reducers/ground";
 import * as DeviceReducer from "../redux/reducers/device";
 import * as PlantReducer from "../redux/reducers/plant";
+import * as ScheduleActions from "../redux/actions/schedule";
 
 const styles = StyleSheet.create({
   container: {
@@ -63,7 +64,8 @@ const styles = StyleSheet.create({
   },
   actionsheetText: {
     color: "#179543",
-    fontSize: 18
+    fontSize: 18,
+    backgroundColor: "transparent"
   },
   schedualItems: {
     flex: 1,
@@ -117,23 +119,27 @@ class Home extends React.Component {
     if (index === 1) {
       this.props.navigation.navigate("AssignTo", {
         process: "agri",
-        assignPlant: this.props.asignPlant,
-        assignDevice: this.props.assignDevice,
+        //  assignPlant: this.props.asignPlant,
+        //  assignDevice: this.props.assignDevice,
         assignToItems: this.props.grounds,
+        grounds: this.props.grounds,
         devices: this.props.devices,
         plants: this.props.plants,
-        name: "Grounds"
+        name: "Grounds",
+        addSchedule: this.props.addSchedule
       });
     }
     if (index === 2) {
       this.props.navigation.navigate("AssignTo", {
         process: "irrig",
-        assignPlant: this.props.asignPlant,
-        assignDevice: this.props.assignDevice,
+        //  assignPlant: this.props.asignPlant,
+        //  assignDevice: this.props.assignDevice,
         assignToItems: this.props.grounds,
+        grounds: this.props.grounds,
         devices: this.props.devices,
         plants: this.props.plants,
-        name: "Grounds"
+        name: "Grounds",
+        addSchedule: this.props.addSchedule
       });
     }
   };
@@ -202,4 +208,7 @@ const mapStateToProps = state => ({
   devices: DeviceReducer.getDevices(state),
   plants: PlantReducer.getPlants(state)
 });
-export default connect(mapStateToProps, {})(Home);
+export default connect(mapStateToProps, {
+  addSchedule: ScheduleActions.addSchedule,
+  deleteSchedule: ScheduleActions.deleteSchedule
+})(Home);

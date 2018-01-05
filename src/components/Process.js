@@ -220,7 +220,11 @@ class Process extends React.Component {
             >
               <Icon name="timer" color="#179543" />
             </TouchableOpacity>
-            {mainTime && <Text style={styles.textDateTime}>{mainTime}</Text>}
+            {mainTime && (
+              <Text style={styles.textDateTime}>
+                {mainTime.substring(11, 25)}
+              </Text>
+            )}
             <DateTimePicker
               isVisible={this.state.isTimePickerVisible}
               onConfirm={this._handleTimePicked}

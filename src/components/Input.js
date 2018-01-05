@@ -60,6 +60,7 @@ class Input extends React.PureComponent {
       password,
       add,
       text,
+      value,
       ...otherProps
     } = this.props;
 
@@ -82,6 +83,7 @@ class Input extends React.PureComponent {
             placeholderTextColor="rgba(0,0,0,0.5)"
             style={styles.textInput}
             secureTextEntry={secureTextEntry}
+            value={value}
           />
 
           {secureTextEntry &&

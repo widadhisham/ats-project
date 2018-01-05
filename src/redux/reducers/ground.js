@@ -8,8 +8,8 @@ const initialState = {
     1: {
       id: 1,
       name: "Ground 1 ",
-      width: 300,
-      height: 200
+      width: "300",
+      height: "200"
     },
     2: {
       id: 2,

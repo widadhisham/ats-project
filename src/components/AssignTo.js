@@ -53,6 +53,8 @@ const styles = StyleSheet.create({
   }
 });
 
+let assignPlantforGround;
+let assignDeviceforGround;
 class AssignTo extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     header: null
@@ -60,13 +62,78 @@ class AssignTo extends React.Component {
 
   state = {
     checked: false,
-    chechedId: -1
+    chechedId: -1,
+    assignPlantforGround: undefined,
+    assignDeviceforGround: undefined
   };
 
-  handleChange = chechedId => {
-    this.setState({ checked: true, chechedId });
+  handleChange = (chechedId, assignPlantforGround, assignDeviceforGround) => {
+    this.setState({
+      checked: true,
+      chechedId,
+      assignPlantforGround,
+      assignDeviceforGround
+    });
   };
 
+  handleNext = (
+    process,
+    assignDevice,
+    assignPlant,
+    ground,
+    name,
+    assignToItems,
+    devices,
+    plants,
+    submit,
+    id,
+    item,
+    grounds
+  ) => {
+    if (ground) {
+      if (assignPlant) {
+        if (assignDevice) {
+          this.props.navigation.navigate("Process", {
+            process: process,
+            assignPlant: assignPlant,
+            assignDevice: assignDevice,
+            ground: ground
+          });
+        } else {
+          // navigate to data, time, page
+          this.props.navigation.navigate("Process", {
+            process: process,
+            assignPlant: assignPlant,
+            assignDevice: this.state.chechedId,
+            ground: ground
+            // pass data of devices
+          });
+        }
+      } else {
+        this.props.navigation.navigate("AssignTo", {
+          process: process,
+          assignPlant: this.state.chechedId,
+          assignDevice: assignDevice,
+          ground: ground,
+          name: "Devices",
+          assignToItems: devices
+          // pass data of plants
+        });
+      }
+    } else {
+      this.props.navigation.navigate("AssignTo", {
+        process: process,
+        assignPlant: assignPlantforGround,
+        assignDevice: assignDeviceforGround,
+        ground: this.state.chechedId,
+        name: "Plants",
+        assignToItems: plants,
+        devices: devices,
+        grounds: grounds
+        // pass data of plants
+      });
+    }
+  };
   render() {
     const {
       items = [
@@ -75,7 +142,12 @@ class AssignTo extends React.Component {
         { id: 3, name: "item 3" }
       ]
     } = this.props;
-    let { checked, chechedId } = this.state;
+    let {
+      checked,
+      chechedId
+      //   assignPlantforGround,
+      //   assignDeviceforGround
+    } = this.state;
     const {
       process,
       assignDevice,
@@ -87,8 +159,16 @@ class AssignTo extends React.Component {
       plants,
       submit,
       id,
-      item
+      item,
+      grounds
     } = this.props.navigation.state.params;
+
+    const groundData = assignToItems.map(item => {
+      if (item.id == ground) {
+        assignPlantforGround = item.assignPlant;
+        assignDeviceforGround = item.assignDevice;
+      }
+    });
     if (item) {
       checked = true;
       chechedId = item;
@@ -102,50 +182,22 @@ class AssignTo extends React.Component {
           {checked &&
             process && (
               <TouchableOpacity
-                onPress={() => {
-                  if (ground) {
-                    if (assignPlant) {
-                      if (assignDevice) {
-                        this.props.navigation.navigate("Process", {
-                          process: process,
-                          assignPlant: assignPlant,
-                          assignDevice: assignDevice,
-                          ground: ground
-                        });
-                      } else {
-                        // navigate to data, time, page
-                        this.props.navigation.navigate("Process", {
-                          process: process,
-                          assignPlant: assignPlant,
-                          assignDevice: this.state.chechedId,
-                          ground: ground
-                          // pass data of devices
-                        });
-                      }
-                    } else {
-                      this.props.navigation.navigate("AssignTo", {
-                        process: process,
-                        assignPlant: this.state.chechedId,
-                        assignDevice: assignDevice,
-                        ground: ground,
-                        name: "Devices",
-                        assignToItems: devices
-                        // pass data of plants
-                      });
-                    }
-                  } else {
-                    this.props.navigation.navigate("AssignTo", {
-                      process: process,
-                      assignPlant: assignPlant,
-                      assignDevice: assignDevice,
-                      ground: this.state.chechedId,
-                      name: "Plants",
-                      assignToItems: plants,
-                      devices: devices
-                      // pass data of plants
-                    });
-                  }
-                }}
+                onPress={() =>
+                  this.handleNext(
+                    process,
+                    assignDevice,
+                    assignPlant,
+                    ground,
+                    name,
+                    assignToItems,
+                    devices,
+                    plants,
+                    submit,
+                    id,
+                    item,
+                    grounds
+                  )
+                }
               >
                 <Text style={styles.text}>Next</Text>
               </TouchableOpacity>
@@ -170,7 +222,13 @@ class AssignTo extends React.Component {
           {assignToItems.map(item => {
             return (
               <TouchableOpacity
-                onPress={() => this.handleChange(item.id)}
+                onPress={() =>
+                  this.handleChange(
+                    item.id,
+                    item.assignPlant,
+                    item.assignDevice
+                  )
+                }
                 key={item.id}
               >
                 <View style={styles.row}>

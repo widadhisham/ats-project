@@ -57,9 +57,9 @@ class AddGround extends React.Component {
           <View style={styles.content}>
             <Formik
               initialValues={{
-                name: name,
-                width: width + "",
-                height: height + ""
+                name: name?name:null,
+                width: width,
+                height: height
               }}
               validate={values => {
                 const errors = {};

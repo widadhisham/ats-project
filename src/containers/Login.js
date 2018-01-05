@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   logo: {
-    flex: 1,
+    flex: 1.4,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
@@ -44,11 +44,13 @@ const styles = StyleSheet.create({
   },
   textGray: {
     fontSize: 15,
-    color: "gray"
+    color: "gray",
+    backgroundColor: "transparent"
   },
   textGreen: {
     fontSize: 15,
-    color: "#179543"
+    color: "#179543",
+    backgroundColor: "transparent"
   }
 });
 

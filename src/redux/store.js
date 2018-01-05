@@ -7,6 +7,7 @@ import modal from "./reducers/modal";
 import plant from "./reducers/plant";
 import ground from "./reducers/ground";
 import device from "./reducers/device";
+import schedule from "./reducers/schedule";
 import snackbar from "./reducers/snackbar";
 
 const allReducers = combineReducers({
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
   plant,
   ground,
   device,
+  schedule,
   snackbar
 });
 

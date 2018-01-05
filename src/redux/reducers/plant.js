@@ -7,10 +7,10 @@ const initialState = {
     1: {
       id: 1,
       name: "Tomato",
-      waterQuantity: 1,
-      temperature: 24,
-      distanceX: 0.1,
-      distanceY: 0.1
+      waterQuantity: "1",
+      temperature: "24",
+      distanceX: "0.1",
+      distanceY: "0.1"
     },
     2: {
       id: 2,

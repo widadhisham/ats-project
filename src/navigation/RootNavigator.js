@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Settings } from "react-native";
 import { TabNavigator, StackNavigator } from "react-navigation";
 import { Icon } from "react-native-elements";
 import Login from "../containers/Login";
@@ -10,6 +10,7 @@ import UserPlant from "../containers/Plant";
 import UserDevice from "../containers/Device";
 import AssignTo from "../components/AssignTo";
 import Process from "../components/Process";
+import UserSetting from "../containers/Setting";
 
 class Schedule extends React.Component {
   static navigationOptions = {
@@ -117,6 +118,21 @@ class Device extends React.Component {
   }
 }
 
+class Setting extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: "Settings",
+    tabBarIcon: ({ focused }) =>
+      focused ? (
+        <Icon name="settings" color="#179543" />
+      ) : (
+        <Icon name="settings" color="#bfc0bf" />
+      )
+  };
+
+  render() {
+    return <UserSetting {...this.props} />;
+  }
+}
 const styles = StyleSheet.create({
   icon: {
     width: 26,
@@ -159,6 +175,9 @@ const RootTabs = TabNavigator(
     },
     Schedule: {
       screen: homeStack
+    },
+    Settings: {
+      screen: Setting
     }
   },
   {

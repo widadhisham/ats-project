@@ -17,7 +17,7 @@ class RootContainer extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Modal />
-        {isAuthenticated ? <RootNavigation /> : <RootNavigation />}
+        {isAuthenticated ? <RootNavigation /> : <Splash />}
       </View>
     );
   }

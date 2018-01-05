@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
   },
   actionsheetText: {
     color: "#179543",
-    fontSize: 18
+    fontSize: 18,
+    backgroundColor: "transparent"
   },
   deviceItems: {
     flex: 1,
